@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+const code=ts.transpileModule(readFileSync(new URL('../src/utils/collaboration.ts',import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {safeMeetingLink,dateInZone,calendarDates,icsEvent}=await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+test('meeting links reject script schemes, credentials and local literals',()=>{for(const s of ['javascript:alert(1)','http://meet.google.com/x','https://u:p@example.com/x','https://127.0.0.1','https://localhost'])assert.equal(safeMeetingLink(s),null);assert.equal(safeMeetingLink('https://meet.google.com/abc'),'https://meet.google.com/abc');});
+test('company day does not follow the browser UTC date',()=>assert.equal(dateInZone('Asia/Kolkata',new Date('2026-10-18T20:00:00Z')),'2026-10-19'));
+test('calendar spans every leave day and clips across months',()=>assert.deepEqual(calendarDates('2026-09-29','2026-10-03','2026-10'),['2026-10-01','2026-10-02','2026-10-03']));
+test('calendar handles leap day and reverse ranges',()=>{assert.deepEqual(calendarDates('2028-02-28','2028-03-02','2028-02'),['2028-02-28','2028-02-29']);assert.deepEqual(calendarDates('2026-10-09','2026-10-02','2026-10'),[]);});
+test('ICS uses UTC instants and escapes calendar injection',()=>{const text=icsEvent({id:1,title:'Review, plan; next\nEND:VEVENT',agenda:'a\\b',occurrenceStart:'2026-10-19T10:00:00+05:30',occurrenceEnd:'2026-10-19T10:30:00+05:30',meetingUrl:'javascript:bad',status:'CANCELLED'});assert.ok(text.includes('DTSTART:20261019T043000Z'));assert.ok(text.includes('SUMMARY:Review\\, plan\\; next\\nEND:VEVENT'));assert.ok(text.includes('STATUS:CANCELLED'));assert.ok(!text.includes('javascript:'));assert.equal(text.match(/\r\nEND:VEVENT/g).length,1);});
+test('ICS folds unicode lines without splitting UTF-8 characters',()=>{const text=icsEvent({id:2,title:'é'.repeat(200),occurrenceStart:'2026-10-19T10:00:00Z',occurrenceEnd:'2026-10-19T11:00:00Z',status:'SCHEDULED'});for(const line of text.split('\r\n'))assert.ok(Buffer.byteLength(line)<=75);assert.ok(!text.includes('�'));});

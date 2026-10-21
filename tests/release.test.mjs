@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+const source=readFileSync(new URL('../src/utils/integrationForms.ts',import.meta.url),'utf8');
+const js=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {parseRecipients,parseMoney,authIdentity,safeProviderUrl,payrollPolicyDays,errorText}=await import(`data:text/javascript;base64,${Buffer.from(js).toString('base64')}`);
+test('invite recipients normalize and deduplicate',()=>assert.deepEqual(parseRecipients('A@example.invalid; a@example.invalid\nb@example.invalid'),['a@example.invalid','b@example.invalid']));
+test('empty and malformed recipients rejected',()=>{for(const s of ['', 'x', 'a@b', 'a b@example.invalid'])assert.throws(()=>parseRecipients(s));});
+test('invitation limit is 30 unique recipients',()=>{const a=Array.from({length:31},(_,i)=>`test${i}@example.invalid`);assert.equal(parseRecipients(a.slice(0,30).join(',')).length,30);assert.throws(()=>parseRecipients(a.join(',')));});
+test('money remains a decimal string, not a floating point calculation',()=>{assert.equal(parseMoney('123456789.01'),'123456789.01');assert.equal(parseMoney(' 0 '),'0');});
+test('malformed money and excessive precision are rejected',()=>{for(const s of ['-1','NaN','Infinity','1e6','1.001','1000000000000',''])assert.throws(()=>parseMoney(s));});
+test('OAuth redirects only reach the approved HTTPS vendor hosts',()=>{assert.equal(safeProviderUrl('https://accounts.google.com/o/oauth2/v2/auth?state=test').hostname,'accounts.google.com');assert.equal(safeProviderUrl('https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize').hostname,'login.microsoftonline.com');});
+test('OAuth redirect confusion and unsafe protocols rejected',()=>{for(const s of ['http://accounts.google.com','https://accounts.google.com.evil.invalid','https://name:secret@accounts.google.com','https://accounts.google.com:8443','javascript:alert(1)'])assert.throws(()=>safeProviderUrl(s));});
+test('session identity handles missing and corrupt browser storage',()=>{globalThis.sessionStorage={getItem:()=>'{broken'};assert.deepEqual(authIdentity(),{userId:'',role:'EMPLOYEE'});globalThis.sessionStorage={getItem:()=>JSON.stringify({userId:'EMP_TEST',role:'ROLE_HR'})};assert.deepEqual(authIdentity(),{userId:'EMP_TEST',role:'HR'});delete globalThis.sessionStorage;});
+test('policy days validate and deduplicate',()=>{assert.deepEqual(payrollPolicyDays(['MONDAY','MONDAY']),['MONDAY']);assert.throws(()=>payrollPolicyDays([]));assert.throws(()=>payrollPolicyDays(['INVALID']));});
+test('structured server error message is shown, not response object',()=>{assert.equal(errorText({response:{data:{message:'Approval required'}}}),'Approval required');assert.equal(errorText(null),'The action could not be completed.');});

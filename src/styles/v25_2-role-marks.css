@@ -1,0 +1,11 @@
+/* BlueThink V25.2: distinctive role marks, official brand identity retained. */
+.bt-studio .th-brand.bt-official-brand{display:flex!important;justify-content:flex-start!important;align-items:center!important;gap:12px!important;padding:12px!important;min-height:88px!important;height:auto!important;overflow:hidden!important;text-align:left!important}
+.bt-studio .bt-role-logo{flex:0 0 49px;width:49px;height:49px;display:grid;place-items:center;border-radius:15px;color:#fff;background:linear-gradient(145deg,#1f3e80,#5672bd);box-shadow:0 7px 18px #122a4033}
+.bt-studio .bt-role-logo-manager{background:linear-gradient(145deg,#174e60,#259a91)}
+.bt-studio .bt-role-logo-hr{background:linear-gradient(145deg,#6541a7,#a373c5)}
+.bt-studio .bt-role-logo-employee{background:linear-gradient(145deg,#527c58,#86a77b)}
+.bt-studio .bt-role-brand-copy{display:flex;flex-direction:column;min-width:0;gap:3px;position:relative;z-index:1}
+.bt-studio .bt-role-brand-copy strong{font-size:14px;font-weight:850;color:#1a3048;white-space:nowrap}
+.bt-studio .bt-role-brand-copy small{font-size:10px;font-weight:750;color:#50617a;letter-spacing:.015em;line-height:1.3}
+.bt-studio .bt-official-brand-logo.bt-role-official-signature{position:absolute!important;right:7px!important;bottom:5px!important;width:34px!important;height:16px!important;max-height:16px!important;object-fit:contain!important;opacity:.42!important;pointer-events:none}
+.timesheet-source-tag{color:#0d7774;font-weight:700;font-size:11px}

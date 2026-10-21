@@ -1,0 +1,16 @@
+/* V25.4: Keep the full-size BlueThink Inc. logo unchanged.
+ * The duplicate role/control-room panel below the logo is removed for
+ * Admin, HR, Manager and Employee. Role-specific icons remain subtly
+ * visible in the existing profile badge, without a separate sidebar row.
+ */
+.bt-studio .bt-inline-role-badge {
+  display: inline-flex!important;
+  align-items: center;
+  gap: 4px;
+}
+.bt-studio .bt-inline-role-badge svg {
+  flex: none;
+  font-size: 12px;
+}
+/* Worklog/source labels added in V25.2 remain functional. */
+.timesheet-source-tag {color:#0d7774;font-weight:700;font-size:11px;}

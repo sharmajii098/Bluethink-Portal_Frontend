@@ -1,0 +1,473 @@
+/* V18 premium refresh: stronger visual depth, more distinct role dashboards,
+   and a classier enterprise shell while keeping existing functionality intact. */
+
+.bt-studio .th-sidebar {
+  position: fixed;
+  overflow: hidden auto;
+}
+
+.bt-studio .th-sidebar::after {
+  content: "";
+  position: absolute;
+  inset: auto -70px -90px auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 72%);
+  pointer-events: none;
+}
+
+.bt-studio .th-brand.bt-official-brand {
+  position: relative;
+  min-height: 98px !important;
+  height: auto !important;
+  margin: 0 16px;
+  width: calc(100% - 32px) !important;
+  padding: 18px 18px 16px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255,255,255,.13) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.17), rgba(255,255,255,.04)) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+.bt-studio .th-brand.bt-official-brand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.14), transparent 45%, rgba(255,255,255,.05));
+  pointer-events: none;
+}
+
+.bt-studio .bt-official-brand-logo {
+  width: min(220px, 100%);
+  max-height: 62px;
+  position: relative;
+  z-index: 1;
+}
+
+.bt-studio .bt-sidebar-intro {
+  margin: 14px 16px 15px !important;
+  padding: 18px 18px 20px !important;
+  min-height: 132px;
+  border-radius: 22px !important;
+  box-shadow: 0 16px 34px rgba(0,0,0,.12);
+}
+
+.bt-studio .bt-sidebar-intro-number {
+  width: 36px;
+  height: 36px;
+  font-size: 12px;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.22);
+}
+
+.bt-studio .bt-sidebar-intro-copy strong {
+  font-size: 18px;
+  line-height: 1.24;
+}
+
+.bt-studio .bt-sidebar-intro-copy small {
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.bt-studio .bt-sidebar-intro-art {
+  right: -12px;
+  bottom: -42px;
+  font-size: 154px;
+  opacity: .075;
+}
+
+.bt-studio .th-profile.th-profile-v6 {
+  margin: 0 16px 13px !important;
+  padding: 14px !important;
+  min-height: 82px;
+  border-radius: 20px !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.08);
+}
+
+.bt-studio .th-profile-avatar {
+  width: 48px !important;
+  height: 48px !important;
+  font-size: 15px !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.12) !important;
+}
+
+.bt-studio .th-profile-info strong {
+  font-size: 13px !important;
+}
+
+.bt-studio .th-profile-info .th-profile-designation {
+  font-size: 10px !important;
+  letter-spacing: .02em;
+}
+
+.bt-studio .th-profile-meta {
+  margin-top: 7px;
+}
+
+.bt-studio .th-menu-label {
+  padding: 0 24px !important;
+  margin: 18px 0 9px !important;
+}
+
+.bt-studio .th-menu {
+  padding: 0 12px 18px !important;
+}
+
+.bt-studio .th-nav-group {
+  margin-bottom: 4px;
+}
+
+.bt-studio .th-nav-button {
+  min-height: 48px !important;
+  padding: 11px 14px !important;
+}
+
+.bt-studio .th-nav-left {
+  gap: 13px;
+}
+
+.bt-studio .th-submenu {
+  margin-left: 34px !important;
+}
+
+.bt-studio .th-subnav {
+  min-height: 38px !important;
+}
+
+.bt-studio .th-sidebar-footer {
+  margin-top: 8px;
+  padding: 18px 24px 26px !important;
+}
+
+.bt-studio .th-sidebar-footer::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 14px;
+  opacity: .7;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+}
+
+.bt-studio .th-topbar {
+  min-height: 82px !important;
+  height: 82px !important;
+  padding-inline: 32px !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.90)) !important;
+  box-shadow: 0 10px 32px rgba(19,34,52,.06) !important;
+}
+
+.bt-studio .th-page-context small {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px !important;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.bt-studio .th-page-context small::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--role-accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--role-accent) 16%, transparent);
+}
+
+.bt-studio .th-page-context strong {
+  font-size: 18px !important;
+  letter-spacing: -.03em;
+}
+
+.bt-studio .th-search-wrap {
+  position: relative;
+}
+
+.bt-studio .th-search {
+  min-width: min(390px, 36vw);
+  height: 46px !important;
+  padding: 0 15px !important;
+  border-radius: 15px !important;
+  background: rgba(255,255,255,.76) !important;
+}
+
+.bt-studio .th-search-results {
+  top: calc(100% + 10px);
+  border: 1px solid var(--role-line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 24px 50px rgba(17,24,39,.10);
+  backdrop-filter: blur(14px);
+}
+
+.bt-studio .th-search-results button {
+  min-height: 52px;
+}
+
+.bt-studio .th-date,
+.bt-studio .bt-topbar-role-chip,
+.bt-studio .th-icon-btn,
+.bt-studio .th-user.th-user-v6 {
+  border: 1px solid var(--role-line);
+  background: rgba(255,255,255,.84) !important;
+  box-shadow: 0 10px 24px rgba(17,24,39,.05);
+}
+
+.bt-studio .th-date {
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.bt-studio .bt-topbar-role-chip {
+  display: inline-flex !important;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.bt-studio .th-icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px !important;
+}
+
+.bt-studio .th-notification-badge {
+  box-shadow: 0 0 0 4px #fff;
+}
+
+.bt-studio .th-user.th-user-v6 {
+  min-height: 48px;
+  padding: 6px 8px 6px 6px !important;
+  border-radius: 16px !important;
+}
+
+.bt-studio .th-user.th-user-v6 .MuiAvatar-root {
+  width: 36px;
+  height: 36px;
+}
+
+.bt-studio .th-content {
+  padding: 32px 34px 102px !important;
+}
+
+.bt-studio .th-page-shell {
+  max-width: 1560px;
+}
+
+.bt-studio .bt-compact-dashboard-top {
+  margin-bottom: 24px;
+  padding: 19px 22px !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.72));
+  border: 1px solid var(--role-line);
+  border-radius: 22px;
+  box-shadow: 0 16px 42px rgba(15,23,42,.05);
+}
+
+.bt-studio .bt-compact-dashboard-kicker {
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.bt-studio .bt-compact-dashboard-heading h1 {
+  margin-top: 10px !important;
+  font-size: clamp(28px, 2.4vw, 34px) !important;
+}
+
+.bt-studio .bt-compact-dashboard-actions button {
+  min-height: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 18px rgba(17,24,39,.04);
+}
+
+.bt-studio .bt9-kpis.bt10-first-kpis {
+  gap: 18px !important;
+}
+
+.bt-studio .bt9-stat {
+  position: relative;
+  overflow: hidden;
+  min-height: 146px;
+  padding: 24px !important;
+  border-radius: 22px !important;
+}
+
+.bt-studio .bt9-stat::before {
+  content: "";
+  position: absolute;
+  top: -28px;
+  right: -28px;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--role-accent) 16%, transparent), transparent 68%);
+}
+
+.bt-studio .bt9-stat-value {
+  font-size: 36px !important;
+  letter-spacing: -.04em;
+}
+
+.bt-studio .bt9-card,
+.bt-studio .th-page-shell .MuiCard-root {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px !important;
+}
+
+.bt-studio .bt9-card::before,
+.bt-studio .th-page-shell .MuiCard-root::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--role-accent), color-mix(in srgb, var(--role-accent) 20%, white));
+  opacity: .9;
+}
+
+.bt-studio .bt9-card-heading {
+  padding-bottom: 16px !important;
+  margin-bottom: 16px !important;
+}
+
+.bt-studio .bt9-record {
+  padding: 12px 0 !important;
+}
+
+.bt-studio .bt9-record:hover {
+  transform: translateX(3px);
+}
+
+.bt-studio .bt10-grouped-chart {
+  min-height: 220px;
+}
+
+.bt-studio .bt10-group-bars span {
+  border-radius: 8px 8px 3px 3px !important;
+}
+
+.bt-studio .bt10-donut-layout {
+  align-items: center;
+}
+
+.bt-studio .bt10-donut {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.35), 0 16px 32px rgba(15,23,42,.06);
+}
+
+.bt-studio .bt10-donut > div {
+  box-shadow: inset 0 0 0 1px var(--role-line);
+}
+
+.bt-studio .bt10-quick-actions {
+  gap: 12px !important;
+}
+
+.bt-studio .bt10-quick {
+  min-height: 96px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 14px 28px rgba(15,23,42,.05) !important;
+}
+
+.bt-studio .bt10-work-timer {
+  border-radius: 22px !important;
+}
+
+.bt-studio .bt-studio-workmode {
+  border-radius: 22px !important;
+  box-shadow: 0 16px 34px rgba(15,23,42,.05) !important;
+}
+
+.bt-studio .table-toolbar,
+.bt-studio .request-mode-bar,
+.bt-studio .report-filter-card {
+  border-radius: 18px !important;
+}
+
+.bt-studio-admin .th-brand.bt-official-brand,
+.bt-studio-manager .th-brand.bt-official-brand {
+  background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06)) !important;
+}
+
+.bt-studio-employee .th-brand.bt-official-brand,
+.bt-studio-hr .th-brand.bt-official-brand {
+  background: linear-gradient(180deg, rgba(255,255,255,.76), rgba(255,255,255,.40)) !important;
+}
+
+.bt-studio-employee .th-topbar,
+.bt-studio-hr .th-topbar {
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.94)) !important;
+}
+
+.bt-studio-admin .bt-compact-dashboard-top {
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(244,248,255,.82));
+}
+
+.bt-studio-hr .bt-compact-dashboard-top {
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,247,247,.85));
+}
+
+.bt-studio-manager .bt-compact-dashboard-top {
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(245,255,249,.84));
+}
+
+.bt-studio-employee .bt-compact-dashboard-top {
+  background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,248,239,.86));
+}
+
+@media (max-width: 1320px) {
+  .bt-studio .th-topbar {
+    padding-inline: 24px !important;
+  }
+
+  .bt-studio .th-search {
+    min-width: min(300px, 34vw);
+  }
+}
+
+@media (max-width: 1100px) {
+  .bt-studio .th-sidebar {
+    width: min(320px, calc(100vw - 38px)) !important;
+  }
+
+  .bt-studio .th-topbar {
+    min-height: 74px !important;
+    height: 74px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .bt-studio .th-topbar {
+    padding-inline: 16px !important;
+  }
+
+  .bt-studio .th-search {
+    min-width: 0;
+    width: min(230px, 100%) !important;
+  }
+
+  .bt-studio .bt-topbar-role-chip,
+  .bt-studio .th-date {
+    display: none !important;
+  }
+
+  .bt-studio .th-content {
+    padding: 22px 16px 84px !important;
+  }
+
+  .bt-studio .bt-compact-dashboard-top {
+    padding: 16px !important;
+    border-radius: 18px;
+  }
+
+  .bt-studio .bt9-stat,
+  .bt-studio .bt9-card {
+    border-radius: 18px !important;
+  }
+}

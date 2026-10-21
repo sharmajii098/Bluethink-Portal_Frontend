@@ -1,0 +1,75 @@
+/* V14: shared, readable workspace presentation. Existing role dashboard layouts remain distinct. */
+:root{--work-ink:#19324d;--work-muted:#586c80;--work-blue:#255ec1;--work-line:#dfe6ee;--work-surface:#f4f7fb}
+body{color:var(--work-ink);background:var(--work-surface)}
+.bt-studio .th-sidebar{background:#142b45!important;border-right:0!important}
+.bt-studio .th-brand{padding:24px 22px 19px!important;gap:9px!important}
+.bt-studio .th-brand-image-wrap{width:204px!important;height:72px!important;padding:10px 12px!important;background:white!important;border-radius:12px!important;box-shadow:0 2px 8px #071b321c}
+.bt-studio .th-brand-image-wrap .th-brand-image{display:block;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;filter:none!important;opacity:1!important}
+.bt-studio .th-brand-copy small{color:#c5d5e8!important;font-size:11px!important;letter-spacing:.07em!important}
+.bt-studio .th-profile{background:#ffffff08!important;border:1px solid #ffffff12!important;border-radius:14px!important;margin:0 14px 16px!important;padding:14px!important}
+.bt-studio .th-topbar{background:#ffffff!important;border-bottom:1px solid var(--work-line)!important;box-shadow:none!important}
+.bt-studio .th-content{background:var(--work-surface)!important;padding:26px 30px 90px!important;min-width:0}
+.bt-studio .th-page-shell{max-width:1500px;margin:0 auto;min-width:0}
+.bt-studio .bt-workspace-trail{padding:18px 30px 0!important;background:var(--work-surface);color:var(--work-muted);font-size:11px!important}
+.bt-studio .bt-workspace-trail-caption{display:none}
+.bt-studio :is(.th-page-header,.page-header){margin:0 0 24px!important;gap:18px!important;align-items:center}
+.bt-studio :is(.th-page-header,.page-header) h1{font-size:28px!important;line-height:1.25;letter-spacing:-.035em!important;color:var(--work-ink)!important;font-weight:750!important}
+.bt-studio .th-page-shell .MuiTypography-h4{font-size:28px!important;line-height:1.25!important;letter-spacing:-.035em!important;color:var(--work-ink)}
+.bt-studio .th-page-shell .MuiTypography-h6{font-size:18px;line-height:1.4}
+.bt-studio .th-page-shell :is(.MuiTypography-colorTextSecondary,.report-muted){color:var(--work-muted)!important}
+.bt-studio :is(.th-card,.table-card,.report-filter-card){background:white!important;border:1px solid var(--work-line)!important;border-radius:14px!important;box-shadow:0 3px 14px #18324d04!important}
+.bt-studio .th-page-shell .MuiCard-root{border:1px solid var(--work-line);border-radius:14px;box-shadow:0 3px 14px #18324d04}
+.bt-studio .th-page-shell .MuiCardContent-root{padding:22px}
+.bt-studio .th-page-shell .MuiCardContent-root:last-child{padding-bottom:22px}
+.bt-studio .th-page-shell .MuiCardContent-root>.MuiStack-root{gap:16px}
+.bt-studio .th-page-shell .MuiTable-root{display:block;max-width:100%;overflow-x:auto;border:1px solid var(--work-line);border-radius:12px;background:white}
+.bt-studio .th-page-shell :is(td,th,.MuiTableCell-root){padding:14px 16px!important;font-size:13px!important;line-height:1.5;border-color:#e9eef4!important}
+.bt-studio .th-page-shell :is(th,.MuiTableCell-head){background:#f0f4fa!important;color:#52677e!important;font-weight:700!important;white-space:nowrap}
+.bt-studio .th-page-shell tbody tr:hover{background:#f8faff}
+.bt-studio :is(.th-primary,.MuiButton-containedPrimary){background:#255ec1!important;color:#fff!important;border-radius:9px!important;box-shadow:none!important}
+.bt-studio :is(.th-primary,.th-outline,.MuiButton-root){min-height:40px;font-size:13px!important}
+.bt-studio .th-page-shell :is(input,select,textarea){font-size:14px;line-height:1.5}
+.bt-studio :is(.th-loading,.empty-state){padding:38px 24px!important;text-align:center;color:var(--work-muted)}
+.bt-studio :is(button,a,input,textarea,select):focus-visible{outline:3px solid #86aff8!important;outline-offset:3px}
+.MuiDialog-root .MuiDialog-paper{border-radius:18px;box-shadow:0 24px 80px #10243b30}
+.MuiDialog-root .MuiDialogTitle-root{font-size:22px;font-weight:700;padding:24px 24px 16px;color:var(--work-ink)}
+.MuiDialog-root .MuiDialogActions-root{padding:16px 24px;border-top:1px solid #edf1f6;gap:8px}
+.MuiDialog-root .MuiDialogContent-root{padding:14px 24px 24px}
+.bt-ai-launcher.bt-ai-launcher-team-chat{bottom:max(100px,env(safe-area-inset-bottom))!important;min-width:44px!important;width:44px!important;height:44px!important;padding:0!important}
+.bt-signin-brand>span{width:230px!important;height:82px!important;padding:12px 14px!important;border-radius:12px!important}
+.bt-signin-brand img{width:100%!important;height:auto!important;max-height:none!important;filter:none!important}
+.request-workspace{width:100%;min-width:0}.workspace-eyebrow,.request-mode-label{display:block;font-size:10px;font-weight:750;letter-spacing:.14em;line-height:1.5}
+.request-hero{display:flex;justify-content:space-between;gap:32px;padding:38px 40px;background:#183655;border-radius:20px;color:white;position:relative;overflow:hidden}
+.request-hero>div:first-child{max-width:730px;z-index:1}.request-hero .workspace-eyebrow{color:#a9c9f2}.request-hero h1{font-size:36px;line-height:1.2;letter-spacing:-.04em;margin:14px 0;font-weight:700;color:white!important}
+.request-hero p{font-size:14px;line-height:1.75;color:#d3dfed;max-width:630px;margin:0}.request-approval-note{display:flex;align-items:center;gap:9px;margin-top:24px;color:#e2edfa;font-size:12px}
+.request-hero-mark{align-self:center;width:140px;height:140px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #ffffff26;border-radius:50%;background:#ffffff05;transform:rotate(-8deg)}
+.request-hero-mark span{font-size:48px;font-weight:750;letter-spacing:-.07em}.request-hero-mark small{font-size:8px;letter-spacing:.17em;margin-top:5px}
+.request-toolbar{display:flex;align-items:center;gap:20px;justify-content:space-between;margin:28px 0 16px}.request-toolbar>span{white-space:nowrap;color:#617287;font-size:12px}.request-search{display:flex;gap:10px;align-items:center;padding:12px 16px;border:1px solid var(--work-line);border-radius:11px;background:white;max-width:540px;flex:1;color:#7890a6}.request-search input{border:0;outline:0;background:transparent;width:100%;color:var(--work-ink);font-size:14px}
+.request-category-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.request-category-tabs button{border:1px solid var(--work-line);border-radius:22px;background:white;color:#5b6d81;padding:9px 14px;font-size:12px;cursor:pointer;min-height:38px}.request-category-tabs button[aria-pressed=true]{background:#183655;border-color:#183655;color:white}
+.request-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.request-service-card{padding:24px;border:1px solid var(--work-line);border-radius:15px;background:white;display:flex;flex-direction:column;color:var(--work-ink);text-decoration:none;transition:box-shadow .15s,border-color .15s,transform .15s}.request-service-card:hover{border-color:#a8bfdf;box-shadow:0 10px 25px #19324d0a;transform:translateY(-2px)}.request-card-index{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:#9aadc1;font-weight:700;gap:10px}.request-card-index small{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#7890a6}.request-service-card h2{font-size:19px;letter-spacing:-.025em;margin:20px 0 9px;font-weight:700}.request-service-card p{font-size:13px;line-height:1.65;color:#617287;margin:0 0 22px;flex:1}.request-card-action{display:flex;align-items:center;justify-content:space-between;color:#255ec1;font-size:12px;font-weight:700;padding-top:14px;border-top:1px solid #eef2f7}
+.request-mode-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;background:white;border:1px solid #d9e3ef;border-left:4px solid #255ec1;padding:18px 20px;border-radius:12px;margin-bottom:26px}.request-mode-label{color:#63809c;font-size:9px}.request-mode-bar strong{display:block;font-size:15px;margin:5px 0}.request-mode-bar small{display:block;color:#617287;font-size:12px;line-height:1.5}.request-mode-links{display:flex;gap:4px;flex-shrink:0;background:#edf2f8;padding:4px;border-radius:9px}.request-mode-links a{padding:9px 12px;color:#52677e;text-decoration:none;font-size:12px;border-radius:6px;white-space:nowrap}.request-mode-links a[aria-current=page]{background:white;color:#1e4f9e;box-shadow:0 2px 6px #19324d0b;font-weight:700}
+.workspace-empty{padding:48px;text-align:center;border:1px dashed #cad7e6;border-radius:16px;background:white}.workspace-empty h2{font-size:20px}.workspace-empty p{color:#617287}.workspace-empty button{background:#255ec1;color:white;border:0;border-radius:8px;padding:11px 18px}.workspace-back{display:inline-flex;gap:8px;align-items:center;text-decoration:none;font-size:12px;color:#617287;margin-top:28px}
+@media(max-width:1100px){.request-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.request-hero-mark{display:none}.request-hero{padding:30px}.request-mode-bar{align-items:flex-start;flex-direction:column}}
+@media(max-width:650px){.bt-studio .th-content{padding:20px 16px 90px!important}.bt-studio .bt-workspace-trail{padding:16px 16px 0!important}.bt-studio :is(.th-page-header,.page-header){flex-direction:column!important;align-items:stretch!important}.bt-studio :is(.th-page-header,.page-header) h1,.bt-studio .th-page-shell .MuiTypography-h4{font-size:25px!important}.request-card-grid{grid-template-columns:minmax(0,1fr);gap:12px}.request-hero{padding:27px 23px;border-radius:15px}.request-hero h1{font-size:29px}.request-service-card{padding:21px}.request-toolbar{gap:10px;margin-top:20px}.request-toolbar>span{display:none}.request-category-tabs{gap:6px}.request-category-tabs button{font-size:11px;padding:8px 12px}.request-mode-bar{padding:16px}.request-mode-links{width:100%;justify-content:center}.request-mode-links a{flex:1;text-align:center}.bt-studio .th-page-shell .MuiCardContent-root{padding:18px}.MuiDialog-root .MuiDialog-paper{margin:12px;width:calc(100% - 24px);max-height:calc(100% - 24px)}.bt-signin-brand>span{width:192px!important;height:68px!important}.request-approval-note{align-items:flex-start;line-height:1.6}}
+@media(prefers-reduced-motion:reduce){.request-service-card{transition:none}.request-service-card:hover{transform:none}}
+
+/* Dialogs render outside the role-layout DOM; use the same primary color there. */
+.MuiDialog-root .MuiButton-containedPrimary{background:#255ec1!important;color:white!important;box-shadow:none!important}
+.MuiDialog-root .MuiButton-containedPrimary:hover{background:#1d4894!important}
+.MuiDialog-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{border-color:#255ec1!important}
+.documents-workspace .document-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.bt-studio .documents-workspace .th-card{padding:22px!important}
+.bt-studio .documents-workspace .document-stats .th-card{padding:18px!important;min-height:100px}
+.documents-workspace .document-stats .th-muted{font-size:12px;line-height:1.4;margin-bottom:10px}
+.documents-workspace .role-card-head{padding:0 0 18px!important;gap:14px;flex-wrap:wrap}
+.documents-workspace .role-card-head h3{font-size:17px;margin:0;display:flex;align-items:center;gap:8px}
+.documents-workspace .role-card-head>span{font-size:11px;color:#617287;background:transparent!important;border:0!important;padding:0!important}
+.document-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.document-form-grid label{display:flex;flex-direction:column;gap:8px;font-size:12px;color:#52677e;font-weight:600;min-width:0}
+.document-form-grid :is(input,select){width:100%;min-width:0;min-height:42px;border:1px solid #dfe6ee;border-radius:8px;padding:9px 11px;color:#19324d;background:white;font-weight:400;box-sizing:border-box}
+.document-form-grid input[type=file]{font-size:12px;padding:8px}
+.documents-workspace textarea{padding:12px;border:1px solid #dfe6ee;border-radius:8px;box-sizing:border-box;resize:vertical}
+.documents-workspace .th-modal-actions{padding:0!important;justify-content:flex-start;flex-wrap:wrap;gap:10px}
+.documents-workspace .th-modal-actions input{flex:1;min-width:120px}
+@media(max-width:900px){.documents-workspace .document-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.documents-workspace .document-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.document-form-grid{grid-template-columns:minmax(0,1fr)}.bt-studio .documents-workspace .th-card{padding:18px!important}}

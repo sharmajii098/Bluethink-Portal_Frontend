@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import ts from 'typescript';
+const source=readFileSync(new URL('../src/utils/reportTable.ts',import.meta.url),'utf8');
+const code=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {parseReportCsv,reportCellValue}=await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+test('CSV preserves quoted commas, escaped quotes, and embedded line breaks',()=>assert.deepEqual(parseReportCsv('ID,Note\r\n001,"Plan, review\nSay ""hello"""\r\n'),[['ID','Note'],['001','Plan, review\nSay "hello"']]));
+test('CSV retains blank trailing cells and removes the BOM',()=>assert.deepEqual(parseReportCsv('\uFEFFID,Hours,Note\n01,8,'),[['ID','Hours','Note'],['01','8','']]));
+test('IDs, long account numbers, and formula-like strings remain literal',()=>{for(const [h,v] of [['Employee ID','12345'],['Account Number','123456789012345678'],['Task','=HYPERLINK("bad")'],['Employee Code','00123']])assert.equal(reportCellValue(h,v).value,v);});
+test('report measures and percentages remain numeric',()=>{assert.equal(reportCellValue('Hours','7.5').value,7.5);assert.equal(reportCellValue('Paid Leave Days','2').value,2);assert.equal(reportCellValue('Completion Rate','75%').value,.75);assert.equal(reportCellValue('Net Salary','50000.75').format,'#,##0.00;[Red]-#,##0.00');});
+test('valid report dates are typed and invalid dates remain literal',()=>{assert.equal(reportCellValue('Date','2026-10-18').value.toISOString(),'2026-10-18T00:00:00.000Z');assert.equal(reportCellValue('Date','2026-02-30').value,'2026-02-30');});
