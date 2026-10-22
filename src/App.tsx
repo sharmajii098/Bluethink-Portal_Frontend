@@ -8,6 +8,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "./store";
 
+
 import LoginPage from "./pages/auth/LoginPage";
 import ActivateAccountPage from "./pages/auth/ActivateAccountPage";
 import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
@@ -119,6 +120,7 @@ import LearningEffectivenessPage from "./pages/LearningEffectivenessPage";
 import HrCaseSlaDashboardPage from "./pages/HrCaseSlaDashboardPage";
 import AttendanceLeaveRiskPage from "./pages/AttendanceLeaveRiskPage";
 import EmployeeCostAnalyticsPage from "./pages/EmployeeCostAnalyticsPage";
+
 
 /**
  * Supported application roles.
