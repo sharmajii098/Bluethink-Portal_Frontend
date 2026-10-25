@@ -18,6 +18,17 @@ type AiChatState = {
 };
 const AiChatContext = createContext<AiChatState | null>(null);
 
+function getAiAnswer(data: unknown): string | null {
+  if (typeof data === "string") return data.trim() ? data : null;
+  if (!data || typeof data !== "object") return null;
+
+  for (const key of ["answer", "response", "message", "content"]) {
+    const value = (data as Record<string, unknown>)[key];
+    if (typeof value === "string" && value.trim()) return value;
+  }
+  return null;
+}
+
 /** One in-memory conversation for popup/full-page views, scoped to this signed-in session. */
 export function AiChatProvider({ children }: { children: ReactNode }) {
   const session = useSelector((state: RootState) => state.auth.session);
@@ -60,16 +71,15 @@ export function AiChatProvider({ children }: { children: ReactNode }) {
     setMessages(current => [...current, { id: `${id}-u`, role: "user", text }]);
     try {
       if (!session?.token) throw new Error("Your session has expired. Please sign in again.");
-      // Only the current on-screen conversation may supply narrowly scoped follow-up context.
-      // New Chat clears messages, so server follow-ups cannot inherit an older session.
-      const contextQuestion = [...messages].reverse().find(item => item.role === "user")?.text;
-      const response = await api.post("/ai/chat", { message: text, contextQuestion }, {
+      const response = await api.get("/ai/chat", {
+        params: { query: text },
         headers: { Authorization: `Bearer ${session.token}` },
         signal: controller.signal,
         timeout: 150000, // Longer than server model read timeout to show its real error.
       });
       if (active.current && !controller.signal.aborted) {
-        const answer = String(response.data?.answer ?? "No response received from server.");
+        const answer = getAiAnswer(response.data);
+        if (answer === null) throw new Error("AI server returned an empty or unsupported response. Please try again.");
         setMessages(current => [...current, { id: `${id}-a`, role: "assistant", text: answer }]);
       }
     } catch (failure: unknown) {

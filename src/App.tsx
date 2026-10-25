@@ -109,6 +109,7 @@ import LoginLocationMonitorPage from "./pages/LoginLocationMonitorPage";
 import BlueThinkChatPage from "./pages/BlueThinkChatPage";
 import TeamChatPage from "./pages/TeamChatPage";
 import DailyStandupPage from "./pages/DailyStandupPage";
+import PolicyAssistantPage from "./pages/PolicyAssistantPage";
 
 import EmployeeLifecyclePage from "./pages/EmployeeLifecyclePage";
 import WorkforceAnalyticsPage from "./pages/WorkforceAnalyticsPage";
@@ -190,6 +191,7 @@ function roleRoutes(role: string) {
         {admin && <Route path={`${b}/staff-approvals`} element={<MyRequestsPage review />} />}
 
         <Route path={`${b}/calendar-connections`} element={<CalendarConnectionsPage />} />
+        <Route path={`${b}/policy-assistant`} element={<PolicyAssistantPage />} />
         {(admin || hr) && <><Route path={`${b}/payroll-reconciliation`} element={<PayrollReconciliationPage />} /><Route path={`${b}/payroll-policies`} element={<PayrollPoliciesPage />} /><Route path={`${b}/letter-templates`} element={<HrLetterTemplatesPage />} /></>}
 
         {/* =====================================================

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Alert, Box, Button, CircularProgress, Dialog, Fab, IconButton, Portal, Stack, TextField, Tooltip, Typography } from "@mui/material";
-import { AddRounded, AutoAwesomeRounded, CloseFullscreenRounded, CloseRounded, OpenInFullRounded, SendRounded } from "@mui/icons-material";
+import { AddRounded, CloseFullscreenRounded, CloseRounded, OpenInFullRounded, SendRounded } from "@mui/icons-material";
 import type { RootState } from "../store";
 import { useAiChat } from "../contexts/AiChatContext";
 import AiActionLauncher from "./AiActionLauncher";
@@ -39,12 +39,11 @@ export default function AiChatWidget() {
 
   return <>
     <Portal><Tooltip title="Ask BlueThink AI" placement="left">
-      <Fab className={`bt-ai-launcher${teamChat ? " bt-ai-launcher-team-chat" : ""}`} variant="extended" color="primary" aria-label="Open BlueThink AI chat" aria-haspopup="dialog"
+      <Fab className={`bt-ai-launcher${teamChat ? " bt-ai-launcher-team-chat" : ""}`} color="primary" aria-label="Open BlueThink AI chat" aria-haspopup="dialog"
         aria-expanded={open} aria-controls={open ? "bt-ai-popup" : undefined}
         onClick={() => setOpen(true)}
-        sx={{ position: "fixed", right: { xs: 16, sm: 24 }, bottom: teamChat ? "max(100px, env(safe-area-inset-bottom))" : "max(20px, env(safe-area-inset-bottom))", zIndex: 1290, gap: 1, px: teamChat ? 0 : 2.5, minWidth: teamChat ? 44 : undefined, width: teamChat ? 44 : undefined, height: teamChat ? 44 : 52, color: "white",
-          background: "linear-gradient(135deg, #135b63, #169e95)", boxShadow: "0 8px 28px #0c5f6540", "&:hover": { background: "#116e72" } }}>
-        <AutoAwesomeRounded />{!teamChat && <span>Ask BlueThink</span>}
+        sx={{ position: "fixed", right: { xs: 16, sm: 24 }, bottom: teamChat ? "max(100px, env(safe-area-inset-bottom))" : "max(20px, env(safe-area-inset-bottom))", zIndex: 1290, width: teamChat ? 44 : 60, minWidth: teamChat ? 44 : 60, height: teamChat ? 44 : 60, p: 0 }}>
+        <Box component="img" src="/bluethink-icon.ico" alt="" aria-hidden="true" sx={{ display: "block", width: teamChat ? 28 : 36, height: teamChat ? 28 : 36, objectFit: "contain", bgcolor: "white", borderRadius: "50%", p: .25 }} />
       </Fab>
     </Tooltip></Portal>
     <Dialog open={open} onClose={minimize} fullScreen={maximized} maxWidth={false}
@@ -54,7 +53,7 @@ export default function AiChatWidget() {
         "& .MuiBackdrop-root": { backgroundColor: "rgba(15, 38, 48, .15)" } }}
       PaperProps={{ id: "bt-ai-popup", sx: { m: 0, width: maximized ? "100%" : { xs: "calc(100vw - 16px)", sm: 410 }, maxWidth: maximized ? "100%" : "calc(100vw - 16px)", height: maximized ? "100dvh" : "min(580px, calc(100dvh - 112px))", maxHeight: maximized ? "100dvh" : "calc(100dvh - 112px)", borderRadius: maximized ? 0 : 3, display: "flex", flexDirection: "column", overflow: "hidden" } }}>
       <Stack direction="row" alignItems="center" spacing={1} sx={{ p: 1.5, color: "white", background: "linear-gradient(120deg, #244a45, #3d7465)" }}>
-        <AutoAwesomeRounded />
+        <Box component="img" src="/bluethink-icon.ico" alt="" aria-hidden="true" sx={{ display: "block", width: 28, height: 28, objectFit: "contain", bgcolor: "white", borderRadius: "50%", p: .25 }} />
         <Box sx={{ flex: 1, minWidth: 0 }}>
           <Typography id="bt-ai-popup-title" fontWeight={800}>BlueThink AI</Typography>
           <Typography variant="caption" sx={{ opacity: .85 }}>Portal Copilot · {role}</Typography>

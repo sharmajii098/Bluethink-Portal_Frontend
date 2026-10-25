@@ -9,9 +9,9 @@ import { configureStore } from '@reduxjs/toolkit';
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 const requests=[];
-globalThis.__chatTestApi={post(url,body,config){
+globalThis.__chatTestApi={get(url,config){
   return new Promise((resolve,reject)=>{
-    requests.push({url,body,config,resolve,reject});
+    requests.push({url,config,resolve,reject});
     config.signal.addEventListener('abort',()=>reject({code:'ERR_CANCELED'}),{once:true});
   });
 }};
@@ -34,23 +34,27 @@ try {
   assert.equal(requests.length,1,'rapid duplicate send is blocked');
   assert.equal(chat.busy,true);assert.equal(chat.messages.length,1);
   assert.equal(requests[0].url,'/ai/chat');
+  assert.deepEqual(requests[0].config.params,{query:'Show my attendance'});
   assert.equal(requests[0].config.headers.Authorization,'Bearer test-token');
   await act(async()=>{root.update(tree('full page'));});
   assert.equal(chat.messages[0].text,'Show my attendance','expanding retains conversation');
   assert.equal(chat.busy,true,'expanding retains pending status');
-  await act(async()=>{requests[0].resolve({data:{answer:'Four records'}});await pending;});
+  await act(async()=>{requests[0].resolve({data:'Four records'});await pending;});
   assert.equal(chat.messages[1].text,'Four records');assert.equal(chat.busy,false);
   await act(async()=>{root.update(tree('popup'));});
   assert.equal(chat.messages.length,2,'minimizing/returning retains both messages');
+  await act(async()=>{pending=chat.sendMessage('Explain leave policy');});
+  await act(async()=>{requests[1].resolve({data:{answer:'Policy details'}});await pending;});
+  assert.equal(chat.messages[3].text,'Policy details','JSON answer responses are displayed');
   await act(async()=>{pending=chat.sendMessage('Other employee records');});
-  await act(async()=>{requests[1].reject({response:{status:403,data:{}}});await pending;});
+  await act(async()=>{requests[2].reject({response:{status:403,data:{}}});await pending;});
   assert.match(chat.error,/Access denied/,'denial is visible');assert.equal(chat.busy,false);
   await act(async()=>{chat.resetChat();});
   assert.equal(chat.messages.length,0);assert.equal(chat.error,'');
   await act(async()=>{pending=chat.sendMessage('Pending request');chat.resetChat();});
   assert.equal(chat.messages.length,1,'New Chat cannot erase a pending conversation');
   await act(async()=>{root.unmount();});root=null;await pending;
-  assert.equal(requests[2].config.signal.aborted,true,'logout/unmount aborts pending request');
+  assert.equal(requests[3].config.signal.aborted,true,'logout/unmount aborts pending request');
   const secondStore=configureStore({reducer:{auth:()=>({session:{userId:'EMP2',role:'MANAGER',token:'second-token'}})}});
   await act(async()=>{root=create(React.createElement(Provider,{store:secondStore},React.createElement(AiChatProvider,null,React.createElement(Probe,{view:'new account'}))));});
   assert.equal(chat.messages.length,0,'a new signed-in session starts with no previous messages');
