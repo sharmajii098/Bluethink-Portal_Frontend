@@ -1,7 +1,6 @@
 # Dependencies and build output
 node_modules/
 dist/
-/target/
 
 # TypeScript incremental build cache
 *.tsbuildinfo
@@ -16,3 +15,26 @@ dist/
 .vscode/
 .DS_Store
 Thumbs.db
+
+### BlueThink RC4: protected local files
+uploads/
+target/
+dist/
+node_modules/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.crt
+*.sql
+*.sql.gz
+*.db
+*.dump
+*.log
+backups/
+private/

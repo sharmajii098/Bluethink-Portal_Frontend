@@ -11,6 +11,7 @@ type AiChatState = {
   setPrompt: Dispatch<SetStateAction<string>>;
   busy: boolean;
   error: string;
+  elapsedSeconds: number;
   setError: Dispatch<SetStateAction<string>>;
   sendMessage: (value?: string) => Promise<void>;
   resetChat: () => void;
@@ -18,23 +19,19 @@ type AiChatState = {
 };
 const AiChatContext = createContext<AiChatState | null>(null);
 
-function getAiAnswer(data: unknown): string | null {
-  if (typeof data === "string") return data.trim() ? data : null;
-  if (!data || typeof data !== "object") return null;
-
-  for (const key of ["answer", "response", "message", "content"]) {
-    const value = (data as Record<string, unknown>)[key];
-    if (typeof value === "string" && value.trim()) return value;
-  }
-  return null;
-}
-
 /** One in-memory conversation for popup/full-page views, scoped to this signed-in session. */
 export function AiChatProvider({ children }: { children: ReactNode }) {
   const session = useSelector((state: RootState) => state.auth.session);
   const [messages, setMessages] = useState<AiMessage[]>([]);
   const [prompt, setPrompt] = useState("");
   const [busy, setBusy] = useState(false);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  useEffect(() => {
+    if (!busy) { setElapsedSeconds(0); return; }
+    const started = Date.now();
+    const timer = window.setInterval(() => setElapsedSeconds(Math.floor((Date.now() - started) / 1000)), 1000);
+    return () => window.clearInterval(timer);
+  }, [busy]);
   const [error, setError] = useState("");
   const pending = useRef(false);
   const active = useRef(true);
@@ -71,15 +68,17 @@ export function AiChatProvider({ children }: { children: ReactNode }) {
     setMessages(current => [...current, { id: `${id}-u`, role: "user", text }]);
     try {
       if (!session?.token) throw new Error("Your session has expired. Please sign in again.");
-      const response = await api.get("/ai/chat", {
-        params: { query: text },
+      // Only the current on-screen conversation may supply narrowly scoped follow-up context.
+      // New Chat clears messages, so server follow-ups cannot inherit an older session.
+      const contextQuestion = [...messages].reverse().find(item => item.role === "user")?.text;
+      const response = await api.post("/ai/chat", { message: text, contextQuestion }, {
         headers: { Authorization: `Bearer ${session.token}` },
         signal: controller.signal,
-        timeout: 150000, // Longer than server model read timeout to show its real error.
+        timeout: 60000, // Server inference defaults to a 45-second read deadline.
       });
       if (active.current && !controller.signal.aborted) {
-        const answer = getAiAnswer(response.data);
-        if (answer === null) throw new Error("AI server returned an empty or unsupported response. Please try again.");
+        const answer = typeof response.data?.answer === "string" ? response.data.answer.trim() : "";
+        if (!answer) throw new Error("AI returned an empty answer. Please retry your question.");
         setMessages(current => [...current, { id: `${id}-a`, role: "assistant", text: answer }]);
       }
     } catch (failure: unknown) {
@@ -95,7 +94,7 @@ export function AiChatProvider({ children }: { children: ReactNode }) {
         ? "Access denied. You can only view employee records permitted by your HRMS role."
         : status === 401 ? "Your session has expired. Please sign in again."
         : status === 429 ? "Too many AI requests. Please wait a minute before retrying."
-        : problem.code === "ECONNABORTED" ? "AI took too long. Your question is still in the input; try again or ask a shorter question. An administrator can check Ollama performance."
+        : problem.code === "ECONNABORTED" ? "AI request timeout, please retry; input preserved."
         : status === 502 || status === 503 || status === 504 ? "AI model is busy, offline, or taking too long. Your question is preserved; retry when the model is ready."
         : typeof detail === "string" ? detail
         : failure instanceof Error ? failure.message : "Unable to reach BlueThink AI. Please try again.");
@@ -124,7 +123,7 @@ export function AiChatProvider({ children }: { children: ReactNode }) {
     setMessages([]); setPrompt(""); setError("");
   }
 
-  return <AiChatContext.Provider value={{ messages, setMessages, prompt, setPrompt, busy, error, setError, sendMessage, resetChat, cancelMessage }}>
+  return <AiChatContext.Provider value={{ messages, setMessages, prompt, setPrompt, busy, error, elapsedSeconds, setError, sendMessage, resetChat, cancelMessage }}>
     {children}
   </AiChatContext.Provider>;
 }

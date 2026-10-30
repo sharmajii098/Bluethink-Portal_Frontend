@@ -1,6 +1,5 @@
-import { reportLogoPng } from "../utils/brandedExport";
+import officialLogo from "../branding/bluethink-inc-official-master.png";
 import { PrintRounded } from "@mui/icons-material";
-import logoSrc from "../branding/bluethink-inc-official-master.png";
 import documentStyles from "./PayslipDocument.css?inline";
 import "./PayslipDocument.css";
 
@@ -36,7 +35,7 @@ export function amountInWords(value: any) {
   return `${amount(value) < 0 ? "Minus " : ""}${parts.join(" ") || "Zero"} Rupees${paise ? ` and ${belowThousand(paise)} Paise` : ""} Only`.toUpperCase();
 }
 
-function renderPayslip(s: Salary, documentLogo = logoSrc) {
+function renderPayslip(s: Salary) {
   const earnings = [["Basic & DA", s.basicSalary], ["HRA", s.hra], ["Conveyance", s.conveyance], ["Medical Allowance", s.medicalAllowance], ["Special Allowance", s.specialAllowance], ["Other Allowance", s.otherAllowance], ["Bonus", s.bonus]];
   const deductions = [["Provident Fund", s.pf], ["E.S.I. / Insurance", s.esi], ["Professional Tax", s.professionalTax], ["Loan", s.loanDeduction], ["TDS / IT", s.tds], ["Attendance / LWP", s.attendanceDeduction]];
   const info = (label: string, value: any) => `<div class="ps-detail"><dt>${label}</dt><dd>${escape(value)}</dd></div>`;
@@ -45,7 +44,7 @@ function renderPayslip(s: Salary, documentLogo = logoSrc) {
     return `<tr><td>${e ? escape(e[0]) : ""}</td><td class="ps-number">${e ? money(e[1]) : ""}</td><td>${d ? escape(d[0]) : ""}</td><td class="ps-number">${d ? money(d[1]) : ""}</td></tr>`;
   }).join("");
   return `<article class="ps-sheet" aria-label="Official monthly salary slip">
-    <header class="ps-company"><img src="${escape(new URL(documentLogo, window.location.href).href)}" alt="Bluethink Inc. — Think beyond"/><div><h2>BLUETHINK IT CONSULTING PVT. LTD.</h2><p>B-12, SEC-2, Noida, U.P.-201301</p></div></header>
+    <header class="ps-company"><div class="ps-wordmark"><img class="ps-official-logo" src="${officialLogo}" alt="BlueThink Inc. — Think beyond" /></div><div><h2>BLUETHINK IT CONSULTING PVT. LTD.</h2><p>B-12, SEC-2, Noida, U.P.-201301</p></div></header>
     <div class="ps-period"><div><span>MONTHLY SALARY STATEMENT</span><h3>${escape(s.month)} ${escape(s.year)}</h3></div><span class="ps-private">CONFIDENTIAL · INR</span></div>
     <section class="ps-section"><h4>Employee details</h4><dl class="ps-details">
       ${info("Employee name", s.employeeName)}${info("Employee ID", s.employeeCode)}${info("Department", s.department)}${info("Designation", s.designation)}${info("Employee band", s.employeeBand)}${info("Date of joining", s.joiningDate)}${info("PAN number", s.panNumber)}${info("Bank name", s.bankName)}${info("Account number", s.bankAccountNumber)}
@@ -67,10 +66,9 @@ export function printPayslip(salary: Salary) {
   win.document.title = "Preparing Bluethink payslip";
   win.document.body.textContent = "Preparing your Bluethink salary statement…";
   void (async () => {
-    const embeddedLogo = await reportLogoPng();
     if (win.closed) return;
     win.document.open();
-    win.document.write(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bluethink Payslip - ${escape(salary.employeeName)} - ${escape(salary.month)} ${escape(salary.year)}</title><style>${documentStyles}</style></head><body class="ps-print-document">${renderPayslip(salary, embeddedLogo)}</body></html>`);
+    win.document.write(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bluethink Payslip - ${escape(salary.employeeName)} - ${escape(salary.month)} ${escape(salary.year)}</title><style>${documentStyles}</style></head><body class="ps-print-document">${renderPayslip(salary)}</body></html>`);
     win.document.close();
     await Promise.all([
       ...Array.from(win.document.images).map(image => image.complete ? Promise.resolve() : new Promise<void>(resolve => { image.onload = () => resolve(); image.onerror = () => resolve(); })),

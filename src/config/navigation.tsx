@@ -56,7 +56,6 @@ const complianceChildren = [
   item("Employment Contracts", "employment-contracts"),
   item("Policies & Compliance", "policies"),
   item("Policy Acknowledgements", "policy-acknowledgements"),
-  item("Policy Assistant", "policy-assistant"),
   item("Compliance Tracker", "compliance-records"),
   item("Privacy & Consent", "privacy-consents"),
 ];

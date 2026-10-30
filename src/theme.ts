@@ -1,32 +1,40 @@
 import { createTheme } from "@mui/material/styles";
 
-export const theme = createTheme({
+export function createWorkspaceTheme(role = "EMPLOYEE") {
+// Four distinct premium role identities. Security rules and routing are unchanged.
+const tones: Record<string, {primary:string; tint:string; paper:string; ink:string; muted:string; line:string; highlight:string; contrast:string}> = {
+  ADMIN:    {primary:"#194C7A", tint:"#E9EEF4", paper:"#F3F4F6", ink:"#192F46", muted:"#52667B", line:"#D6DFEA", highlight:"#C95C50", contrast:"#FFFFFF"},
+  HR:       {primary:"#245740", tint:"#EEE7D8", paper:"#F5F0E6", ink:"#243E31", muted:"#566B5C", line:"#DBD2BF", highlight:"#987743", contrast:"#FFFFFF"},
+  MANAGER:  {primary:"#523760", tint:"#EDE4F2", paper:"#F6F3F8", ink:"#33253F", muted:"#675775", line:"#DFD4E6", highlight:"#906AA6", contrast:"#FFFFFF"},
+  EMPLOYEE: {primary:"#416A90", tint:"#E7ECF2", paper:"#F3F5F8", ink:"#273F58", muted:"#526980", line:"#D7E0EA", highlight:"#C86B61", contrast:"#FFFFFF"},
+};
+const tone = tones[role.toUpperCase()] ?? tones.EMPLOYEE;
+const primary = tone.primary;
+return createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#255ec1",
-      dark: "#1d4894",
-      light: "#83a9ec",
+      main: primary,
       contrastText: "#ffffff",
     },
     secondary: {
-      main: "#9c7765",
-      dark: "#785749",
-      light: "#c5a595",
-      contrastText: "#ffffff",
+      main: tone.highlight,
+      dark: tone.primary,
+      light: tone.tint,
+      contrastText: tone.contrast,
     },
     success: { main: "#16875a" },
     warning: { main: "#c77816" },
     error: { main: "#c93443" },
     background: {
-      default: "#f4f7fb",
+      default: tone.paper,
       paper: "#ffffff",
     },
     text: {
-      primary: "#263e45",
-      secondary: "#586c80",
+      primary: tone.ink,
+      secondary: tone.muted,
     },
-    divider: "#e5e9e1",
+    divider: tone.line,
   },
   shape: {
     borderRadius: 9,
@@ -67,20 +75,20 @@ export const theme = createTheme({
         head: {
           fontSize: "0.6875rem",
           fontWeight: 600,
-          color: "#607687",
-          backgroundColor: "#f5f9fb",
+          color: tone.ink,
+          backgroundColor: tone.tint,
         },
         body: {
           fontSize: "0.78125rem",
-          color: "#3f5667",
+          color: tone.ink,
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          border: "1px solid #e3e8df",
-          boxShadow: "0 3px 14px rgba(25,44,49,.035)",
+          border: `1px solid ${tone.line}`,
+          boxShadow: "0 3px 14px rgba(57,43,33,.04)",
         },
       },
     },
@@ -93,7 +101,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 8,
-          backgroundColor: "#fcfdfb",
+          backgroundColor: "#ffffff",
           "&.Mui-focused": {
             backgroundColor: "#ffffff",
           },
@@ -109,3 +117,5 @@ export const theme = createTheme({
     },
   },
 });
+}
+export const theme = createWorkspaceTheme();

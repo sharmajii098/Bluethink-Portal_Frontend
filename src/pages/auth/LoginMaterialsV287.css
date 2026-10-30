@@ -1,0 +1,40 @@
+/* BlueThink V28.7 | 4 role material accents + original logo; full viewport, responsive. */
+.bt-auth.bt26-auth.bt-premium-auth {--login-blue:#194C7A;--login-coral:#C95C50;--login-green:#245740;--login-brass:#987743;--login-plum:#523760;--login-lilac:#906AA6;--login-dusty:#416A90;--login-silver:#D7E0EA;background:#F3F4F6!important;min-height:100dvh;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-frame {grid-template-columns:minmax(0,1.08fr) minmax(410px,.92fr);min-height:100dvh;width:100%;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-hero {background:radial-gradient(ellipse at 80% 15%,#C95C5054,transparent 31%),radial-gradient(ellipse at 18% 65%,#906AA655,transparent 45%),linear-gradient(145deg,#17395D,#194C7A 49%,#152C49)!important;min-height:100dvh;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-hero-top,.bt-auth.bt26-auth.bt-premium-auth .bt-auth-hero-bottom {color:#F5F9FE!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-hero-index {color:#FAD7CF!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-login-tile.tile-back {background:linear-gradient(148deg,#C95C50,#9C3C52)!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-login-tile.tile-main {background:linear-gradient(148deg,#906AA6,#523760)!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-login-float {color:#FFFFFF!important;background:#ffffff22!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-login-role-chip {border-color:#ffffff58;color:#FFFFFF!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-login-role-admin {--chip:#C95C50;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-login-role-hr {--chip:#80A88D;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-login-role-manager {--chip:#B69ACA;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-login-role-employee {--chip:#9EBDD9;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-hero-copy h1 em {color:#F0B0A1!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-hero-description {color:#E2EDF8!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel {min-height:100dvh;background:radial-gradient(ellipse at 80% 3%,#E3E0EA,transparent 36%),linear-gradient(165deg,#FCF9F5,#F4F3F3)!important;border-color:#E6E5E5!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel::before {background:linear-gradient(90deg,#194C7A 0 25%,#245740 25% 50%,#523760 50% 75%,#416A90 75%)!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel-head .bt-original-logo {max-width:292px!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel-head .bt-official-logo-image {max-width:292px!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel-head-tag {color:#194C7A!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel-head-tag>span {background:#C95C50!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-eyebrow {color:#245740!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-eyebrow span {background:#987743!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-intro h2 {color:#192F46!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-intro h2 span {color:#C95C50!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-field-label {color:#263C54!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-input-wrap {background:#FFFFFF!important;border-color:#CBD5E1!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-input-wrap input {color:#192F46!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-input-wrap:focus-within {border-color:#194C7A!important;box-shadow:0 0 0 4px #194C7A1C!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-actions a {color:#245740!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-submit {background:#194C7A!important;border-color:#194C7A!important;color:#FFFFFF!important;}
+.bt-auth.bt26-auth.bt-premium-auth .bt-auth-submit:hover:not(:disabled) {background:#12395F!important;}
+.bt-auth.bt26-auth.bt-premium-auth :is(button,a,input):focus-visible {outline:3px solid #C95C50!important;outline-offset:3px!important;}
+@media(max-width:780px){
+ .bt-auth.bt26-auth.bt-premium-auth .bt-auth-frame {display:block;min-height:100dvh;}
+ .bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel {min-height:100dvh;}
+ .bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel::before {height:7px;background:linear-gradient(90deg,#194C7A 0 25%,#245740 25% 50%,#523760 50% 75%,#416A90 75%)!important;}
+ .bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel-head .bt-original-logo {max-width:265px!important;}
+}

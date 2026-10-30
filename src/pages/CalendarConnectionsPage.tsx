@@ -12,7 +12,7 @@ export default function CalendarConnectionsPage() {
   useEffect(() => { void load(); }, []);
   const connect = async (provider:string, configured:boolean) => {
     setMessage("");
-    if(!configured){setMessage(`Cannot connect ${provider} yet: an administrator must set its OAuth client ID, client secret, callback URL and calendar encryption key in the backend. See CALENDAR_CONNECTION_SETUP.md.`);return;}
+    if(!configured){setMessage(`Cannot connect ${provider} yet: an administrator must set its OAuth client ID, client secret, callback URL and calendar encryption key in the backend. See docs/history/CALENDAR_CONNECTION_SETUP.md.`);return;}
     setBusy(true);setConnecting(provider);
     try {
     const {data} = await api.post<{authorizationUrl:string}>(`/calendar-integrations/${provider}/connect`, {}, {timeout: 15000});

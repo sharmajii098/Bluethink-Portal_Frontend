@@ -1,0 +1,135 @@
+/* BlueThink V28.7 — reference-inspired materials, legible role-specific design.
+   Last role layer: affects every inner page without changing data, auth or permissions. */
+.th-app.bt-studio.bt-studio-admin {
+  --bt-accent:#194C7A;--bt-tint:#E9EEF4;--bt-canvas:#F3F4F6;--bt-ink:#192F46;--bt-muted:#52667B;--bt-line:#D6DFEA;
+  --bt-highlight:#C95C50;--bt-card:#FFFFFF;--bt-sidebar:#17395D;--bt-sidebar-end:#102B49;--bt-side-text:#F5F9FF;--bt-side-muted:#D3E0EE;
+  --role-accent:#194C7A;--role-focus:#C95C50;--role-surface:#F3F4F6;--role-panel:#FFFFFF;--role-ink:#192F46;--role-muted:#52667B;--role-line:#D6DFEA;--role-soft:#E9EEF4;
+  --work-surface:#F3F4F6;--work-ink:#192F46;--work-muted:#52667B;--work-line:#D6DFEA;
+  --primary:#194C7A;--surface-soft:#E9EEF4;
+  --bt19-chart-one:#194C7A;--bt19-chart-two:#C95C50;--bt19-chart-three:#809AB7;
+}
+.th-app.bt-studio.bt-studio-hr {
+  --bt-accent:#245740;--bt-tint:#EEE7D8;--bt-canvas:#F5F0E6;--bt-ink:#243E31;--bt-muted:#566B5C;--bt-line:#DBD2BF;
+  --bt-highlight:#987743;--bt-card:#FFFDF8;--bt-sidebar:#224E3C;--bt-sidebar-end:#173B30;--bt-side-text:#FAF8F0;--bt-side-muted:#DFE9DA;
+  --role-accent:#245740;--role-focus:#987743;--role-surface:#F5F0E6;--role-panel:#FFFDF8;--role-ink:#243E31;--role-muted:#566B5C;--role-line:#DBD2BF;--role-soft:#EEE7D8;
+  --work-surface:#F5F0E6;--work-ink:#243E31;--work-muted:#566B5C;--work-line:#DBD2BF;
+  --primary:#245740;--surface-soft:#EEE7D8;
+  --bt19-chart-one:#245740;--bt19-chart-two:#987743;--bt19-chart-three:#8CA69A;
+}
+.th-app.bt-studio.bt-studio-manager {
+  --bt-accent:#523760;--bt-tint:#EDE4F2;--bt-canvas:#F6F3F8;--bt-ink:#33253F;--bt-muted:#675775;--bt-line:#DFD4E6;
+  --bt-highlight:#906AA6;--bt-card:#FFFFFF;--bt-sidebar:#4F355B;--bt-sidebar-end:#362743;--bt-side-text:#FAF5FF;--bt-side-muted:#E0D2EA;
+  --role-accent:#523760;--role-focus:#906AA6;--role-surface:#F6F3F8;--role-panel:#FFFFFF;--role-ink:#33253F;--role-muted:#675775;--role-line:#DFD4E6;--role-soft:#EDE4F2;
+  --work-surface:#F6F3F8;--work-ink:#33253F;--work-muted:#675775;--work-line:#DFD4E6;
+  --primary:#523760;--surface-soft:#EDE4F2;
+  --bt19-chart-one:#523760;--bt19-chart-two:#906AA6;--bt19-chart-three:#BCA5CB;
+}
+.th-app.bt-studio.bt-studio-employee {
+  --bt-accent:#416A90;--bt-tint:#E7ECF2;--bt-canvas:#F3F5F8;--bt-ink:#273F58;--bt-muted:#526980;--bt-line:#D7E0EA;
+  --bt-highlight:#C86B61;--bt-card:#FFFFFF;--bt-sidebar:#416A90;--bt-sidebar-end:#2E5072;--bt-side-text:#FAFCFF;--bt-side-muted:#E0EAF4;
+  --role-accent:#416A90;--role-focus:#C86B61;--role-surface:#F3F5F8;--role-panel:#FFFFFF;--role-ink:#273F58;--role-muted:#526980;--role-line:#D7E0EA;--role-soft:#E7ECF2;
+  --work-surface:#F3F5F8;--work-ink:#273F58;--work-muted:#526980;--work-line:#D7E0EA;
+  --primary:#416A90;--surface-soft:#E7ECF2;
+  --bt19-chart-one:#416A90;--bt19-chart-two:#C86B61;--bt19-chart-three:#9CAFC5;
+}
+/* Structural materials — unique dark sidebars, readable secondary nav labels and active states */
+.th-app.bt-studio .th-sidebar {
+  background:radial-gradient(ellipse at 100% 0%,#ffffff13,transparent 46%),linear-gradient(165deg,var(--bt-sidebar),var(--bt-sidebar-end) 91%)!important;
+  color:var(--bt-side-text)!important;border-right:1px solid #ffffff1c!important;
+}
+.th-app.bt-studio .th-sidebar::before {border-top:3px solid var(--bt-highlight)!important;}
+.th-app.bt-studio .th-sidebar :is(.th-menu-label,.th-profile-designation,.th-profile-meta,.bt-sidebar-signature,.th-profile-info small,.th-sidebar-footer) {color:var(--bt-side-muted)!important;opacity:1!important;}
+.th-app.bt-studio .th-sidebar :is(.th-profile-info strong,.bt-profile-heading,.bt-sidebar-intro-eyebrow) {color:#FFFFFF!important;opacity:1!important;}
+.th-app.bt-studio .th-nav-button,.th-app.bt-studio .th-subnav {
+  color:var(--bt-side-text)!important;opacity:1!important;font-weight:590!important;
+  font-size:13px!important;letter-spacing:0!important;text-shadow:none!important;
+}
+.th-app.bt-studio .th-nav-button .th-nav-left,
+.th-app.bt-studio .th-subnav {min-width:0!important;}
+.th-app.bt-studio .th-nav-button .th-nav-left span,
+.th-app.bt-studio .th-subnav span {color:inherit!important;opacity:1!important;line-height:1.45!important;white-space:normal!important;overflow-wrap:break-word!important;}
+.th-app.bt-studio .th-nav-button .th-nav-left svg,
+.th-app.bt-studio .th-nav-button .bt-nav-group-end svg {color:var(--bt-side-muted)!important;opacity:1!important;flex-shrink:0!important;}
+.th-app.bt-studio .th-nav-button:hover:not(.active),
+.th-app.bt-studio .th-subnav:hover:not(.active) {background:#FFFFFF24!important;color:#FFFFFF!important;}
+.th-app.bt-studio .th-nav-button.active,
+.th-app.bt-studio .th-subnav.active {background:var(--bt-tint)!important;color:var(--bt-ink)!important;border-radius:11px!important;box-shadow:inset 4px 0 var(--bt-highlight)!important;font-weight:740!important;}
+.th-app.bt-studio .th-nav-button.active :is(svg,span),
+.th-app.bt-studio .th-subnav.active :is(svg,span) {color:var(--bt-ink)!important;opacity:1!important;}
+.th-app.bt-studio .th-sidebar :is(.th-nav-button,.th-subnav,.th-brand):focus-visible {outline:3px solid #FFF!important;outline-offset:2px!important;}
+.th-app.bt-studio .bt-sidebar-intro {background:#FFFFFF16!important;border:1px solid #FFFFFF3A!important;border-radius:15px!important;color:#FFFFFF!important;}
+.th-app.bt-studio .bt-sidebar-intro-number {background:var(--bt-tint)!important;color:var(--bt-ink)!important;}
+/* Official logo is not cropped or recolored. Its opaque panel protects black text on dark sidebar. */
+.th-app.bt-studio .th-brand.bt-official-brand.bt-wordmark-brand {
+  background:#FFFFFF!important;border:1px solid #E4E6E8!important;color:#1D2B3E!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:calc(100% - 24px)!important;max-width:calc(100% - 24px)!important;
+  margin:12px!important;padding:14px 12px!important;min-height:84px!important;border-radius:13px!important;
+  box-shadow:0 6px 20px #00000014!important;overflow:visible!important;
+}
+.bt-wordmark.bt-original-logo {display:flex!important;align-items:center!important;justify-content:center!important;width:100%;min-width:0!important;max-width:100%;line-height:1;}
+.bt-wordmark.bt-original-logo .bt-official-logo-image {display:block;width:100%;max-width:270px;height:auto;aspect-ratio:1200/305;object-fit:contain;object-position:center;}
+.th-app.bt-studio .th-brand .bt-original-logo {width:100%!important;}
+.th-app.bt-studio .th-brand .bt-official-logo-image {max-width:255px;}
+.th-app.bt-studio .bt27-sidebar-slim .th-brand.bt-wordmark-brand {min-width:0;}
+.th-app.bt-studio.bt27-sidebar-slim .th-brand.bt-wordmark-brand {padding:8px!important;min-height:54px!important;}
+.th-app.bt-studio.bt27-sidebar-slim .th-brand .bt-original-logo {max-width:100%!important;}
+/* All pages (not only dashboards): cards, forms, tables, dialogs, toolbar */
+.th-app.bt-studio .th-main,.th-app.bt-studio .th-content {background:var(--bt-canvas)!important;color:var(--bt-ink)!important;}
+.th-app.bt-studio .th-topbar {background:var(--bt-card)!important;border-bottom:1px solid var(--bt-line)!important;}
+.th-app.bt-studio .th-page-context :is(small,strong),
+.th-app.bt-studio .th-page-header :is(h1,h2),
+.th-app.bt-studio .th-card :is(h1,h2,h3),
+.th-app.bt-studio .MuiTypography-h5 {color:var(--bt-ink)!important;}
+.th-app.bt-studio :is(.th-page-shell,.th-card,.bt9-card,.MuiCard-root,.MuiPaper-root) {border-color:var(--bt-line)!important;}
+.th-app.bt-studio .th-content :is(.th-card,.bt9-card,.MuiCard-root,.MuiPaper-root:not(.MuiMenu-paper):not(.MuiDialog-paper)) {background:var(--bt-card)!important;box-shadow:0 5px 22px #1E344B0B!important;}
+.th-app.bt-studio .th-content :is(.MuiTableCell-head,.th-page-shell th,.table-wrapper thead th) {background:var(--bt-tint)!important;color:var(--bt-ink)!important;font-weight:700!important;}
+.th-app.bt-studio .th-content :is(.MuiTableCell-body,.th-page-shell td) {color:var(--bt-ink)!important;}
+.th-app.bt-studio .th-content :is(.MuiTableRow-root:hover,.th-page-shell tbody tr:hover) {background:var(--bt-tint)!important;}
+.th-app.bt-studio :is(.th-outline,.MuiButton-outlined) {border-color:var(--bt-line)!important;color:var(--bt-accent)!important;}
+.th-app.bt-studio :is(.th-outline,.MuiButton-outlined):hover {background:var(--bt-tint)!important;}
+.th-app.bt-studio :is(.th-primary,.MuiButton-containedPrimary,.bt-compact-dashboard-primary) {background:var(--bt-accent)!important;color:#FFFFFF!important;border-color:var(--bt-accent)!important;}
+.th-app.bt-studio :is(.th-primary,.MuiButton-containedPrimary,.bt-compact-dashboard-primary):hover {filter:brightness(.90);}
+.th-app.bt-studio :is(input,select,textarea) {accent-color:var(--bt-accent);}
+.th-app.bt-studio :is(.MuiOutlinedInput-root,.th-search) {border-color:var(--bt-line)!important;}
+.th-app.bt-studio :is(.MuiOutlinedInput-root.Mui-focused,.th-search:focus-within) {box-shadow:0 0 0 3px color-mix(in srgb,var(--bt-accent) 14%,transparent)!important;}
+.th-app.bt-studio .bt9-stat {border-top:3px solid var(--bt-highlight)!important;}
+.th-app.bt-studio .bt9-stat .bt9-stat-icon {background:var(--bt-tint)!important;color:var(--bt-accent)!important;}
+.th-app.bt-studio .bt9-stat :is(strong,.bt9-stat-value) {color:var(--bt-ink)!important;}
+.th-app.bt-studio .bt-compact-dashboard-top {background:linear-gradient(115deg,var(--bt-sidebar),var(--bt-sidebar-end))!important;border:0!important;}
+.th-app.bt-studio .bt-compact-dashboard-top :is(h1,.bt-compact-dashboard-kicker,.bt19-refresh-status,.bt19-dashboard-identity) {color:#FFFFFF!important;}
+.th-app.bt-studio .bt-studio-hero {border-color:var(--bt-line)!important;}
+.th-app.bt-studio .bt9-card-heading h2,.th-app.bt-studio .bt9-record-copy strong {color:var(--bt-ink)!important;}
+/* Official report/payslip identity, mobile-safe. */
+.recovery-page .bt-original-logo {max-width:290px;margin:0 0 23px;justify-content:flex-start!important;}
+.bt-auth-panel-head .bt-original-logo {max-width:285px;justify-content:flex-start!important;}
+/* AI full page themed along with the inner pages and knowledge/analytics sections. */
+.th-app.bt-studio .bt-ai-page {color:var(--bt-ink);}
+.th-app.bt-studio .bt-ai-page .th-card {border:1px solid var(--bt-line)!important;background:var(--bt-card)!important;}
+.th-app.bt-studio .bt-ai-page .th-page-header {border-bottom:3px solid var(--bt-highlight)!important;padding-bottom:15px;}
+.th-app.bt-studio .bt-ai-page :is(.MuiChip-outlined,.MuiOutlinedInput-notchedOutline) {border-color:var(--bt-line)!important;}
+.th-app.bt-studio .bt-ai-page .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline {border-color:var(--bt-accent)!important;}
+.th-app.bt-studio .bt-ai-page select {background:var(--bt-card)!important;color:var(--bt-ink)!important;border:1px solid var(--bt-line)!important;border-radius:9px;padding:11px;}
+/* AI popup is in a portal OUTSIDE .th-app: explicitly carry theme role in its class. */
+.bt-ai-role-admin {--ai-primary:#194C7A;--ai-bg:#F3F4F6;--ai-soft:#E9EEF4;--ai-ink:#192F46;--ai-border:#D6DFEA;--ai-highlight:#C95C50;}
+.bt-ai-role-hr {--ai-primary:#245740;--ai-bg:#F5F0E6;--ai-soft:#EEE7D8;--ai-ink:#243E31;--ai-border:#DBD2BF;--ai-highlight:#987743;}
+.bt-ai-role-manager {--ai-primary:#523760;--ai-bg:#F6F3F8;--ai-soft:#EDE4F2;--ai-ink:#33253F;--ai-border:#DFD4E6;--ai-highlight:#906AA6;}
+.bt-ai-role-employee {--ai-primary:#416A90;--ai-bg:#F3F5F8;--ai-soft:#E7ECF2;--ai-ink:#273F58;--ai-border:#D7E0EA;--ai-highlight:#C86B61;}
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round {background:var(--ai-primary)!important;color:#FFFFFF!important;border-radius:50%!important;border:2px solid var(--ai-highlight)!important;min-width:56px!important;width:64px!important;height:64px!important;padding:0!important;box-shadow:0 10px 28px #182A4040,0 0 0 4px #ffffffb0!important;}
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round:hover {background:var(--ai-primary)!important;filter:brightness(.88);transform:translateY(-2px);}
+.bt-ai-dialog .bt-ai-dialog-paper {background:#FFFFFF!important;border:1px solid var(--ai-border)!important;color:var(--ai-ink)!important;box-shadow:0 15px 60px #15243a30!important;}
+.bt-ai-dialog .bt-ai-dialog-header {background:linear-gradient(120deg,var(--ai-primary),color-mix(in srgb,var(--ai-primary) 85%,#050505))!important;border-bottom:3px solid var(--ai-highlight)!important;color:#FFFFFF!important;}
+.bt-ai-dialog .bt-ai-dialog-conversation {background:var(--ai-bg)!important;color:var(--ai-ink)!important;}
+.bt-ai-dialog :is(.MuiButton-textPrimary,.MuiIconButton-colorPrimary) {color:var(--ai-primary)!important;}
+.bt-ai-dialog .bt-ai-dialog-header :is(.MuiIconButton-root,.MuiButton-root) {color:#FFFFFF!important;}
+.bt-ai-dialog .MuiOutlinedInput-root.Mui-focused fieldset {border-color:var(--ai-primary)!important;}
+@media (max-width: 760px) {
+ .th-app.bt-studio .th-sidebar {max-width:min(90vw,320px)!important;}
+ .th-app.bt-studio .th-nav-button,.th-app.bt-studio .th-subnav {font-size:14px!important;}
+ .th-app.bt-studio .th-content :is(.th-card,.MuiCard-root) {max-width:100%!important;min-width:0!important;}
+ .bt-original-logo .bt-official-logo-image {max-width:230px;}
+ .MuiFab-root.bt-ai-launcher.bt-ai-launcher-round {width:56px!important;height:56px!important;min-width:56px!important;}
+}
+@media (prefers-reduced-motion: reduce) {
+ .th-app.bt-studio .th-nav-button,.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round {transition:none!important;transform:none!important;}
+}

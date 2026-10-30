@@ -1,0 +1,77 @@
+/* V26 — shared enterprise system, applied to every routed module. */
+:root{--bt-ink:#252b27;--bt-muted:#626b64;--bt-canvas:#f4f2ec;--bt-surface:#fffefa;--bt-line:#dfdfd5;--bt-accent:#17664e;--bt-tint:#e8f1eb;--primary:#17664e;color-scheme:light}
+body{background:var(--bt-canvas);color:var(--bt-ink);font-family:Inter,'Segoe UI',sans-serif}
+.th-app.bt-studio{--bt-accent:#17664e;--bt-tint:#e8f1eb;--primary:var(--bt-accent);--primary-color:var(--bt-accent);background:var(--bt-canvas);color:var(--bt-ink)}
+.th-app.bt-studio-admin{--bt-accent:#343f37;--bt-tint:#e8ece5}.th-app.bt-studio-hr{--bt-accent:#793e50;--bt-tint:#f4e9ed}.th-app.bt-studio-manager{--bt-accent:#795a2c;--bt-tint:#f3ecdd}
+.th-app .th-sidebar{background:#202923!important;color:#f2f2e9;border-right:1px solid #364039;box-shadow:none}
+.th-app .th-brand.bt-official-brand{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:22px 18px;width:100%;background:transparent;min-height:130px}
+.th-app .bt-official-brand-logo{width:148px!important;height:auto!important;object-fit:contain;filter:none!important;mix-blend-mode:normal!important}
+.th-app .th-topbar{background:rgba(255,254,250,.97)!important;border-bottom:1px solid var(--bt-line);box-shadow:none}
+.th-app .th-page-shell{max-width:1680px;margin-inline:auto;min-width:0}
+.th-app :is(.th-card,.bt9-card,.bt9-stat){background:var(--bt-surface);border:1px solid var(--bt-line);border-radius:14px;box-shadow:0 3px 15px #263b2b05}
+.th-app :is(.th-page-header h1,.th-page-title,.bt-compact-dashboard-heading h1){letter-spacing:-.035em;color:var(--bt-ink);font-weight:650}
+.th-app :is(.th-btn-primary,.th-primary-btn,.bt-compact-dashboard-primary){background:var(--bt-accent)!important;border-color:var(--bt-accent)!important;color:#fff!important;box-shadow:none}
+.th-app :is(.th-outline,.th-btn,.th-btn-secondary){border-radius:8px;min-height:38px}
+.th-app :is(.request-service-card,.bt9-card){transition:border-color .15s ease,box-shadow .15s ease}
+.th-app .request-service-card:hover{border-color:var(--bt-accent);box-shadow:0 4px 15px #253b2d0a}
+.th-app :is(.bt9-stat-icon,.bt9-card-icon,.bt19-dashboard-identity){background:var(--bt-tint)!important;color:var(--bt-accent)!important}
+.th-app :is(.th-table thead,.th-table th){background:#eeeee6;color:#566055}
+.th-app :is(input,select,textarea){accent-color:var(--bt-accent)}
+.th-app :is(a,button,input,select,textarea):focus-visible{outline:3px solid var(--bt-accent);outline-offset:3px}
+.th-app :is(.th-modal,.MuiDialog-paper){max-width:calc(100vw - 28px);border-radius:16px}
+.th-app :is(.th-table-wrap,.th-table-container){overflow-x:auto;max-width:100%;overscroll-behavior-x:contain}
+.th-app .bt-compact-dashboard-top{border-bottom:1px solid var(--bt-line);padding-bottom:24px;margin-bottom:24px}
+.bt-studio-manager .bt-compact-dashboard-top{border-left:4px solid #ad8a4a;padding-left:18px;background:linear-gradient(90deg,#f4edde,transparent)}
+.bt-studio-hr .bt-compact-dashboard-top{border-top:3px solid #ae7d8c;padding-top:18px}
+.bt-studio-admin .bt-compact-dashboard-top{background:#27322b;color:#f3f4ed;border-radius:14px;padding:22px}
+.bt-studio-admin .bt-compact-dashboard-heading h1{color:#fff!important}.bt-studio-admin .bt-compact-dashboard-kicker,.bt-studio-admin .bt19-refresh-status{color:#c5d0c6}
+.bt-studio-employee .bt-compact-dashboard-top{padding-top:12px;border-top:1px solid #bdccbe}
+.bt26-route-loading{display:flex;gap:12px;align-items:center;justify-content:center;min-height:55vh;color:#566055;font-size:14px}
+.bt26-loader{width:22px;height:22px;border:2px solid #d8dfd4;border-top-color:#17664e;border-radius:50%;animation:bt26-spin .8s linear infinite}@keyframes bt26-spin{to{transform:rotate(360deg)}}
+/* Authentication screens share the same paper/ink materials. */
+.bt-auth.bt26-auth{background:#eeede5;padding:30px;min-height:100dvh}.bt26-auth .bt-auth-background{display:none}
+.bt26-auth .bt-auth-frame{max-width:1200px;border:1px solid #d5d9cf;box-shadow:0 18px 70px #22322812;border-radius:22px;overflow:hidden}
+.bt26-auth .bt-auth-hero{background:#22352b;color:#f6f3e7}.bt26-auth .bt-auth-panel{background:#fffefa}
+.bt26-auth .bt-auth-hero-top,.bt26-auth .bt-auth-hero-bottom{color:#bac9b7;border-color:#53634f}
+.bt26-auth .bt-auth-hero-copy h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.045em;font-size:clamp(34px,4vw,57px);line-height:1.12;color:#fff8e8}
+.bt26-auth .bt-auth-hero-copy h1 em{color:#c8d5ac}.bt26-auth .bt-auth-hero-description{color:#bac9b7;max-width:320px}
+.bt26-auth .bt-auth-hero-eyebrow{color:#cbd6ad}.bt26-auth .bt-auth-submit{background:#205c42;box-shadow:none;border:1px solid #205c42}
+.bt26-auth .bt-auth-intro h2,.bt26-auth .bt-auth-intro h2 span{color:#25352a}.bt26-auth .bt-auth-input-wrap{background:#f8f8f2;border-color:#dadfd3;border-radius:9px}
+.bt26-auth .bt-auth-logo{filter:none!important;max-width:170px;mix-blend-mode:multiply}
+.bt26-auth .bt-auth-actions a{color:#205c42}.bt26-auth .bt-auth-eyebrow{color:#5c715c}
+.bt26-auth-composition{position:relative;height:245px;margin:20px 0}.bt26-monogram{position:absolute;left:26%;top:12%;font-family:Georgia,serif;font-size:145px;line-height:1;color:#d3ddbc;letter-spacing:-20px;font-style:italic}.bt26-monogram>span{font-size:110px;color:#96b598}
+.bt26-orbit{position:absolute;left:18%;top:5%;width:230px;height:230px;border:1px solid #718064;border-radius:50%;transform:rotate(-25deg) scaleX(.65)}.bt26-orbit.second{transform:rotate(35deg) scaleX(.65)}
+.bt26-compass{position:absolute;top:4%;right:14%;font-size:35px;color:#cbb57b}.bt26-caption{position:absolute;bottom:0;right:4%;font-size:11px;line-height:1.6;letter-spacing:.08em;color:#b8c4aa}
+.recovery-page{background:#f0f0e7!important}.recovery-card{border-color:#dce0d3!important;box-shadow:0 16px 60px #2138290d!important}.recovery-card button[type=submit]{background:#205c42!important}
+@media(max-width:900px){.bt-auth.bt26-auth{padding:16px}.bt26-auth-composition{height:180px}.bt26-auth .bt-auth-frame{border-radius:16px}.th-app .th-page-shell{padding-inline:16px}}
+@media(max-width:640px){.bt-auth.bt26-auth{padding:0}.bt26-auth .bt-auth-frame{border-radius:0;min-height:100dvh}.bt26-auth .bt-auth-hero{display:none}.bt26-auth .bt-auth-panel{padding:30px 22px}.th-app .bt-compact-dashboard-top{padding:14px;flex-wrap:wrap;gap:14px}.th-app .bt-compact-dashboard-actions{width:100%;flex-wrap:wrap}.th-app .bt-compact-dashboard-heading h1{font-size:25px}.th-app .th-page-shell{padding-inline:12px}.th-app .MuiDialog-paper{margin:12px;width:calc(100% - 24px)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Explicit precedence over historical role styles: readable navigation and original logo. */
+.th-app.bt-studio .th-brand.bt-official-brand{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:12px!important;padding:16px!important;min-height:114px!important;height:auto!important;background:#fffefa!important;border:1px solid #dce0d3!important;border-radius:12px!important}
+.th-app.bt-studio .bt-official-brand-logo{display:block!important;width:164px!important;max-width:100%!important;max-height:48px!important;height:auto!important}
+.th-app.bt-studio .th-sidebar :is(.th-nav-button,.th-subnav){color:#dbe3d8!important;background:transparent!important}
+.th-app.bt-studio .th-sidebar :is(.th-nav-button,.th-subnav) svg{color:#b6c5b4!important}
+.th-app.bt-studio .th-sidebar :is(.th-nav-button,.th-subnav):hover{background:#ffffff12!important;color:#fff!important}
+.th-app.bt-studio .th-sidebar :is(.th-nav-button.active,.th-subnav.active){background:var(--bt-accent)!important;color:#fff!important}
+.th-app.bt-studio .th-sidebar :is(.th-nav-button.active,.th-subnav.active) svg{color:#fff!important}
+.th-app.bt-studio :is(.th-menu-label,.th-sidebar-footer,.bt-sidebar-signature){color:#c5d0be!important}
+.th-app.bt-studio :is(.th-main,.th-content){background:var(--bt-canvas)!important}
+.th-app.bt-studio .bt-compact-dashboard-top{border-color:var(--bt-line)!important;background:var(--bt-surface)!important}
+.th-app.bt-studio-manager .bt-compact-dashboard-top{border-left:4px solid #ad8a4a!important;background:linear-gradient(90deg,#f4edde,#fffefa)!important}
+.th-app.bt-studio-hr .bt-compact-dashboard-top{border-top:3px solid #ae7d8c!important;background:#fff9fb!important}
+.th-app.bt-studio-admin .bt-compact-dashboard-top{background:#27322b!important;color:#fff!important}
+.th-app.bt-studio-admin .bt-compact-dashboard-top :is(h1,.bt-compact-dashboard-kicker,.bt19-refresh-status){color:#f3f4ed!important}
+.th-app.bt-studio :is(.bt9-stat,.bt9-card){background:var(--bt-surface)!important;border-color:var(--bt-line)!important}
+
+.th-app.bt-studio.bt-studio-hr .bt9-kpis .bt9-stat:first-child{background:#793e50!important;border-color:#793e50!important}
+.th-app.bt-studio.bt-studio-admin .bt9-kpis .bt9-stat:first-child{background:#303a34!important;border-color:#303a34!important}
+.th-app.bt-studio :is(.bt9-empty,.bt9-stat-note,.bt9-card-header p){color:#626b64!important}
+.th-app.bt-studio .bt9-kpis .bt9-stat:first-child .bt9-stat-icon{background:var(--bt-tint)!important;color:var(--bt-accent)!important}
+.bt26-auth :is(.bt-auth-intro p,.bt-auth-footer,.bt-auth-security-note){color:#626b64!important}
+.bt26-auth input::placeholder{color:#68776b!important;opacity:1}
+
+.th-app.bt-studio .th-brand.bt-official-brand{min-height:86px!important;padding:14px 16px!important;background:#edf0e7!important;border:0!important}
+.th-app.bt-studio .bt-official-brand-logo{width:210px!important;max-height:58px!important}
+
+.th-app.bt-studio:is(.bt-studio-hr,.bt-studio-admin) .bt9-kpis .bt9-stat:first-child > :is(span,strong){color:#fff!important}

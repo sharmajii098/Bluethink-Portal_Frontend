@@ -1,0 +1,20 @@
+/* BlueThink V28.6 — wordmark replaces earlier bitmap logo in visible UI. */
+.bt-wordmark { display:inline-flex;align-items:center;gap:12px;max-width:100%;min-width:0;text-decoration:none;color:inherit;vertical-align:middle; }
+.bt-wordmark-symbol {display:grid;place-items:center;flex:0 0 51px;width:51px;height:51px;border-radius:50%;background:#624231;color:#fff;font:700 32px/1 Georgia,serif;box-shadow:inset 0 1px #ffffff42,0 5px 15px #422a1f23;letter-spacing:-.07em;padding-right:3px;}
+.bt-wordmark-copy {display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:2px;}
+.bt-wordmark-copy strong {font:750 clamp(20px,2vw,26px)/1.03 Inter,'Segoe UI',sans-serif;letter-spacing:-.055em;color:inherit;white-space:nowrap;}
+.bt-wordmark-period {color:#b66347;}
+.bt-wordmark-copy small {font:730 9px/1.3 Inter,'Segoe UI',sans-serif;letter-spacing:.20em;color:inherit;opacity:.72;white-space:nowrap;}
+.bt-wordmark-compact .bt-wordmark-symbol {width:42px;height:42px;flex-basis:42px;font-size:27px;}
+.bt-wordmark-compact .bt-wordmark-copy strong {font-size:21px;}
+/* Sizing and contrast of the image-free sidebar identity. Override legacy image-only branding. */
+.th-app.bt-studio .th-brand.bt-official-brand.bt-wordmark-brand {display:flex!important;align-items:center!important;justify-content:flex-start!important;min-height:83px!important;height:auto!important;padding:12px 15px!important;margin:13px 12px 10px!important;width:calc(100% - 24px)!important;border-radius:15px!important;box-shadow:none!important;background:#ffffff14!important;border:1px solid #ffffff35!important;color:#fff!important;}
+.th-app.bt-studio .th-brand.bt-wordmark-brand .bt-wordmark {gap:11px;}
+.th-app.bt-studio .th-brand.bt-wordmark-brand .bt-wordmark-symbol {background:#fff;color:var(--bt-accent);box-shadow:none;}
+.th-app.bt-studio .th-brand.bt-wordmark-brand .bt-wordmark-copy strong {position:static!important;clip-path:none!important;height:auto!important;width:auto!important;overflow:visible!important;white-space:nowrap!important;font-weight:760!important;}
+.th-app.bt-studio .th-brand.bt-wordmark-brand .bt-wordmark-copy small {color:inherit!important;opacity:.8!important;letter-spacing:.17em!important;}
+.th-app.bt-studio-employee .th-brand.bt-wordmark-brand {background:#ffffffae!important;border-color:#bbcbd9!important;color:#314c65!important;}
+.th-app.bt-studio-employee .th-brand.bt-wordmark-brand .bt-wordmark-symbol {background:#486781;color:#fff;}
+.bt-auth .bt-auth-panel-head .bt-wordmark {color:#493629;}
+.recovery-page .bt-wordmark {color:#493629;margin:0 0 27px;}
+@media(max-width:380px){.bt-wordmark-symbol{width:43px;height:43px;flex-basis:43px;font-size:27px;}.bt-wordmark-copy strong{font-size:20px;}.bt-wordmark-copy small{font-size:8px;}}

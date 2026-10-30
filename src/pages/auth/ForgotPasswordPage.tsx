@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
-import logo from "../../branding/bluethink-inc-official-master.png";
+import BlueThinkWordmark from "../../components/BlueThinkWordmark";
 import "./PasswordRecovery.css";
 
 export default function ForgotPasswordPage() {
@@ -28,7 +28,7 @@ export default function ForgotPasswordPage() {
 
   return <main className="recovery-page">
     <section className="recovery-panel" aria-label="Password recovery">
-      <img className="recovery-logo" src={logo} alt="BlueThink Inc. — Think beyond" />
+      <BlueThinkWordmark />
       <span className="recovery-kicker">ACCOUNT RECOVERY</span>
       <h1>Forgot your password?</h1>
       <p>Enter the email address registered with HR. We will send a secure, one-time password reset link if your account exists.</p>

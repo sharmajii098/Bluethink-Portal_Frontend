@@ -6,20 +6,20 @@
 
 .bt-studio.bt-studio-admin {
   --role-sidebar-width: 278px;
-  --role-accent: #286cda;
-  --role-focus: #79aaf0;
-  --role-surface: #f0f3f9;
-  --role-ink: #15253d;
-  --role-muted: #64758e;
-  --role-line: #dfe7f1;
-  --role-soft: #e9f1ff;
+  --role-accent: #4cb68a;
+  --role-focus: #95d4ba;
+  --role-surface: #f0f9f5;
+  --role-ink: #183a2c;
+  --role-muted: #648e7d;
+  --role-line: #dff1ea;
+  --role-soft: #eff9f5;
   --role-shadow: 0 12px 32px #1529430b;
-  --bt19-chart-one: #3278d4;
-  --bt19-chart-two: #94b9ef;
+  --bt19-chart-one: #4fb78c;
+  --bt19-chart-two: #a8dbc6;
   --bt19-chart-three: #b59659;
   --bt19-chart-four: #56a7ac;
-  --bt19-chart-five: #7288b7;
-  --bt19-chart-six: #789eb8;
+  --bt19-chart-five: #72b79a;
+  --bt19-chart-six: #78b89d;
 }
 .bt-studio.bt-studio-hr {
   --role-sidebar-width: 276px;
@@ -89,7 +89,7 @@
   border-radius:14px!important;
   justify-content:center!important;
   border:1px solid rgba(255,255,255,.17)!important;
-  background:linear-gradient(135deg,#ffffff,#f1f5fa)!important;
+  background:linear-gradient(135deg,#ffffff,#f2f9f6)!important;
   box-shadow:0 10px 25px #08152616!important;
   transform:translateZ(0);
 }
@@ -181,40 +181,40 @@
 
 /* Admin — dark, technical console. Squared menu and precise rail. */
 .bt-studio-admin .th-sidebar {
- background:radial-gradient(ellipse at 120% 10%,#294269 0%,transparent 48%),linear-gradient(180deg,#111d31 0%,#0c1626 100%)!important;
+ background:radial-gradient(ellipse at 120% 10%,#2a684e 0%,transparent 48%),linear-gradient(180deg,#132f23 0%,#0f231b 100%)!important;
 }
-.bt-studio-admin .th-sidebar:before {border-top:4px solid #5688d8!important;}
-.bt-studio-admin .bt19-context-symbol {background:#77b1ff;}
+.bt-studio-admin .th-sidebar:before {border-top:4px solid #6bc39e!important;}
+.bt-studio-admin .bt19-context-symbol {background:#9ed8c0;}
 .bt-studio-admin .th-profile.th-profile-v6 {background:#ffffff0b!important;border:1px solid #a6c5ff25!important;}
-.bt-studio-admin .th-menu-label {color:#6986af!important;}
-.bt-studio-admin .th-nav-button {border-radius:7px!important;color:#bed0e5!important;border-left:3px solid transparent!important;}
+.bt-studio-admin .th-menu-label {color:#69af92!important;}
+.bt-studio-admin .th-nav-button {border-radius:7px!important;color:#bee5d5!important;border-left:3px solid transparent!important;}
 .bt-studio-admin .th-nav-button:hover {background:#ffffff11!important;transform:translateX(2px);color:white!important;}
 .bt-studio-admin .th-nav-button.active {
- border-left-color:#96c2ff!important;
- background:linear-gradient(95deg,#234b85 0%,#1b375e 100%)!important;
+ border-left-color:#b4e1ce!important;
+ background:linear-gradient(95deg,#31775a 0%,#235641 100%)!important;
  box-shadow:0 6px 16px #00000020!important;
  color:#fff!important;
 }
-.bt-studio-admin .th-nav-button.active .th-nav-left svg {color:#bfdfff!important;}
-.bt-studio-admin .th-submenu {border-color:#496f9b!important;}
-.bt-studio-admin .th-subnav {border-radius:6px!important;color:#9fb7d3!important;}
+.bt-studio-admin .th-nav-button.active .th-nav-left svg {color:#d2ece1!important;}
+.bt-studio-admin .th-submenu {border-color:#499b79!important;}
+.bt-studio-admin .th-subnav {border-radius:6px!important;color:#9fd3bd!important;}
 .bt-studio-admin .th-subnav.active,.bt-studio-admin .th-subnav:hover {color:#fff!important;background:#618ee426!important;}
-.bt-studio-admin .th-sidebar-footer {color:#839ec2!important;}
-.bt-studio-admin .th-topbar {border-bottom:1px solid #d8e3f0!important;background:#fff!important;}
-.bt-studio-admin .bt-compact-dashboard-top {background:linear-gradient(115deg,#172a48,#203d67)!important;border-color:#2a4672!important;}
-.bt-studio-admin .bt-compact-dashboard-kicker {color:#b6cde9!important;}
+.bt-studio-admin .th-sidebar-footer {color:#83c2a8!important;}
+.bt-studio-admin .th-topbar {border-bottom:1px solid #d9efe6!important;background:#fff!important;}
+.bt-studio-admin .bt-compact-dashboard-top {background:linear-gradient(115deg,#1c4333,#276048)!important;border-color:#2d6f53!important;}
+.bt-studio-admin .bt-compact-dashboard-kicker {color:#bce3d3!important;}
 .bt-studio-admin .bt-compact-dashboard-heading h1 {color:#fff!important;}
-.bt-studio-admin .bt19-refresh-status {color:#e1ecff!important;}
-.bt-studio-admin .bt19-dashboard-identity {background:#ffffff17;color:#b9d8ff;border:1px solid #ffffff2b;box-shadow:inset 0 1px 0 #ffffff14;}
+.bt-studio-admin .bt19-refresh-status {color:#eaf6f1!important;}
+.bt-studio-admin .bt19-dashboard-identity {background:#ffffff17;color:#cdebde;border:1px solid #ffffff2b;box-shadow:inset 0 1px 0 #ffffff14;}
 .bt-studio-admin .bt-compact-dashboard-actions .bt-compact-dashboard-secondary,
-.bt-studio-admin .bt-compact-dashboard-actions .bt-compact-dashboard-refresh {color:#eff6ff!important;background:#ffffff1b!important;border-color:#ffffff32!important;}
-.bt-studio-admin .bt-compact-dashboard-actions .bt-compact-dashboard-primary {background:#fff!important;border-color:#fff!important;color:#204679!important;}
-.bt-studio-admin .bt9-kpis .bt9-stat:first-child {background:linear-gradient(125deg,#173151,#214571)!important;border-color:#254b76!important;}
+.bt-studio-admin .bt-compact-dashboard-actions .bt-compact-dashboard-refresh {color:#f4faf8!important;background:#ffffff1b!important;border-color:#ffffff32!important;}
+.bt-studio-admin .bt-compact-dashboard-actions .bt-compact-dashboard-primary {background:#fff!important;border-color:#fff!important;color:#2c6d52!important;}
+.bt-studio-admin .bt9-kpis .bt9-stat:first-child {background:linear-gradient(125deg,#1e4a38,#2a684e)!important;border-color:#2d6e53!important;}
 .bt-studio-admin .bt9-kpis .bt9-stat:first-child :is(.bt9-stat-label,.bt9-stat-note,.bt9-stat-value) {color:#fff!important;}
-.bt-studio-admin .bt9-kpis .bt9-stat:first-child .bt9-stat-icon {background:#ffffff24!important;color:#bad5fd!important;}
-.bt-studio-admin .bt9-kpis .bt9-stat:first-child .bt9-stat-top button {color:#f7fbff!important;}
+.bt-studio-admin .bt9-kpis .bt9-stat:first-child .bt9-stat-icon {background:#ffffff24!important;color:#cdeade!important;}
+.bt-studio-admin .bt9-kpis .bt9-stat:first-child .bt9-stat-top button {color:#f9fdfb!important;}
 .bt-studio-admin .bt9-card {background:#fff!important;}
-.bt-studio-admin .bt10-analytics {background:linear-gradient(180deg,#fff,#f8fbff)!important;}
+.bt-studio-admin .bt10-analytics {background:linear-gradient(180deg,#fff,#fafdfc)!important;}
 .bt-studio-admin .bt9-card-icon {border-radius:8px!important;}
 
 /* HR — pearl & mauve editorial studio; dark on light, NOT a recolored Admin rail. */

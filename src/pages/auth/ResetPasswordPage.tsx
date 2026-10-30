@@ -2,7 +2,7 @@ import { passwordHelp, validPassword } from "../../utils/passwordPolicy";
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
-import logo from "../../branding/bluethink-inc-official-master.png";
+import BlueThinkWordmark from "../../components/BlueThinkWordmark";
 import "./PasswordRecovery.css";
 
 export default function ResetPasswordPage() {
@@ -48,7 +48,7 @@ export default function ResetPasswordPage() {
 
   return <main className="recovery-page">
     <section className="recovery-panel" aria-label="Set a new password">
-      <img className="recovery-logo" src={logo} alt="BlueThink Inc. — Think beyond" />
+      <BlueThinkWordmark />
       <span className="recovery-kicker">SECURE PASSWORD RESET</span>
       <h1>Set your new password</h1>
       {valid === null && <p role="status">Checking your reset link…</p>}

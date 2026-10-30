@@ -1,15 +1,19 @@
 import "./LoginPage.css";
-import officialLogo from "../../branding/bluethink-inc-official-master.png";
+import "./LoginPremium.css";
+import "./LoginSignature.css";
+import "./LoginPaletteV286.css";
+import "./LoginMaterialsV287.css";
+import BlueThinkWordmark from "../../components/BlueThinkWordmark";
 
 import { FormEvent, useState } from "react";
 import { CircularProgress } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { login } from "../../services/authService";
 import { setSession } from "../../store/authSlice";
 
-import type { AppDispatch } from "../../store";
+import type { AppDispatch, RootState } from "../../store";
 import type { Role } from "../../types/auth";
 
 
@@ -62,12 +66,16 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [stage, setStage] = useState("Verifying your sign-in…");
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const location = useLocation();
+  const sessionExpired = useSelector((state: RootState) => state.auth.sessionExpired);
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (loading) return;
     setError("");
 
     const cleanId = userId.trim();
@@ -75,7 +83,9 @@ export default function LoginPage() {
     if (!password) return setError("Please enter your password.");
 
     setLoading(true);
+    setStage("Verifying work location…");
     try {
+      if (!window.isSecureContext) throw new Error("Secure HTTPS is required for location verification. Open the HTTPS portal address.");
       if (!navigator.geolocation) {
         throw new Error("This browser does not support GPS location. Please use a supported browser and try again.");
       }
@@ -123,6 +133,7 @@ export default function LoginPage() {
         throw new Error(`Location accuracy is still about ${Math.round(position.coords.accuracy)} meters after retrying. Enable Windows Location services and Wi-Fi, then try again near the office. A reliable location is required for attendance verification.`);
       }
 
+      setStage("Signing you in…");
       const response = await login({
         userId: cleanId,
         password,
@@ -153,7 +164,11 @@ export default function LoginPage() {
         }),
       );
 
-      navigate(`/${role.toLowerCase()}/dashboard`, { replace: true });
+      const from = location.state?.from;
+      const prefix = `/${role.toLowerCase()}/`;
+      const target = typeof from?.pathname === "string" && from.pathname.startsWith(prefix)
+        ? from.pathname + (from.search || "") : `${prefix}dashboard`;
+      navigate(target, { replace: true });
     } catch (err: any) {
       setError(
         err?.response?.data?.message ||
@@ -167,33 +182,36 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="bt-auth">
+    <main className="bt-auth bt26-auth bt-premium-auth">
       <div className="bt-auth-background" aria-hidden="true" />
       <div className="bt-auth-frame">
         <section className="bt-auth-hero" aria-label="BlueThink workspace">
           <div className="bt-auth-hero-grain" aria-hidden="true" />
           <header className="bt-auth-hero-top">
             <span className="bt-auth-hero-bullet" aria-hidden="true" />
-            <span>YOUR WORKSPACE, REIMAGINED</span>
-            <span className="bt-auth-hero-index" aria-hidden="true">01 / 02</span>
+            <span>BLUETHINK INC. / WORKFORCE</span>
+            <span className="bt-auth-hero-index">THINK BEYOND</span>
           </header>
 
-          <div className="bt-auth-art" aria-hidden="true">
-            <div className="bt-auth-art-halo" />
-            <div className="bt-auth-art-track bt-auth-art-track-one" />
-            <div className="bt-auth-art-track bt-auth-art-track-two" />
-            <div className="bt-auth-art-slab bt-auth-art-slab-back" />
-            <div className="bt-auth-art-slab bt-auth-art-slab-mid" />
-            <div className="bt-auth-art-slab bt-auth-art-slab-front"><span /></div>
-            <div className="bt-auth-art-point bt-auth-art-point-one" />
-            <div className="bt-auth-art-point bt-auth-art-point-two" />
+          <div className="bt-login-art" aria-hidden="true">
+            <div className="bt-login-orbit orbit-one"/><div className="bt-login-orbit orbit-two"/>
+            <div className="bt-login-tile tile-back"/><div className="bt-login-tile tile-main"><span/><span/><span/></div>
+            <div className="bt-login-float float-one">People <span>↗</span></div>
+            <div className="bt-login-float float-two"><span>✦</span> Possibilities</div>
+          </div>
+
+          <div className="bt-login-role-palette" aria-label="BlueThink workspace color palette">
+            <span className="bt-login-role-chip bt-login-role-admin">Admin <i /></span>
+            <span className="bt-login-role-chip bt-login-role-hr">HR <i /></span>
+            <span className="bt-login-role-chip bt-login-role-manager">Manager <i /></span>
+            <span className="bt-login-role-chip bt-login-role-employee">Employee <i /></span>
           </div>
 
           <div className="bt-auth-hero-copy">
             <div className="bt-auth-hero-rule" aria-hidden="true"><span /></div>
-            <p className="bt-auth-hero-eyebrow">A BETTER WAY TO WORK</p>
-            <h1>Everything in sync.<br /><em>Every day.</em></h1>
-            <p className="bt-auth-hero-description">Your people, priorities and progress, all in one thoughtfully connected workspace.</p>
+            <p className="bt-auth-hero-eyebrow">PEOPLE. PURPOSE. PROGRESS.</p>
+            <h1>Your next great day<br /><em>starts here.</em></h1>
+            <p className="bt-auth-hero-description">A little more focus. A lot more possibility. One workspace for your team, your work and everything ahead.</p>
           </div>
           <footer className="bt-auth-hero-bottom">
             <span>BLUETHINK INC.</span>
@@ -204,18 +222,19 @@ export default function LoginPage() {
         <section className="bt-auth-panel" aria-label="Employee sign in">
           <div className="bt-auth-panel-inner">
             <header className="bt-auth-panel-head">
-              <img className="bt-auth-logo" src={officialLogo} alt="BlueThink Inc. — Think beyond" />
+              <BlueThinkWordmark />
               <div className="bt-auth-panel-head-tag"><span aria-hidden="true" /> WORKFORCE PORTAL</div>
             </header>
 
             <div className="bt-auth-form-wrap">
               <div className="bt-auth-intro">
-                <p className="bt-auth-eyebrow"><span aria-hidden="true" /> EMPLOYEE SIGN IN</p>
+                <p className="bt-auth-eyebrow"><span aria-hidden="true" /> YOUR COMPANY WORKSPACE</p>
                 <h2>Welcome back<span>.</span></h2>
                 <p>Sign in to continue to your BlueThink workspace.</p>
               </div>
 
-              <form className="bt-auth-form" onSubmit={submit}>
+              {sessionExpired && <p className="bt-auth-session-notice" role="status">Your session ended. Sign in again to continue.</p>}
+              <form className="bt-auth-form" onSubmit={submit} aria-busy={loading}>
                 {error && <div className="bt-auth-error" id="bt-login-error" role="alert">{error}</div>}
 
                 <label className="bt-auth-field">
@@ -227,6 +246,10 @@ export default function LoginPage() {
                       onChange={(event) => setUserId(event.target.value)}
                       disabled={loading}
                       autoFocus
+                      name="username"
+                      autoCapitalize="none"
+                      spellCheck={false}
+                      aria-describedby={error ? "bt-login-error" : undefined}
                       autoComplete="username"
                       placeholder="Your employee ID"
                       aria-invalid={Boolean(error) && !userId.trim()}
@@ -244,6 +267,8 @@ export default function LoginPage() {
                       value={password}
                       onChange={(event) => setPassword(event.target.value)}
                       disabled={loading}
+                      name="password"
+                      aria-describedby={error ? "bt-login-error" : undefined}
                       autoComplete="current-password"
                       placeholder="Your password"
                       required
@@ -264,12 +289,12 @@ export default function LoginPage() {
                 <div className="bt-auth-actions"><Link to="/forgot-password">Forgot password?</Link></div>
 
                 <button className="bt-auth-submit" type="submit" disabled={loading}>
-                  {loading ? <><CircularProgress size={20} color="inherit" /><span>Verifying your sign-in...</span></> : <><span>Sign in to workspace</span><span className="bt-auth-submit-icon"><ArrowIcon /></span></>}
+                  {loading ? <><CircularProgress size={20} color="inherit" /><span role="status">{stage}</span></> : <><span>Sign in to workspace</span><span className="bt-auth-submit-icon"><ArrowIcon /></span></>}
                 </button>
 
                 <div className="bt-auth-location-note">
                   <span className="bt-auth-location-icon"><LockIcon /></span>
-                  <p>Work location verification is required to sign in.</p>
+                  <p>Location is used at sign-in to verify your work mode. It is not tracked continuously.</p>
                 </div>
               </form>
             </div>

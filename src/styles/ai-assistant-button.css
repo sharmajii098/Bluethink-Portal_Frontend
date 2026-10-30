@@ -1,0 +1,174 @@
+/* BlueThink AI — premium floating launcher.
+   Loaded after portal and role themes; limited to the launcher only. */
+.bt-ai-launcher-dock {
+  width: 64px;
+  height: 64px;
+  isolation: isolate;
+}
+
+/* Earlier workspace styles used fixed !important positioning on the Fab.
+   Keep the Fab INSIDE its fixed dock so the floating label stays aligned. */
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round.bt-ai-animated-launcher {
+  position: relative !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: auto !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 50% !important;
+  overflow: visible !important;
+  background: #f8fbff !important;
+  box-shadow: 0 9px 28px rgba(9, 35, 79, .24), 0 0 0 2px rgba(255,255,255,.78) !important;
+  filter: none !important;
+  transition: transform .22s ease, box-shadow .22s ease !important;
+}
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round.bt-ai-animated-launcher:hover {
+  background: #f8fbff !important;
+  filter: none !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 15px 33px rgba(9, 35, 79, .31) !important;
+}
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round.bt-ai-animated-launcher:focus-visible {
+  outline: 3px solid #196dec !important;
+  outline-offset: 9px !important;
+}
+
+/* Moving blue/red gradient ring; the button itself remains stable and clickable. */
+.bt-ai-animated-launcher::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: conic-gradient(#1465e7 0deg, #1ea1ff 82deg, #f02c4c 180deg, #ed4555 220deg, #1465e7 360deg);
+  box-shadow: 0 0 13px rgba(36, 112, 236, .30);
+  animation: bt-ai-ring-cycle 4s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+.bt-ai-icon-track {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #f8fbff;
+  box-sizing: border-box;
+}
+.bt-ai-icon-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+.bt-ai-icon-face-brand {
+  background: #f9fbff;
+  animation: bt-ai-brand-visible 8s ease-in-out infinite;
+}
+.bt-ai-icon-face-robot {
+  background: #091b49;
+  animation: bt-ai-robot-visible 8s ease-in-out infinite;
+}
+.bt-ai-icon-face .bt-ai-monogram,
+.bt-ai-icon-face .bt-ai-robot-art {
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  object-fit: contain;
+}
+.bt-ai-icon-face .bt-ai-monogram {
+  width: 99%;
+  height: 99%;
+  transform: none;
+}
+.bt-ai-icon-face .bt-ai-robot-art {
+  width: 105%;
+  height: 105%;
+}
+
+/* 4 seconds per face, with a brief soft crossfade at the switch. */
+@keyframes bt-ai-brand-visible {
+  0%, 43%, 100% { opacity: 1; transform: scale(1); }
+  49%, 93% { opacity: 0; transform: scale(.92); }
+}
+@keyframes bt-ai-robot-visible {
+  0%, 43%, 100% { opacity: 0; transform: scale(.92); }
+  49%, 93% { opacity: 1; transform: scale(1); }
+}
+@keyframes bt-ai-ring-cycle {
+  to { transform: rotate(360deg); }
+}
+
+/* First-login announcement, then hover and focus label. */
+.bt-ai-launcher-label {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 16px);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  max-width: calc(100vw - 108px);
+  padding: 11px 15px;
+  border: 1px solid rgba(39, 103, 195, .18);
+  border-radius: 13px;
+  background: #ffffff;
+  color: #17396b;
+  box-shadow: 0 11px 32px rgba(18, 44, 84, .18);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(8px, -50%);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+.bt-ai-launcher-label::before {
+  content: "";
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1670e8;
+  box-shadow: 0 0 0 3px #e2eeff;
+}
+.bt-ai-launcher-dock:is(:hover, :focus-within, .bt-ai-intro-visible) .bt-ai-launcher-label {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -50%);
+}
+@media (max-width: 760px) {
+  .bt-ai-launcher-dock { width: 56px; height: 56px; }
+  .bt-ai-launcher-label { right: calc(100% + 12px); padding: 9px 11px; font-size: 12px; }
+}
+@media (max-width: 430px) {
+  .bt-ai-launcher-dock:has(.bt-ai-launcher-team-chat) { width: 44px; height: 44px; }
+  .bt-ai-launcher-label { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bt-ai-animated-launcher::before,
+  .bt-ai-icon-face-brand,
+  .bt-ai-icon-face-robot { animation: none !important; }
+  .bt-ai-icon-face-brand { opacity: 1 !important; transform: none !important; }
+  .bt-ai-icon-face-robot { opacity: 0 !important; }
+  .bt-ai-launcher-label { transition: none !important; }
+  .MuiFab-root.bt-ai-launcher.bt-ai-launcher-round.bt-ai-animated-launcher:hover { transform: none !important; }
+}

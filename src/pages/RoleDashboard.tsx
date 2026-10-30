@@ -61,8 +61,8 @@ const niceTime = (value: unknown) => {
 };
 const dateLabel = () => new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
-async function getRows(path: string): Promise<Row[]> {
-  const response = await api.get(path);
+async function getRows(path: string, signal?: AbortSignal): Promise<Row[]> {
+  const response = await api.get(path, { signal });
   if (Array.isArray(response.data)) return response.data;
   return response.data ? [response.data] : [];
 }
@@ -76,15 +76,16 @@ function useDashboardData(paths: string[]) {
   const pathKey = paths.join("|");
   useEffect(() => {
     let active = true;
+    const controller = new AbortController();
     async function load() {
       setLoading(true);
       const result = await Promise.all(paths.map(async path => {
         try {
           if (path === "/dashboard/stats") {
-            const response = await api.get<Stats>(path);
+            const response = await api.get<Stats>(path, { signal: controller.signal });
             return { path, success: true, value: response.data };
           }
-          return { path, success: true, value: await getRows(path) };
+          return { path, success: true, value: await getRows(path, controller.signal) };
         } catch {
           return { path, success: false, value: null };
         }
@@ -96,11 +97,11 @@ function useDashboardData(paths: string[]) {
       setData(nextData);
       setStats(summary?.success ? summary.value as Stats : null);
       setErrors(result.filter(entry => !entry.success).map(entry => entry.path));
-      setUpdatedAt(new Date());
+      setUpdatedAt(result.some(entry => entry.success) ? new Date() : null);
       setLoading(false);
     }
     void load();
-    return () => { active = false; };
+    return () => { active = false; controller.abort(); };
   }, [pathKey, refreshIndex]);
   return { data, stats, errors, loading, updatedAt, refresh: () => setRefreshIndex(index => index + 1) };
 }
@@ -256,7 +257,7 @@ function DashboardLayout({ children, role, name, description, primary, secondary
 }) {
   return <div className={`bt9-dashboard bt-studio-dashboard bt-studio-dashboard-${role.toLowerCase()}`}>
     <DashboardToolbar role={role} name={name} primary={primary} secondary={secondary} updatedAt={dashboard.updatedAt} refresh={dashboard.refresh} loading={dashboard.loading} />
-    <span className="bt10-sr-only">{description}</span>
+    <div className="bt-dashboard-subhead"><p>{description}</p></div>
     {dashboard.errors.length > 0 && <Alert severity="warning" className="bt9-api-warning">Some live data could not be loaded. Unavailable metrics show “—”. Refresh to try again.</Alert>}
     <div className="bt-studio-dashboard-body">{children}</div>
     <DashboardCelebrations />
@@ -302,9 +303,9 @@ function weeklyAttendance(rows: Row[] | undefined) {
       { label: "Absent", values: weeks.map(week => count(week, ["ABSENT"])) }] };
 }
 const CHART_COLORS = [
-  "var(--bt19-chart-one, #4f7f8c)", "var(--bt19-chart-two, #a28caa)",
+  "var(--bt19-chart-one, #4f8c73)", "var(--bt19-chart-two, #a28caa)",
   "var(--bt19-chart-three, #c5a579)", "var(--bt19-chart-four, #789b81)",
-  "var(--bt19-chart-five, #b78175)", "var(--bt19-chart-six, #879aaf)",
+  "var(--bt19-chart-five, #b78175)", "var(--bt19-chart-six, #87af9e)",
 ];
 function GroupedChart({ title, caption, labels, series, unavailable = false }: {
   title: string; caption: string; labels: string[]; series: { label: string; values: number[] }[]; unavailable?: boolean;
@@ -371,7 +372,7 @@ function LoginWorkModePanel() {
     const timer = window.setInterval(() => void load(), 60000);
     return () => { active = false; window.clearInterval(timer); };
   }, []);
-  const today = new Date().toLocaleDateString("en-CA");
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
   const todayRows = rows.filter(row => String(row.loginTime || "").slice(0, 10) === today);
   const latestPerEmployee = new Map<string, LoginWorkModeRow>();
   [...todayRows].sort((a,b) => new Date(a.loginTime).getTime() - new Date(b.loginTime).getTime()).forEach(row => latestPerEmployee.set(row.employeeId, row));
@@ -381,7 +382,7 @@ function LoginWorkModePanel() {
   const latest = currentRows.slice(0, 5);
   return <section className="bt9-card bt-studio-workmode" style={{ marginBottom: 20, padding: 20 }}>
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
-      <div><h2 style={{ margin: 0, fontSize: 18 }}>Today's Work Mode</h2><p style={{ margin: "5px 0 0", color: "var(--text-secondary, #64748b)" }}>Automatically detected from GPS at login · refreshes every minute</p></div>
+      <div><h2 style={{ margin: 0, fontSize: 18 }}>Today's Work Mode</h2><p style={{ margin: "5px 0 0", color: "var(--text-secondary, #648b7b)" }}>Automatically detected from GPS at login · refreshes every minute</p></div>
       <button type="button" className="bt10-work-action secondary" onClick={() => navigate("/" + (window.location.pathname.split("/")[1] || "admin") + "/login-locations")}>View login locations</button>
     </div>
     {loadError && <Alert severity="warning" sx={{ mt: 2 }}>{loadError}</Alert>}
@@ -390,7 +391,7 @@ function LoginWorkModePanel() {
       <div className="bt9-stat"><span>WFH logins today</span><strong>{wfh}</strong></div>
       <div className="bt9-stat"><span>Employees detected today</span><strong>{currentRows.length}</strong></div>
     </div>
-    {!latest.length ? <div className="bt9-empty">No login location records are available for today yet.</div> : <div style={{ overflowX: "auto" }}><table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}><thead><tr><th style={{ padding: 9 }}>Employee</th><th style={{ padding: 9 }}>Work mode</th><th style={{ padding: 9 }}>Login time</th><th style={{ padding: 9 }}>Distance</th></tr></thead><tbody>{latest.map(row => <tr key={row.id}><td style={{ padding: 9, borderTop: "1px solid var(--border, #e2e8f0)" }}><strong>{row.employeeName || row.employeeId}</strong><div style={{ fontSize: 12, color: "var(--text-secondary, #64748b)" }}>{row.employeeId}</div></td><td style={{ padding: 9, borderTop: "1px solid var(--border, #e2e8f0)" }}><span className={`bt9-status ${row.workMode === "WFO" ? "bt9-status-good" : "bt9-status-neutral"}`}>{row.workMode}</span></td><td style={{ padding: 9, borderTop: "1px solid var(--border, #e2e8f0)" }}>{niceTime(row.loginTime)}</td><td style={{ padding: 9, borderTop: "1px solid var(--border, #e2e8f0)" }}>{Math.round(Number(row.distanceFromOffice) || 0)} m</td></tr>)}</tbody></table></div>}
+    {!latest.length ? <div className="bt9-empty">No login location records are available for today yet.</div> : <div style={{ overflowX: "auto" }}><table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}><thead><tr><th style={{ padding: 9 }}>Employee</th><th style={{ padding: 9 }}>Work mode</th><th style={{ padding: 9 }}>Login time</th><th style={{ padding: 9 }}>Distance</th></tr></thead><tbody>{latest.map(row => <tr key={row.id}><td style={{ padding: 9, borderTop: "1px solid var(--border, #e2f0ea)" }}><strong>{row.employeeName || row.employeeId}</strong><div style={{ fontSize: 12, color: "var(--text-secondary, #648b7b)" }}>{row.employeeId}</div></td><td style={{ padding: 9, borderTop: "1px solid var(--border, #e2f0ea)" }}><span className={`bt9-status ${row.workMode === "WFO" ? "bt9-status-good" : "bt9-status-neutral"}`}>{row.workMode}</span></td><td style={{ padding: 9, borderTop: "1px solid var(--border, #e2f0ea)" }}>{niceTime(row.loginTime)}</td><td style={{ padding: 9, borderTop: "1px solid var(--border, #e2f0ea)" }}>{Math.round(Number(row.distanceFromOffice) || 0)} m</td></tr>)}</tbody></table></div>}
   </section>;
 }
 
@@ -574,7 +575,7 @@ function WorkTimerCard() {
       <div className="bt10-work-compact-clock"><span><AccessTimeRoundedIcon fontSize="small" /></span><strong>{formatWorkDuration(totalSeconds)}</strong><small>{active ? "Running" : paused ? "Stopped" : completed ? "Completed" : "Waiting"}</small></div>
       {session?.loginTime && <div className="bt10-work-compact-item"><small>Check-in</small><strong>{niceTime(session.loginTime)}</strong></div>}
       <div className="bt10-work-compact-item"><small>Expected</small><strong>{formatMinutes(requiredMinutes)}</strong></div>
-      <div className="bt10-work-compact-item"><small>{remainingMinutes > 0 ? "Remaining" : "Overtime"}</small><strong>{formatMinutes(remainingMinutes)}</strong></div>
+      <div className="bt10-work-compact-item"><small>{remainingMinutes > 0 ? "Remaining" : "Overtime"}</small><strong>{formatMinutes(remainingMinutes > 0 ? remainingMinutes : Math.max(0, totalMinutesForProgress - requiredMinutes))}</strong></div>
       <div className="bt10-work-compact-action">
         {active ? <button onClick={() => void changeWorkState("pause")} disabled={busy} className="bt10-work-action secondary"><CoffeeRoundedIcon fontSize="small" />{busy ? "Updating…" : "Sign Off"}</button>
           : <button onClick={() => void changeWorkState("resume")} disabled={busy || completed} className="bt10-work-action primary"><PlayArrowRoundedIcon fontSize="small" />{busy ? "Updating…" : "Resume Work"}</button>}

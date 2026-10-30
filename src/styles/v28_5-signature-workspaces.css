@@ -1,0 +1,166 @@
+/* BlueThink V28.5 | Four premium workspaces and circular AI identity.
+   Final layer after legacy UI rules to keep each role distinct.
+   No API, authentication, permissions, or workflow behavior changed. */
+.th-app.bt-studio {
+  --bt-canvas:#f7f7f3; --bt-surface:#fff; --bt-ink:#1e344b; --bt-muted:#5d7078;
+  --bt-line:#e1e7e6; --bt-accent:#1e344b; --bt-tint:#e8edf2;
+}
+.th-app.bt-studio.bt-studio-admin {
+  --bt-accent:#1e344b; --bt-tint:#e8edf2; --bt-canvas:#f5f7f9;
+  --bt-ink:#1c2d40; --bt-muted:#607486; --bt-line:#dfe6eb;
+  --role-accent:#1e344b; --role-focus:#7e9ab5; --role-surface:#f5f7f9;
+  --role-panel:#fff;--role-ink:#1c2d40;--role-muted:#607486;--role-line:#dfe6eb;--role-soft:#e8edf2;
+  --work-surface:#f5f7f9;--work-ink:#1c2d40;--work-muted:#607486;--work-line:#dfe6eb;
+  --bt19-chart-one:#1e344b; --bt19-chart-two:#54718d; --bt19-chart-three:#9db0bc;
+}
+.th-app.bt-studio.bt-studio-hr {
+  --bt-accent:#737d69; --bt-tint:#ebefe7; --bt-canvas:#f8f9f5;
+  --bt-ink:#303f34; --bt-muted:#6b796b; --bt-line:#e1e8de;
+  --role-accent:#737d69; --role-focus:#a1b79a; --role-surface:#f8f9f5;
+  --role-panel:#fff;--role-ink:#303f34;--role-muted:#6b796b;--role-line:#e1e8de;--role-soft:#ebefe7;
+  --work-surface:#f8f9f5;--work-ink:#303f34;--work-muted:#6b796b;--work-line:#e1e8de;
+  --bt19-chart-one:#737d69; --bt19-chart-two:#9cac89; --bt19-chart-three:#d3deca;
+}
+.th-app.bt-studio.bt-studio-manager {
+  --bt-accent:#9b5645; --bt-tint:#f6ece7; --bt-canvas:#fbf7f4;
+  --bt-ink:#4a302a; --bt-muted:#87675d; --bt-line:#eddfd8;
+  --role-accent:#9b5645; --role-focus:#d69b87; --role-surface:#fbf7f4;
+  --role-panel:#fff;--role-ink:#4a302a;--role-muted:#87675d;--role-line:#eddfd8;--role-soft:#f6ece7;
+  --work-surface:#fbf7f4;--work-ink:#4a302a;--work-muted:#87675d;--work-line:#eddfd8;
+  --bt19-chart-one:#9b5645; --bt19-chart-two:#c28772; --bt19-chart-three:#e8c4b6;
+}
+.th-app.bt-studio.bt-studio-employee {
+  --bt-accent:#285b60; --bt-tint:#e7f0ef; --bt-canvas:#f5faf9;
+  --bt-ink:#214246; --bt-muted:#5e7879; --bt-line:#dce9e7;
+  --role-accent:#285b60; --role-focus:#78aeb0; --role-surface:#f5faf9;
+  --role-panel:#fff;--role-ink:#214246;--role-muted:#5e7879;--role-line:#dce9e7;--role-soft:#e7f0ef;
+  --work-surface:#f5faf9;--work-ink:#214246;--work-muted:#5e7879;--work-line:#dce9e7;
+  --bt19-chart-one:#285b60; --bt19-chart-two:#549094; --bt19-chart-three:#b1d0ce;
+}
+/* Unify card surfaces and role-bound controls, while respecting existing page structure. */
+.th-app.bt-studio .th-main,
+.th-app.bt-studio .th-content {background:var(--bt-canvas)!important;}
+.th-app.bt-studio .th-topbar {border-bottom:1px solid var(--bt-line)!important;box-shadow:0 5px 18px #12293c08!important;}
+.th-app.bt-studio .th-search {border:1px solid var(--bt-line)!important;background:#fff!important;}
+.th-app.bt-studio .bt-workspace-trail {color:var(--bt-muted)!important;}
+.th-app.bt-studio .bt9-stat {background:#fff!important;border:1px solid var(--bt-line)!important;border-top:3px solid var(--bt-accent)!important;border-radius:17px!important;box-shadow:0 10px 25px #172b3410!important;}
+.th-app.bt-studio .bt9-stat .bt9-stat-icon {background:var(--bt-tint)!important;color:var(--bt-accent)!important;border-radius:12px!important;}
+.th-app.bt-studio .bt9-stat :is(.bt9-stat-value,strong) {color:var(--bt-ink)!important;}
+.th-app.bt-studio .bt9-stat .bt9-stat-label {color:var(--bt-muted)!important;}
+.th-app.bt-studio .bt9-stat .bt9-stat-note {color:var(--bt-muted)!important;}
+.th-app.bt-studio .bt9-card {background:#fff!important;border:1px solid var(--bt-line)!important;border-radius:19px!important;box-shadow:0 8px 26px #172b3409!important;}
+.th-app.bt-studio .bt9-card-heading h2 {color:var(--bt-ink)!important;}
+.th-app.bt-studio .bt9-record-avatar,
+.th-app.bt-studio .bt9-card-icon {background:var(--bt-tint)!important;color:var(--bt-accent)!important;}
+.th-app.bt-studio .bt9-record-copy strong {color:var(--bt-ink)!important;}
+.th-app.bt-studio .bt9-record-copy small {color:var(--bt-muted)!important;}
+.th-app.bt-studio .bt9-text-link {color:var(--bt-accent)!important;}
+.th-app.bt-studio .bt9-action-row {background:var(--bt-canvas)!important;border:1px solid var(--bt-line)!important;}
+.th-app.bt-studio .bt10-work-timer {background:linear-gradient(110deg,#fff,var(--bt-tint))!important;}
+.th-app.bt-studio .bt10-work-progress-track>span {background:var(--bt-accent)!important;}
+.th-app.bt-studio .th-page-shell :is(th,.MuiTableCell-head) {background:var(--bt-tint)!important;color:var(--bt-ink)!important;}
+.th-app.bt-studio .th-page-shell :is(.th-primary,.MuiButton-containedPrimary),
+.th-app.bt-studio .bt-compact-dashboard-primary {background:var(--bt-accent)!important;border-color:var(--bt-accent)!important;color:#fff!important;}
+.th-app.bt-studio .bt-dashboard-subhead {justify-content:flex-start;margin:15px 0 23px;}
+.th-app.bt-studio .bt-dashboard-subhead p {font-size:12px;color:var(--bt-muted)!important;}
+/* ADMIN: dark navy, square architectural navigation, executive overview. */
+.th-app.bt-studio-admin .th-sidebar {background:radial-gradient(ellipse at 98% 10%,#41617c 0%,transparent 45%),linear-gradient(165deg,#1e344b,#15293e 70%,#0e2235)!important;color:#f0f6fb!important;}
+.th-app.bt-studio-admin .th-sidebar:before {border-top:3px solid #9fb6c6;background:linear-gradient(130deg,#ffffff10,transparent 85%)!important;}
+.th-app.bt-studio-admin .bt-sidebar-intro {background:linear-gradient(115deg,#344f67,#213c53)!important;border:1px solid #d6e5ee32!important;border-left:3px solid #c6d4dc!important;}
+.th-app.bt-studio-admin .bt-sidebar-intro-number {background:#dce6ec!important;color:#1e344b!important;}
+.th-app.bt-studio-admin .bt-sidebar-intro-eyebrow,
+.th-app.bt-studio-admin .bt-sidebar-intro-copy small {color:#cedce7!important;}
+.th-app.bt-studio-admin .th-menu-label {color:#a9c3d4!important;}
+.th-app.bt-studio-admin .th-nav-button {color:#ddeaf1!important;border-radius:8px!important;}
+.th-app.bt-studio-admin .th-nav-button .th-nav-left svg {color:#b8d0df!important;}
+.th-app.bt-studio-admin .th-nav-button.active {background:linear-gradient(100deg,#456983,#365772)!important;box-shadow:inset 3px 0 #dce8ef,0 7px 16px #07192b2b!important;color:#fff!important;}
+.th-app.bt-studio-admin .th-nav-button.active .th-nav-left svg {color:#eaf3fa!important;}
+.th-app.bt-studio-admin .th-profile-avatar {background:#597b99!important;color:#fff!important;}
+.th-app.bt-studio-admin .bt-compact-dashboard-top {background:linear-gradient(105deg,#1e344b,#2d4d66)!important;border:0!important;box-shadow:0 15px 33px #1e344b22!important;}
+.th-app.bt-studio-admin .bt-compact-dashboard-top :is(h1,.bt-compact-dashboard-kicker,.bt19-refresh-status) {color:#fff!important;}
+.th-app.bt-studio-admin .bt-compact-dashboard-top .bt19-dashboard-identity {color:#fff!important;background:#ffffff24!important;}
+.th-app.bt-studio-admin .bt-studio-hero-admin {background:linear-gradient(120deg,#1e344b,#365f78)!important;border-color:#456983!important;}
+.th-app.bt-studio-admin .bt9-kpis .bt9-stat:first-child {background:#fff!important;}
+/* HR: muted sage, editorial soft corners, refined people workspace. */
+.th-app.bt-studio-hr .th-sidebar {background:radial-gradient(circle at 100% 0%,#839483,transparent 45%),linear-gradient(170deg,#4e6151,#344a3d 72%,#2e4238)!important;}
+.th-app.bt-studio-hr .bt-sidebar-intro {background:linear-gradient(135deg,#7d9179,#617763)!important;border:1px solid #dae8d134!important;border-radius:22px!important;}
+.th-app.bt-studio-hr .bt-sidebar-intro-number {background:#e5eddf!important;color:#536551!important;}
+.th-app.bt-studio-hr .bt-sidebar-intro-eyebrow,
+.th-app.bt-studio-hr .bt-sidebar-intro-copy small {color:#e0ead8!important;}
+.th-app.bt-studio-hr .th-menu-label {color:#c8dec4!important;}
+.th-app.bt-studio-hr .th-nav-button {color:#e3eee0!important;border-radius:999px!important;}
+.th-app.bt-studio-hr .th-nav-button .th-nav-left svg {color:#c8ddc6!important;}
+.th-app.bt-studio-hr .th-nav-button.active {background:#eff4ea!important;color:#314535!important;box-shadow:0 5px 19px #0b24172b!important;}
+.th-app.bt-studio-hr .th-nav-button.active .th-nav-left svg {color:#617763!important;}
+.th-app.bt-studio-hr .th-profile-avatar {background:#8da189!important;color:#fff!important;}
+.th-app.bt-studio-hr .bt-compact-dashboard-top {background:linear-gradient(115deg,#e7eee0,#fafff7)!important;border:1px solid #d8e3d2!important;}
+.th-app.bt-studio-hr .bt-compact-dashboard-top h1 {font-family:Georgia,serif!important;color:#303f34!important;font-size:clamp(27px,2.5vw,37px)!important;}
+.th-app.bt-studio-hr .bt-compact-dashboard-top .bt19-dashboard-identity {background:#dce6d5!important;color:#576b58!important;}
+.th-app.bt-studio-hr .bt-studio-hero-hr {background:linear-gradient(135deg,#f0f4e9,#dce8da)!important;border-color:#d7e3d4!important;}
+.th-app.bt-studio-hr .bt10-first-kpis .bt9-stat {border-top:3px solid #737d69!important;}
+/* MANAGER: warm terracotta, structured leadership rail, memorable hero. */
+.th-app.bt-studio-manager .th-sidebar {background:radial-gradient(ellipse at 90% 9%,#ae705f 0%,transparent 43%),linear-gradient(165deg,#744437,#643b31 60%,#4b2f28)!important;}
+.th-app.bt-studio-manager .th-sidebar:before {border-top:4px solid #d9a393!important;}
+.th-app.bt-studio-manager .bt-sidebar-intro {background:#ffffff16!important;border:1px solid #f0c9b74a!important;border-radius:12px 12px 30px 12px!important;}
+.th-app.bt-studio-manager .bt-sidebar-intro-number {background:#f2d3c1!important;color:#744437!important;border-color:#f2d3c1!important;}
+.th-app.bt-studio-manager .bt-sidebar-intro-eyebrow,
+.th-app.bt-studio-manager .bt-sidebar-intro-copy small {color:#f5d9cf!important;}
+.th-app.bt-studio-manager .th-menu-label {color:#e9b8aa!important;}
+.th-app.bt-studio-manager .th-nav-button {color:#f4e0d8!important;border-radius:8px 16px 16px 8px!important;}
+.th-app.bt-studio-manager .th-nav-button .th-nav-left svg {color:#e2b6a5!important;}
+.th-app.bt-studio-manager .th-nav-button.active {background:linear-gradient(105deg,#f7ded1,#e8baa8)!important;color:#603b31!important;border-left-color:#c7866e!important;box-shadow:0 8px 18px #27100d20!important;}
+.th-app.bt-studio-manager .th-nav-button.active .th-nav-left svg {color:#92503e!important;}
+.th-app.bt-studio-manager .th-profile-avatar {background:#c3826e!important;color:#fff!important;}
+.th-app.bt-studio-manager .bt-compact-dashboard-top {background:linear-gradient(105deg,#844b3c,#ac6a55)!important;border:0!important;}
+.th-app.bt-studio-manager .bt-compact-dashboard-top :is(h1,.bt-compact-dashboard-kicker,.bt19-refresh-status) {color:#fff!important;}
+.th-app.bt-studio-manager .bt-compact-dashboard-top .bt19-dashboard-identity {color:#fff!important;background:#ffffff20!important;}
+.th-app.bt-studio-manager .bt-studio-hero-manager {background:linear-gradient(113deg,#8c4b3d,#b4745c)!important;border-color:#b87660!important;}
+.th-app.bt-studio-manager .bt10-first-kpis .bt9-stat {border-left:3px solid #9b5645!important;}
+/* EMPLOYEE: spacious light muted-teal sidebar and personal workspace. */
+.th-app.bt-studio-employee .th-sidebar {background:linear-gradient(165deg,#f4faf8 0%,#e4f0ec 70%,#d9eae6 100%)!important;border-right:1px solid #cfe0dc!important;box-shadow:5px 0 24px #193e3d0a!important;}
+.th-app.bt-studio-employee .bt-sidebar-intro {background:linear-gradient(115deg,#dcebe6,#c6ded8)!important;border:1px solid #bcd6d0!important;border-radius:20px!important;}
+.th-app.bt-studio-employee .bt-sidebar-intro-number {background:#285b60!important;color:#fff!important;}
+.th-app.bt-studio-employee .bt-sidebar-intro-copy strong {color:#214246!important;}
+.th-app.bt-studio-employee .bt-sidebar-intro-eyebrow,
+.th-app.bt-studio-employee .bt-sidebar-intro-copy small {color:#456d6f!important;}
+.th-app.bt-studio-employee .th-brand {border-bottom-color:#d0e1dc!important;}
+.th-app.bt-studio-employee .th-menu-label {color:#537b7b!important;}
+.th-app.bt-studio-employee .th-nav-button {color:#30595c!important;border-radius:13px!important;}
+.th-app.bt-studio-employee .th-nav-button .th-nav-left svg {color:#537d7d!important;}
+.th-app.bt-studio-employee .th-nav-button:hover {background:#d2e7e0!important;color:#1b4347!important;}
+.th-app.bt-studio-employee .th-nav-button.active {background:#285b60!important;color:#fff!important;box-shadow:0 7px 16px #285b6027!important;}
+.th-app.bt-studio-employee .th-nav-button.active .th-nav-left svg {color:#e0f1ec!important;}
+.th-app.bt-studio-employee .th-profile.th-profile-v6 {background:#fff!important;border-color:#d4e3e0!important;}
+.th-app.bt-studio-employee .th-profile-avatar {background:#285b60!important;color:#fff!important;}
+.th-app.bt-studio-employee .th-role-badge {background:#dcebe6!important;color:#285b60!important;}
+.th-app.bt-studio-employee .bt-compact-dashboard-top {background:linear-gradient(115deg,#e7f2ee,#f8fdfb)!important;border:1px solid #d4e7e3!important;}
+.th-app.bt-studio-employee .bt-compact-dashboard-top h1 {color:#214246!important;}
+.th-app.bt-studio-employee .bt-studio-hero-employee {background:linear-gradient(115deg,#e5f3ed,#d3e8e3)!important;border-color:#c7e1dc!important;}
+.th-app.bt-studio-employee .bt-studio-hero-employee :is(h1,p,.bt-overline) {color:#285b60!important;}
+/* Color-identity text contrast for non-selected sidebar items. */
+.th-app.bt-studio-admin .th-sidebar-footer,.th-app.bt-studio-admin .th-subnav {color:#c7dce9!important;}
+.th-app.bt-studio-hr .th-sidebar-footer,.th-app.bt-studio-hr .th-subnav {color:#d6e8d1!important;}
+.th-app.bt-studio-manager .th-sidebar-footer,.th-app.bt-studio-manager .th-subnav {color:#f5d0c1!important;}
+.th-app.bt-studio-employee .th-sidebar-footer,.th-app.bt-studio-employee .th-subnav {color:#547a7b!important;}
+/* Ask BlueThink: identical circular B mark on all four roles, including team chat. */
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round,
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round.bt-ai-launcher-team-chat {
+  width:64px!important;height:64px!important;min-width:64px!important;min-height:64px!important;
+  padding:0!important;border-radius:50%!important;
+  background:linear-gradient(145deg,#2e506a,#1e344b)!important;
+  border:2px solid #c4d3d5!important;box-shadow:0 12px 32px #10273b55,0 0 0 5px #ffffffa8!important;
+  color:#fff!important;display:inline-flex!important;justify-content:center;align-items:center;
+  transition:transform .2s ease,box-shadow .2s ease!important;
+}
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round:hover {background:linear-gradient(145deg,#365d79,#1e344b)!important;transform:translateY(-3px);}
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round:focus-visible {outline:3px solid #d5b5a6!important;outline-offset:5px!important;}
+.bt-ai-monogram {font-family:Georgia,'Times New Roman',serif;font-size:35px;line-height:1;font-weight:700;letter-spacing:-.07em;transform:translateX(-1px);user-select:none;}
+@media(max-width:650px) {
+  .MuiFab-root.bt-ai-launcher.bt-ai-launcher-round,
+  .MuiFab-root.bt-ai-launcher.bt-ai-launcher-round.bt-ai-launcher-team-chat {
+    width:56px!important;height:56px!important;min-width:56px!important;min-height:56px!important;right:16px!important;
+  }
+  .bt-ai-monogram {font-size:31px;}
+  .th-app.bt-studio .bt-compact-dashboard-top {border-radius:18px!important;}
+}
+@media(prefers-reduced-motion:reduce) {.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round {transition:none!important;transform:none!important;}}

@@ -1,0 +1,22 @@
+/* Shared production behavior. Role palettes and brand assets stay in their theme files. */
+.bt-recovery { max-width: 600px; margin: 12vh auto; padding: 32px; color: #21354a; font-family: system-ui, sans-serif; }
+.bt-recovery h1 { font-size: clamp(24px, 4vw, 34px); }
+.bt-recovery p { line-height: 1.6; color: #516176; }
+.bt-recovery button { border: 0; border-radius: 10px; padding: 14px 20px; background: #194c7a; color: white; font: inherit; cursor: pointer; }
+.bt-recovery a { display: inline-block; margin: 16px; color: #194c7a; }
+.bt-auth-session-notice { padding: 12px 16px; border-radius: 10px; background: #e8f0f7; color: #194c7a; font-size: 14px; line-height: 1.5; }
+.bt-auth :is(input, button, a):focus-visible { outline: 3px solid #416a90; outline-offset: 3px; }
+.bt-auth input { scroll-margin: 24px; }
+.th-app .bt-studio-dashboard-body { min-width: 0; }
+.th-app .bt9-record-copy { min-width: 0; }
+.th-app .bt9-record-copy strong { overflow-wrap: anywhere; }
+.th-app .bt9-api-warning { margin-block: 16px; }
+.th-app :is(.bt9-card,.th-card) { scroll-margin-top: 24px; }
+@media (max-width: 480px) {
+  .bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel { padding: 24px 20px !important; }
+  .bt-auth.bt26-auth.bt-premium-auth .bt-auth-panel-head-tag { letter-spacing: .07em; font-size: 9px; }
+  .bt-recovery { margin: 8vh 16px; padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

@@ -10,6 +10,7 @@ import type {
 interface AuthState {
   session: UserSession | null;
   isAuthenticated: boolean;
+  sessionExpired: boolean;
 }
 
 function loadSession(): UserSession | null {
@@ -33,6 +34,12 @@ function loadSession(): UserSession | null {
     }
 
     const parsed = JSON.parse(saved) as UserSession;
+    if (!parsed || typeof parsed.token !== "string" || !parsed.token.trim()
+        || typeof parsed.userId !== "string" || !parsed.userId.trim()
+        || !["ADMIN", "HR", "MANAGER", "EMPLOYEE"].includes(parsed.role)) {
+      throw new Error("Invalid stored session");
+    }
+    parsed.permissions = Array.isArray(parsed.permissions) ? parsed.permissions : [];
     // Repair older tab sessions where the serialized session survived but the
     // dedicated token key was absent. Never migrate another tab's token.
     if (parsed?.token && !sessionStorage.getItem("hrms_token")) {
@@ -61,6 +68,7 @@ const session = loadSession();
 const initialState: AuthState = {
   session,
   isAuthenticated: Boolean(session?.token),
+  sessionExpired: false,
 };
 
 const authSlice = createSlice({
@@ -78,6 +86,7 @@ const authSlice = createSlice({
 
       state.session = action.payload;
       state.isAuthenticated = true;
+      state.sessionExpired = false;
 
       sessionStorage.setItem(
         "hrms_session",
@@ -93,10 +102,11 @@ const authSlice = createSlice({
       localStorage.removeItem("hrms_token");
     },
 
-    logout: (state) => {
+    logout: (state, action: PayloadAction<boolean | undefined>) => {
 
       state.session = null;
       state.isAuthenticated = false;
+      state.sessionExpired = action.payload === true;
 
       sessionStorage.removeItem("hrms_session");
       sessionStorage.removeItem("hrms_token");

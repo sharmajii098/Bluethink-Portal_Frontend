@@ -1,16 +1,25 @@
-import logoSrc from "../branding/bluethink-inc-official-master.png";
+import officialLogo from "../branding/bluethink-inc-official-master.png";
 
 import { parseReportCsv, reportCellValue } from "./reportTable";
 const label = (value: string) => value.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/[_-]/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-let logoPromise: Promise<string> | undefined;
-export function reportLogoPng(): Promise<string> {
-  return logoPromise ??= new Promise((resolve, reject) => {
-    const image = new Image(); image.onload = () => {
-      const canvas = document.createElement("canvas"); canvas.width = 1116; canvas.height = 324;
-      const context = canvas.getContext("2d"); if (!context) { reject(new Error("Unable to render report logo")); return; }
-      context.fillStyle = "#ffffff"; context.fillRect(0, 0, canvas.width, canvas.height); context.drawImage(image, 0, 0, canvas.width, canvas.height); resolve(canvas.toDataURL("image/png"));
-    }; image.onerror = () => { logoPromise = undefined; reject(new Error("Unable to load report logo")); }; image.src = logoSrc;
-  });
+/** Produce the official company mark for spreadsheet exports; no third-party image is used. */
+export async function reportLogoPng(): Promise<string> {
+  const canvas = document.createElement("canvas"); canvas.width = 1200; canvas.height = 305;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Unable to render report identity");
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const image = new Image(); image.decoding = "async";
+  image.src = officialLogo;
+  try {
+    await image.decode();
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+  } catch {
+    // Export still works without modifying confidential report values when the image is blocked.
+    ctx.fillStyle = "#174e8b"; ctx.font = "bold 92px Arial, sans-serif";
+    ctx.fillText("BlueThink Inc.", 40, 150);
+    ctx.fillStyle = "#3c4751";ctx.font = "italic 45px Georgia,serif";ctx.fillText("Think beyond", 42, 225);
+  }
+  return canvas.toDataURL("image/png");
 }
 export async function createBrandedWorkbook(csv: string, filename: string): Promise<Blob> {
   const [{ default: ExcelJS }, logo] = await Promise.all([import("exceljs"), reportLogoPng()]);

@@ -1,0 +1,142 @@
+/* V28.7.1 | Accessibility/readability corrections after four-role browser review.
+   Keep the approved role color palettes and original logo. All overrides
+   are scoped to the app shell; avoid changing business logic or text content.
+   These intentionally outrank older workspace-premium selectors using !important. */
+
+/* 1. Primary and nested sidebar navigation must be light on the dark rail. */
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-nav-button:not(.active),
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-subnav:not(.active) {
+  color:var(--bt-side-text, #FFFFFF) !important;
+  opacity:1 !important;
+  font-size:13px !important;
+  font-weight:650 !important;
+  line-height:1.45 !important;
+  text-shadow:none !important;
+}
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-nav-button:not(.active) .th-nav-left > span,
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-subnav:not(.active) > span {
+  color:var(--bt-side-text, #FFFFFF) !important;
+  opacity:1 !important;
+  -webkit-text-fill-color:var(--bt-side-text, #FFFFFF) !important;
+}
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-nav-button:not(.active) svg,
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-subnav:not(.active) svg {
+  color:var(--bt-side-muted, #E5EDF6) !important;
+  opacity:1 !important;
+}
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-nav-button:hover:not(.active),
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-subnav:hover:not(.active) {
+  background:#FFFFFF24 !important;
+  color:#FFFFFF !important;
+}
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-nav-button.active,
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-subnav.active {
+  color:var(--bt-ink, #1D3045) !important;
+  background:var(--bt-tint, #EDF0F5) !important;
+  font-weight:750 !important;
+  box-shadow:inset 4px 0 var(--bt-highlight, #C95C50) !important;
+}
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-nav-button.active :is(span,svg),
+.th-app.bt-studio .th-sidebar nav.th-menu button.th-subnav.active :is(span,svg) {
+  color:var(--bt-ink, #1D3045) !important;
+  -webkit-text-fill-color:var(--bt-ink, #1D3045) !important;
+  opacity:1 !important;
+}
+.th-app.bt-studio .th-sidebar .th-menu-label,
+.th-app.bt-studio .th-sidebar .th-sidebar-footer,
+.th-app.bt-studio .th-sidebar .bt-sidebar-signature {
+  color:var(--bt-side-muted, #DCE7F1) !important;
+  -webkit-text-fill-color:var(--bt-side-muted, #DCE7F1) !important;
+  opacity:1 !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+}
+.th-app.bt-studio .th-sidebar nav.th-menu button:focus-visible,
+.th-app.bt-studio .th-sidebar .th-brand:focus-visible {
+  outline:3px solid #FFFFFF !important;
+  outline-offset:2px !important;
+}
+
+/* 2. Profile cards are light; force dark, legible identity text on every role. */
+.th-app.bt-studio .th-sidebar .th-profile.th-profile-v6 {
+  background:#FFFFFFF0 !important;
+  border:1px solid var(--bt-line, #D9E1E9) !important;
+  box-shadow:0 6px 16px #00000014 !important;
+  color:var(--bt-ink, #233A50) !important;
+}
+.th-app.bt-studio .th-sidebar .th-profile.th-profile-v6 .th-profile-info strong {
+  color:var(--bt-ink, #233A50) !important;
+  -webkit-text-fill-color:var(--bt-ink, #233A50) !important;
+  opacity:1 !important;
+  font-size:12px !important;
+  line-height:1.4 !important;
+  font-weight:760 !important;
+}
+.th-app.bt-studio .th-sidebar .th-profile.th-profile-v6 :is(.th-profile-designation,.th-profile-meta,.th-profile-meta span,.th-profile-info small) {
+  color:var(--bt-muted, #52667B) !important;
+  -webkit-text-fill-color:var(--bt-muted, #52667B) !important;
+  opacity:1 !important;
+  font-size:10px !important;
+  line-height:1.45 !important;
+}
+.th-app.bt-studio .th-sidebar .th-profile.th-profile-v6 .th-role-badge {
+  background:var(--bt-tint, #E9EEF4) !important;
+  color:var(--bt-ink, #233A50) !important;
+  -webkit-text-fill-color:var(--bt-ink, #233A50) !important;
+  border:1px solid var(--bt-line, #D9E1E9) !important;
+  opacity:1 !important;
+}
+
+/* 3. The four dashboard banners are dark. No role may inherit dark text here. */
+.th-app.bt-studio .th-content header.bt-compact-dashboard-top .bt-compact-dashboard-heading h1,
+.th-app.bt-studio .th-content header.bt-compact-dashboard-top .bt-compact-dashboard-heading .bt-compact-dashboard-kicker,
+.th-app.bt-studio .th-content header.bt-compact-dashboard-top .bt-compact-dashboard-heading .bt19-refresh-status {
+  color:#FFFFFF !important;
+  -webkit-text-fill-color:#FFFFFF !important;
+  opacity:1 !important;
+  text-shadow:0 1px 2px #08192935 !important;
+}
+.th-app.bt-studio .th-content header.bt-compact-dashboard-top .bt-compact-dashboard-heading h1 {
+  font-size:clamp(24px,2.35vw,34px) !important;
+  line-height:1.15 !important;
+  font-weight:730 !important;
+  letter-spacing:-.035em !important;
+}
+.th-app.bt-studio .th-content header.bt-compact-dashboard-top .bt-compact-dashboard-heading .bt19-refresh-status {
+  font-size:11px !important;
+  font-weight:550 !important;
+}
+.th-app.bt-studio .th-content header.bt-compact-dashboard-top .bt-compact-dashboard-heading .bt-compact-dashboard-kicker {
+  font-size:11px !important;
+  font-weight:730 !important;
+  letter-spacing:.045em !important;
+}
+.th-app.bt-studio .th-content header.bt-compact-dashboard-top .bt19-dashboard-identity {
+  color:#FFFFFF !important;
+}
+
+/* 4. Improve compact dashboard metadata on every inner page without recoloring cards. */
+.th-app.bt-studio .th-content .bt9-dashboard .bt9-stat .bt9-stat-label,
+.th-app.bt-studio .th-content .bt9-dashboard .bt9-stat .bt9-stat-note {
+  color:var(--bt-muted, #52667B) !important;
+  opacity:1 !important;
+  font-size:12px !important;
+  line-height:1.45 !important;
+}
+.th-app.bt-studio .th-content .bt9-card .bt9-card-heading h2 {
+  color:var(--bt-ink, #233A50) !important;
+  font-size:15px !important;
+  font-weight:700 !important;
+}
+.th-app.bt-studio .th-content .bt9-card .bt9-card-heading p,
+.th-app.bt-studio .th-content .bt9-card .bt9-empty span {
+  color:var(--bt-muted, #52667B) !important;
+  opacity:1 !important;
+  font-size:12px !important;
+}
+
+@media (max-width:760px) {
+  .th-app.bt-studio .th-sidebar nav.th-menu button.th-nav-button:not(.active),
+  .th-app.bt-studio .th-sidebar nav.th-menu button.th-subnav:not(.active) {font-size:14px !important;}
+  .th-app.bt-studio .th-content header.bt-compact-dashboard-top .bt-compact-dashboard-heading h1 {font-size:clamp(23px,6vw,30px) !important;}
+}

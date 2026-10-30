@@ -1,0 +1,121 @@
+/* V28.6: four distinct classic two-tone role workspaces.
+   Last role design layer; does not modify routing, permissions or business data. */
+.th-app.bt-studio.bt-studio-admin {
+  --bt-accent:#624231;--bt-tint:#f1e5d6;--bt-canvas:#f8f1e7;
+  --bt-ink:#3e2d23;--bt-muted:#725a4b;--bt-line:#e8d6c3;
+  --role-accent:#624231;--role-focus:#b78565;--role-surface:#f8f1e7;
+  --role-panel:#fffdfa;--role-ink:#3e2d23;--role-muted:#725a4b;--role-line:#e8d6c3;--role-soft:#f1e5d6;
+  --work-surface:#f8f1e7;--work-ink:#3e2d23;--work-muted:#725a4b;--work-line:#e8d6c3;
+  --bt19-chart-one:#624231;--bt19-chart-two:#aa8069;--bt19-chart-three:#dfc6af;
+}
+.th-app.bt-studio.bt-studio-hr {
+  --bt-accent:#505b3b;--bt-tint:#e8d9c4;--bt-canvas:#f4e9da;
+  --bt-ink:#353b2a;--bt-muted:#626751;--bt-line:#d9cfba;
+  --role-accent:#505b3b;--role-focus:#8c986b;--role-surface:#f4e9da;
+  --role-panel:#fffdf8;--role-ink:#353b2a;--role-muted:#626751;--role-line:#d9cfba;--role-soft:#e8d9c4;
+  --work-surface:#f4e9da;--work-ink:#353b2a;--work-muted:#626751;--work-line:#d9cfba;
+  --bt19-chart-one:#505b3b;--bt19-chart-two:#8c9271;--bt19-chart-three:#d3c7a9;
+}
+.th-app.bt-studio.bt-studio-manager {
+  --bt-accent:#a95337;--bt-tint:#f6e3d9;--bt-canvas:#fbf8f2;
+  --bt-ink:#533326;--bt-muted:#806052;--bt-line:#ead9cd;
+  --role-accent:#a95337;--role-focus:#d59070;--role-surface:#fbf8f2;
+  --role-panel:#fffdfb;--role-ink:#533326;--role-muted:#806052;--role-line:#ead9cd;--role-soft:#f6e3d9;
+  --work-surface:#fbf8f2;--work-ink:#533326;--work-muted:#806052;--work-line:#ead9cd;
+  --bt19-chart-one:#a95337;--bt19-chart-two:#ce8a6c;--bt19-chart-three:#ecd0bc;
+}
+.th-app.bt-studio.bt-studio-employee {
+  --bt-accent:#42617e;--bt-tint:#e2e5ea;--bt-canvas:#f0f1f3;
+  --bt-ink:#2e4357;--bt-muted:#566e83;--bt-line:#d5dde5;
+  --role-accent:#42617e;--role-focus:#84a0bb;--role-surface:#f0f1f3;
+  --role-panel:#fff;--role-ink:#2e4357;--role-muted:#566e83;--role-line:#d5dde5;--role-soft:#e2e5ea;
+  --work-surface:#f0f1f3;--work-ink:#2e4357;--work-muted:#566e83;--work-line:#d5dde5;
+  --bt19-chart-one:#42617e;--bt19-chart-two:#89a1ba;--bt19-chart-three:#c9d2dd;
+}
+/* Every workspace gets a distinct sidebar, not just a recolored button. */
+.th-app.bt-studio-admin .th-sidebar {background:radial-gradient(ellipse at 95% 3%,#8b634c,transparent 38%),linear-gradient(165deg,#5b3b2d,#472f26 76%,#36231d)!important;border-right:1px solid #3d291f!important;}
+.th-app.bt-studio-admin .th-sidebar:before {border-top:3px solid #d5b395!important;}
+.th-app.bt-studio-admin .bt-sidebar-intro {background:linear-gradient(125deg,#7b5542,#5e3b2e)!important;border:1px solid #caa98a66!important;border-radius:13px!important;}
+.th-app.bt-studio-admin .bt-sidebar-intro-number {background:#f1e5d6!important;color:#624231!important;}
+.th-app.bt-studio-admin .th-menu-label {color:#d7bdab!important;}
+.th-app.bt-studio-admin .th-nav-button {color:#f0e0d1!important;border-radius:9px!important;}
+.th-app.bt-studio-admin .th-nav-button .th-nav-left svg {color:#dec0aa!important;}
+.th-app.bt-studio-admin .th-nav-button.active {background:#f1e5d6!important;color:#4b3026!important;box-shadow:inset 3px 0 #b98565!important;}
+.th-app.bt-studio-admin .th-nav-button.active .th-nav-left svg {color:#624231!important;}
+.th-app.bt-studio-admin .bt-compact-dashboard-top {background:linear-gradient(110deg,#54372b,#805a45)!important;border:0!important;}
+.th-app.bt-studio-admin .bt-compact-dashboard-top :is(h1,.bt-compact-dashboard-kicker,.bt19-refresh-status) {color:#fff8f0!important;}
+.th-app.bt-studio-admin .bt-studio-hero-admin {background:linear-gradient(120deg,#54372b,#845c44)!important;border-color:#946e56!important;}
+.th-app.bt-studio-hr .th-sidebar {background:radial-gradient(ellipse at 85% 0%,#889274,transparent 44%),linear-gradient(165deg,#5d6547,#424c36 65%,#343e2f)!important;}
+.th-app.bt-studio-hr .bt-sidebar-intro {background:linear-gradient(120deg,#7e8765,#606c4d)!important;border:1px solid #dbd8c66d!important;border-radius:20px!important;}
+.th-app.bt-studio-hr .bt-sidebar-intro-number {background:#f4e9da!important;color:#505b3b!important;}
+.th-app.bt-studio-hr .th-menu-label {color:#d9dbc4!important;}
+.th-app.bt-studio-hr .th-nav-button {color:#f0f0df!important;border-radius:999px!important;}
+.th-app.bt-studio-hr .th-nav-button .th-nav-left svg {color:#dbe0c6!important;}
+.th-app.bt-studio-hr .th-nav-button.active {background:#f3e6d3!important;color:#404934!important;box-shadow:0 5px 14px #26302140!important;}
+.th-app.bt-studio-hr .th-nav-button.active .th-nav-left svg {color:#505b3b!important;}
+.th-app.bt-studio-hr .bt-compact-dashboard-top {background:linear-gradient(115deg,#e8d9c4,#fff9ed)!important;border:1px solid #d9cfba!important;}
+.th-app.bt-studio-hr .bt-compact-dashboard-top h1 {color:#353b2a!important;}
+.th-app.bt-studio-hr .bt-studio-hero-hr {background:linear-gradient(125deg,#f1e5cf,#dad8b8)!important;border-color:#ddd0b4!important;}
+.th-app.bt-studio-manager .th-sidebar {background:radial-gradient(ellipse at 98% 12%,#ce7856,transparent 42%),linear-gradient(165deg,#a4573f,#86432f 70%,#67352a)!important;}
+.th-app.bt-studio-manager .th-sidebar:before {border-top:4px solid #f0c9ad!important;}
+.th-app.bt-studio-manager .bt-sidebar-intro {background:linear-gradient(130deg,#be7758,#a0543b)!important;border:1px solid #ffdcc36e!important;border-radius:9px 9px 23px 9px!important;}
+.th-app.bt-studio-manager .bt-sidebar-intro-number {background:#fff5e8!important;color:#995038!important;}
+.th-app.bt-studio-manager .th-menu-label {color:#ffe0cd!important;}
+.th-app.bt-studio-manager .th-nav-button {color:#fff0e9!important;border-radius:9px 17px 17px 9px!important;}
+.th-app.bt-studio-manager .th-nav-button .th-nav-left svg {color:#ffe0d1!important;}
+.th-app.bt-studio-manager .th-nav-button.active {background:#fff5ed!important;color:#88412c!important;border-left-color:#ffcfb3!important;box-shadow:0 5px 17px #5d2a1e38!important;}
+.th-app.bt-studio-manager .th-nav-button.active .th-nav-left svg {color:#a95337!important;}
+.th-app.bt-studio-manager .bt-compact-dashboard-top {background:linear-gradient(110deg,#a95337,#c47754)!important;border:0!important;}
+.th-app.bt-studio-manager .bt-compact-dashboard-top :is(h1,.bt-compact-dashboard-kicker,.bt19-refresh-status) {color:#fff!important;}
+.th-app.bt-studio-manager .bt-studio-hero-manager {background:linear-gradient(115deg,#a95337,#c47d5b)!important;border-color:#d78e6e!important;}
+.th-app.bt-studio-employee .th-sidebar {background:linear-gradient(167deg,#edf0f4,#dce3ea 66%,#ced9e5)!important;border-right:1px solid #c3d1df!important;}
+.th-app.bt-studio-employee .bt-sidebar-intro {background:linear-gradient(135deg,#e3e9ef,#c8d6e5)!important;border:1px solid #b9cadb!important;border-radius:20px!important;}
+.th-app.bt-studio-employee .bt-sidebar-intro-number {background:#42617e!important;color:#fff!important;}
+.th-app.bt-studio-employee .bt-sidebar-intro-copy strong {color:#2e4357!important;}
+.th-app.bt-studio-employee .bt-sidebar-intro-eyebrow,.th-app.bt-studio-employee .bt-sidebar-intro-copy small {color:#506a80!important;}
+.th-app.bt-studio-employee .th-menu-label {color:#557087!important;}
+.th-app.bt-studio-employee .th-nav-button {color:#385570!important;border-radius:14px!important;}
+.th-app.bt-studio-employee .th-nav-button .th-nav-left svg {color:#5e7a96!important;}
+.th-app.bt-studio-employee .th-nav-button:hover {background:#d2dde7!important;color:#263e55!important;}
+.th-app.bt-studio-employee .th-nav-button.active {background:#42617e!important;color:#fff!important;box-shadow:0 6px 17px #344d6431!important;}
+.th-app.bt-studio-employee .th-nav-button.active .th-nav-left svg {color:#f5f8fb!important;}
+.th-app.bt-studio-employee .bt-compact-dashboard-top {background:linear-gradient(115deg,#dfe6ed,#f7f8fa)!important;border:1px solid #cbd6e0!important;}
+.th-app.bt-studio-employee .bt-compact-dashboard-top h1 {color:#2e4357!important;}
+.th-app.bt-studio-employee .bt-studio-hero-employee {background:linear-gradient(115deg,#e8edf2,#d1dce8)!important;border-color:#c2d2e0!important;}
+.th-app.bt-studio-employee .bt-studio-hero-employee :is(h1,p,.bt-overline) {color:#345470!important;}
+/* Shared executive detail treatment: warm card surfaces and high-contrast theme controls. */
+.th-app.bt-studio .th-topbar {background:#fffdf9!important;color:var(--bt-ink)!important;border-color:var(--bt-line)!important;}
+.th-app.bt-studio-employee .th-topbar {background:#fbfcfd!important;}
+.th-app.bt-studio .th-topbar :is(.th-date,.th-user,.th-icon-btn,.th-mobile-btn) {color:var(--bt-ink)!important;}
+.th-app.bt-studio .th-search {background:#fff!important;border-color:var(--bt-line)!important;color:var(--bt-ink)!important;}
+.th-app.bt-studio .th-search input {color:var(--bt-ink)!important;}
+.th-app.bt-studio .th-search input::placeholder {color:var(--bt-muted)!important;}
+.th-app.bt-studio .th-page-shell :is(h1,h2,h3,.th-page-header h1) {color:var(--bt-ink)!important;}
+.th-app.bt-studio .bt9-stat,.th-app.bt-studio .bt9-card,.th-app.bt-studio .th-card {background:#fffdfb!important;border-color:var(--bt-line)!important;}
+.th-app.bt-studio-employee .bt9-stat,.th-app.bt-studio-employee .bt9-card,.th-app.bt-studio-employee .th-card {background:#fff!important;}
+.th-app.bt-studio .bt9-stat {border-top:3px solid var(--bt-accent)!important;}
+.th-app.bt-studio .bt9-card :is(.bt9-card-heading h2,.bt9-record-copy strong),
+.th-app.bt-studio .bt9-stat :is(.bt9-stat-value,strong) {color:var(--bt-ink)!important;}
+.th-app.bt-studio .bt9-stat .bt9-stat-icon,
+.th-app.bt-studio .bt9-card-icon {background:var(--bt-tint)!important;color:var(--bt-accent)!important;}
+.th-app.bt-studio .th-page-shell :is(.MuiTableCell-head,th) {background:var(--bt-tint)!important;color:var(--bt-ink)!important;}
+.th-app.bt-studio .th-page-shell :is(.th-primary,.th-btn-primary,.th-primary-btn,.MuiButton-containedPrimary),
+.th-app.bt-studio .bt-compact-dashboard-primary {background:var(--bt-accent)!important;border-color:var(--bt-accent)!important;color:#fff!important;}
+.th-app.bt-studio .th-page-shell :is(.th-primary,.th-btn-primary,.th-primary-btn,.MuiButton-containedPrimary):hover {filter:brightness(.90);}
+.th-app.bt-studio .th-page-shell :is(.MuiInputBase-root,.MuiOutlinedInput-root):focus-within {outline-offset:2px;}
+.th-app.bt-studio :is(button,a,input,select):focus-visible {outline:3px solid var(--role-focus)!important;outline-offset:3px;}
+.th-app.bt-studio .th-sidebar :is(.th-nav-button.active,.th-subnav.active) {background:var(--bt-accent)!important;color:#fff!important;}
+/* Preserve distinctive HR/Admin/Manager light active navigation despite shared role rules. */
+.th-app.bt-studio-admin .th-sidebar :is(.th-nav-button.active,.th-subnav.active) {background:#f1e5d6!important;color:#4b3026!important;}
+.th-app.bt-studio-hr .th-sidebar :is(.th-nav-button.active,.th-subnav.active) {background:#f3e6d3!important;color:#404934!important;}
+.th-app.bt-studio-manager .th-sidebar :is(.th-nav-button.active,.th-subnav.active) {background:#fff5ed!important;color:#88412c!important;}
+.th-app.bt-studio-employee .th-sidebar :is(.th-nav-button.active,.th-subnav.active) {background:#42617e!important;color:#fff!important;}
+/* Unified AI identity: consistently circular, warm chocolate B across every role. */
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round,
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round.bt-ai-launcher-team-chat {background:linear-gradient(150deg,#75513c,#4b3025)!important;border:2px solid #ead4bf!important;border-radius:50%!important;box-shadow:0 10px 30px #4b302550,0 0 0 5px #ffffffba!important;}
+.MuiFab-root.bt-ai-launcher.bt-ai-launcher-round:hover {background:linear-gradient(150deg,#875f47,#573728)!important;}
+@media(max-width:800px) {
+  .th-app.bt-studio .th-topbar {padding-inline:clamp(10px,3vw,20px)!important;}
+  .th-app.bt-studio .th-content {padding-inline:clamp(12px,3vw,22px)!important;}
+}
+@media(prefers-reduced-motion:reduce){.th-app.bt-studio * {scroll-behavior:auto!important;}}

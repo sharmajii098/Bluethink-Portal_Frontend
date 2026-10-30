@@ -1,127 +1,125 @@
+import {lazy, Suspense} from "react";
 import MyRequestsPage, { SelfServiceLayout } from "./pages/MyRequestsPage";
-import CalendarConnectionsPage from "./pages/CalendarConnectionsPage";
-import CalendarOAuthCallbackPage from "./pages/CalendarOAuthCallbackPage";
-import PayrollReconciliationPage from "./pages/PayrollReconciliationPage";
-import PayrollPoliciesPage from "./pages/PayrollPoliciesPage";
-import HrLetterTemplatesPage from "./pages/HrLetterTemplatesPage";
+const CalendarConnectionsPage = lazy(() => import("./pages/CalendarConnectionsPage"));
+const CalendarOAuthCallbackPage = lazy(() => import("./pages/CalendarOAuthCallbackPage"));
+const PayrollReconciliationPage = lazy(() => import("./pages/PayrollReconciliationPage"));
+const PayrollPoliciesPage = lazy(() => import("./pages/PayrollPoliciesPage"));
+const HrLetterTemplatesPage = lazy(() => import("./pages/HrLetterTemplatesPage"));
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "./store";
 
-
 import LoginPage from "./pages/auth/LoginPage";
-import ActivateAccountPage from "./pages/auth/ActivateAccountPage";
-import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
-import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
+const ActivateAccountPage = lazy(() => import("./pages/auth/ActivateAccountPage"));
+const ForgotPasswordPage = lazy(() => import("./pages/auth/ForgotPasswordPage"));
+const ResetPasswordPage = lazy(() => import("./pages/auth/ResetPasswordPage"));
 import RoleDashboard from "./pages/RoleDashboard";
 import AppLayout from "./components/AppLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
-import ResourcePage from "./pages/ResourcePage";
-import ReportsPage from "./pages/ReportsPage";
-import SalaryPage from "./pages/SalaryPage";
-import PayslipSelfServicePage from "./pages/PayslipSelfServicePage";
-import PayrollManagementPage from "./pages/PayrollManagementPage";
-import TimesheetPage from "./pages/TimesheetPage";
-import LeavePage from "./pages/LeavePage";
-import AttendancePage from "./pages/AttendancePage";
-import ProjectPage from "./pages/ProjectPage";
-import MentorshipPage from "./pages/MentorshipPage";
-import PerformancePage from "./pages/PerformancePage";
-import WfhPage from "./pages/WfhPage";
-import NotificationsPage from "./pages/NotificationsPage";
-import SettingsPage from "./pages/SettingsPage";
-import WorkingHoursPage from "./pages/WorkingHoursPage";
-import MyProfilePage from "./pages/MyProfilePage";
+const ResourcePage = lazy(() => import("./pages/ResourcePage"));
+const ReportsPage = lazy(() => import("./pages/ReportsPage"));
+const SalaryPage = lazy(() => import("./pages/SalaryPage"));
+const PayslipSelfServicePage = lazy(() => import("./pages/PayslipSelfServicePage"));
+const PayrollManagementPage = lazy(() => import("./pages/PayrollManagementPage"));
+const TimesheetPage = lazy(() => import("./pages/TimesheetPage"));
+const LeavePage = lazy(() => import("./pages/LeavePage"));
+const AttendancePage = lazy(() => import("./pages/AttendancePage"));
+const ProjectPage = lazy(() => import("./pages/ProjectPage"));
+const MentorshipPage = lazy(() => import("./pages/MentorshipPage"));
+const PerformancePage = lazy(() => import("./pages/PerformancePage"));
+const WfhPage = lazy(() => import("./pages/WfhPage"));
+const NotificationsPage = lazy(() => import("./pages/NotificationsPage"));
+const SettingsPage = lazy(() => import("./pages/SettingsPage"));
+const WorkingHoursPage = lazy(() => import("./pages/WorkingHoursPage"));
+const MyProfilePage = lazy(() => import("./pages/MyProfilePage"));
 
-import EmployeeManagementPage from "./pages/EmployeeManagementPage";
-import DepartmentManagementPage from "./pages/DepartmentManagementPage";
-import EmployeeHierarchyPage from "./pages/EmployeeHierarchyPage";
-import LeaveConfigurationPage from "./pages/LeaveConfigurationPage";
-import SecuritySessionsPage from "./pages/SecuritySessionsPage";
+const EmployeeManagementPage = lazy(() => import("./pages/EmployeeManagementPage"));
+const DepartmentManagementPage = lazy(() => import("./pages/DepartmentManagementPage"));
+const EmployeeHierarchyPage = lazy(() => import("./pages/EmployeeHierarchyPage"));
+const LeaveConfigurationPage = lazy(() => import("./pages/LeaveConfigurationPage"));
+const SecuritySessionsPage = lazy(() => import("./pages/SecuritySessionsPage"));
 
-import DocumentsPage from "./pages/DocumentsPage";
-import DocumentManagementPage from "./pages/DocumentManagementPage";
+const DocumentsPage = lazy(() => import("./pages/DocumentsPage"));
+const DocumentManagementPage = lazy(() => import("./pages/DocumentManagementPage"));
 
-import AnnouncementsPage from "./pages/AnnouncementsPage";
-import AnnouncementManagementPage from "./pages/AnnouncementManagementPage";
+const AnnouncementsPage = lazy(() => import("./pages/AnnouncementsPage"));
+const AnnouncementManagementPage = lazy(() => import("./pages/AnnouncementManagementPage"));
 
-import PoliciesPage from "./pages/PoliciesPage";
-import PolicyManagementPage from "./pages/PolicyManagementPage";
+const PoliciesPage = lazy(() => import("./pages/PoliciesPage"));
+const PolicyManagementPage = lazy(() => import("./pages/PolicyManagementPage"));
 
-import TrainingPage from "./pages/TrainingPage";
-import TrainingManagementPage from "./pages/TrainingManagementPage";
+const TrainingPage = lazy(() => import("./pages/TrainingPage"));
+const TrainingManagementPage = lazy(() => import("./pages/TrainingManagementPage"));
 
-import RecruitmentPage from "./pages/RecruitmentPage";
-import ExpensePage from "./pages/ExpensePage";
-import TravelPage from "./pages/TravelPage";
-import AssetManagementPage from "./pages/AssetManagementPage";
-import SupportTicketPage from "./pages/SupportTicketPage";
-import BenefitsPage from "./pages/BenefitsPage";
-import LoanAdvancePage from "./pages/LoanAdvancePage";
-import WorkforceSchedulingPage from "./pages/WorkforceSchedulingPage";
-import SeparationPage from "./pages/SeparationPage";
-import GrievancePage from "./pages/GrievancePage";
-import RecognitionPage from "./pages/RecognitionPage";
-import SurveyPage from "./pages/SurveyPage";
-import CareerMovementPage from "./pages/CareerMovementPage";
-import ProbationReviewPage from "./pages/ProbationReviewPage";
-import AttendanceRegularizationPage from "./pages/AttendanceRegularizationPage";
-import LetterRequestPage from "./pages/LetterRequestPage";
-import OvertimePage from "./pages/OvertimePage";
-import ReferralPage from "./pages/ReferralPage";
-import DataChangeRequestPage from "./pages/DataChangeRequestPage";
-import EmergencyContactsPage from "./pages/EmergencyContactsPage";
-import ComplianceRecordsPage from "./pages/ComplianceRecordsPage";
-import ProfileCompletionPage from "./pages/ProfileCompletionPage";
-import PayrollChangeRequestPage from "./pages/PayrollChangeRequestPage";
-import HolidayCalendarPage from "./pages/HolidayCalendarPage";
-import TaxDeclarationPage from "./pages/TaxDeclarationPage";
-import ShiftSwapPage from "./pages/ShiftSwapPage";
-import EmployeeMilestonesPage from "./pages/EmployeeMilestonesPage";
-import EmployeeSkillsPage from "./pages/EmployeeSkillsPage";
-import EmployeeSuggestionsPage from "./pages/EmployeeSuggestionsPage";
-import PolicyAcknowledgementPage from "./pages/PolicyAcknowledgementPage";
-import HrServiceRequestPage from "./pages/HrServiceRequestPage";
-import EmployeeAvailabilityPage from "./pages/EmployeeAvailabilityPage";
-import ManagerOneOnOnePage from "./pages/ManagerOneOnOnePage";
-import Employee360FeedbackPage from "./pages/Employee360FeedbackPage";
-import PrivacyConsentPage from "./pages/PrivacyConsentPage";
-import BeneficiaryPage from "./pages/BeneficiaryPage";
-import EmploymentContractPage from "./pages/EmploymentContractPage";
-import AccessCardRequestPage from "./pages/AccessCardRequestPage";
-import EmployeeTransferPage from "./pages/EmployeeTransferPage";
-import LeaveEncashmentPage from "./pages/LeaveEncashmentPage";
-import EmployeeAssetRequestPage from "./pages/EmployeeAssetRequestPage";
-import ShiftPreferencePage from "./pages/ShiftPreferencePage";
-import TransportRequestPage from "./pages/TransportRequestPage";
-import LeaveDonationPage from "./pages/LeaveDonationPage";
-import InternalMobilityPage from "./pages/InternalMobilityPage";
-import FlexibleWorkRequestPage from "./pages/FlexibleWorkRequestPage";
-import TalentSuccessionPage from "./pages/TalentSuccessionPage";
-import MySuccessionPlanPage from "./pages/MySuccessionPlanPage";
-import WorkplaceIncidentPage from "./pages/WorkplaceIncidentPage";
-import ApprovalInboxPage from "./pages/ApprovalInboxPage";
-import HRCalendarPage from "./pages/HRCalendarPage";
-import ActivityAuditPage from "./pages/ActivityAuditPage";
-import ActivityLogsPage from "./pages/ActivityLogsPage";
-import LoginLocationMonitorPage from "./pages/LoginLocationMonitorPage";
-import BlueThinkChatPage from "./pages/BlueThinkChatPage";
-import TeamChatPage from "./pages/TeamChatPage";
-import DailyStandupPage from "./pages/DailyStandupPage";
-import PolicyAssistantPage from "./pages/PolicyAssistantPage";
+const RecruitmentPage = lazy(() => import("./pages/RecruitmentPage"));
+const ExpensePage = lazy(() => import("./pages/ExpensePage"));
+const TravelPage = lazy(() => import("./pages/TravelPage"));
+const AssetManagementPage = lazy(() => import("./pages/AssetManagementPage"));
+const SupportTicketPage = lazy(() => import("./pages/SupportTicketPage"));
+const BenefitsPage = lazy(() => import("./pages/BenefitsPage"));
+const LoanAdvancePage = lazy(() => import("./pages/LoanAdvancePage"));
+const WorkforceSchedulingPage = lazy(() => import("./pages/WorkforceSchedulingPage"));
+const SeparationPage = lazy(() => import("./pages/SeparationPage"));
+const GrievancePage = lazy(() => import("./pages/GrievancePage"));
+const RecognitionPage = lazy(() => import("./pages/RecognitionPage"));
+const SurveyPage = lazy(() => import("./pages/SurveyPage"));
+const CareerMovementPage = lazy(() => import("./pages/CareerMovementPage"));
+const ProbationReviewPage = lazy(() => import("./pages/ProbationReviewPage"));
+const AttendanceRegularizationPage = lazy(() => import("./pages/AttendanceRegularizationPage"));
+const LetterRequestPage = lazy(() => import("./pages/LetterRequestPage"));
+const OvertimePage = lazy(() => import("./pages/OvertimePage"));
+const ReferralPage = lazy(() => import("./pages/ReferralPage"));
+const DataChangeRequestPage = lazy(() => import("./pages/DataChangeRequestPage"));
+const EmergencyContactsPage = lazy(() => import("./pages/EmergencyContactsPage"));
+const ComplianceRecordsPage = lazy(() => import("./pages/ComplianceRecordsPage"));
+const ProfileCompletionPage = lazy(() => import("./pages/ProfileCompletionPage"));
+const PayrollChangeRequestPage = lazy(() => import("./pages/PayrollChangeRequestPage"));
+const HolidayCalendarPage = lazy(() => import("./pages/HolidayCalendarPage"));
+const TaxDeclarationPage = lazy(() => import("./pages/TaxDeclarationPage"));
+const ShiftSwapPage = lazy(() => import("./pages/ShiftSwapPage"));
+const EmployeeMilestonesPage = lazy(() => import("./pages/EmployeeMilestonesPage"));
+const EmployeeSkillsPage = lazy(() => import("./pages/EmployeeSkillsPage"));
+const EmployeeSuggestionsPage = lazy(() => import("./pages/EmployeeSuggestionsPage"));
+const PolicyAcknowledgementPage = lazy(() => import("./pages/PolicyAcknowledgementPage"));
+const HrServiceRequestPage = lazy(() => import("./pages/HrServiceRequestPage"));
+const EmployeeAvailabilityPage = lazy(() => import("./pages/EmployeeAvailabilityPage"));
+const ManagerOneOnOnePage = lazy(() => import("./pages/ManagerOneOnOnePage"));
+const Employee360FeedbackPage = lazy(() => import("./pages/Employee360FeedbackPage"));
+const PrivacyConsentPage = lazy(() => import("./pages/PrivacyConsentPage"));
+const BeneficiaryPage = lazy(() => import("./pages/BeneficiaryPage"));
+const EmploymentContractPage = lazy(() => import("./pages/EmploymentContractPage"));
+const AccessCardRequestPage = lazy(() => import("./pages/AccessCardRequestPage"));
+const EmployeeTransferPage = lazy(() => import("./pages/EmployeeTransferPage"));
+const LeaveEncashmentPage = lazy(() => import("./pages/LeaveEncashmentPage"));
+const EmployeeAssetRequestPage = lazy(() => import("./pages/EmployeeAssetRequestPage"));
+const ShiftPreferencePage = lazy(() => import("./pages/ShiftPreferencePage"));
+const TransportRequestPage = lazy(() => import("./pages/TransportRequestPage"));
+const LeaveDonationPage = lazy(() => import("./pages/LeaveDonationPage"));
+const InternalMobilityPage = lazy(() => import("./pages/InternalMobilityPage"));
+const FlexibleWorkRequestPage = lazy(() => import("./pages/FlexibleWorkRequestPage"));
+const TalentSuccessionPage = lazy(() => import("./pages/TalentSuccessionPage"));
+const MySuccessionPlanPage = lazy(() => import("./pages/MySuccessionPlanPage"));
+const WorkplaceIncidentPage = lazy(() => import("./pages/WorkplaceIncidentPage"));
+const ApprovalInboxPage = lazy(() => import("./pages/ApprovalInboxPage"));
+const HRCalendarPage = lazy(() => import("./pages/HRCalendarPage"));
+const ActivityAuditPage = lazy(() => import("./pages/ActivityAuditPage"));
+const ActivityLogsPage = lazy(() => import("./pages/ActivityLogsPage"));
+const LoginLocationMonitorPage = lazy(() => import("./pages/LoginLocationMonitorPage"));
+const BlueThinkChatPage = lazy(() => import("./pages/BlueThinkChatPage"));
+const TeamChatPage = lazy(() => import("./pages/TeamChatPage"));
+const DailyStandupPage = lazy(() => import("./pages/DailyStandupPage"));
 
-import EmployeeLifecyclePage from "./pages/EmployeeLifecyclePage";
-import WorkforceAnalyticsPage from "./pages/WorkforceAnalyticsPage";
-import CompensationAnalyticsPage from "./pages/CompensationAnalyticsPage";
-import DocumentExpiryDashboardPage from "./pages/DocumentExpiryDashboardPage";
-import EmployeeDataQualityPage from "./pages/EmployeeDataQualityPage";
-import TrainingCompliancePage from "./pages/TrainingCompliancePage";
-import LearningEffectivenessPage from "./pages/LearningEffectivenessPage";
-import HrCaseSlaDashboardPage from "./pages/HrCaseSlaDashboardPage";
-import AttendanceLeaveRiskPage from "./pages/AttendanceLeaveRiskPage";
-import EmployeeCostAnalyticsPage from "./pages/EmployeeCostAnalyticsPage";
-
+const EmployeeLifecyclePage = lazy(() => import("./pages/EmployeeLifecyclePage"));
+const WorkforceAnalyticsPage = lazy(() => import("./pages/WorkforceAnalyticsPage"));
+const CompensationAnalyticsPage = lazy(() => import("./pages/CompensationAnalyticsPage"));
+const DocumentExpiryDashboardPage = lazy(() => import("./pages/DocumentExpiryDashboardPage"));
+const EmployeeDataQualityPage = lazy(() => import("./pages/EmployeeDataQualityPage"));
+const TrainingCompliancePage = lazy(() => import("./pages/TrainingCompliancePage"));
+const LearningEffectivenessPage = lazy(() => import("./pages/LearningEffectivenessPage"));
+const HrCaseSlaDashboardPage = lazy(() => import("./pages/HrCaseSlaDashboardPage"));
+const AttendanceLeaveRiskPage = lazy(() => import("./pages/AttendanceLeaveRiskPage"));
+const EmployeeCostAnalyticsPage = lazy(() => import("./pages/EmployeeCostAnalyticsPage"));
 
 /**
  * Supported application roles.
@@ -191,7 +189,6 @@ function roleRoutes(role: string) {
         {admin && <Route path={`${b}/staff-approvals`} element={<MyRequestsPage review />} />}
 
         <Route path={`${b}/calendar-connections`} element={<CalendarConnectionsPage />} />
-        <Route path={`${b}/policy-assistant`} element={<PolicyAssistantPage />} />
         {(admin || hr) && <><Route path={`${b}/payroll-reconciliation`} element={<PayrollReconciliationPage />} /><Route path={`${b}/payroll-policies`} element={<PayrollPoliciesPage />} /><Route path={`${b}/letter-templates`} element={<HrLetterTemplatesPage />} /></>}
 
         {/* =====================================================
@@ -777,7 +774,7 @@ export default function App() {
     : "/login";
 
   return (
-    <Routes>
+    <Suspense fallback={<div className="bt26-route-loading" role="status" aria-live="polite"><span className="bt26-loader" />Loading workspace…</div>}><Routes>
       <Route path="/calendar/oauth/callback/:provider" element={<CalendarOAuthCallbackPage />} />
 
       {/* =====================================================
@@ -826,6 +823,6 @@ export default function App() {
         }
       />
 
-    </Routes>
+    </Routes></Suspense>
   );
 }

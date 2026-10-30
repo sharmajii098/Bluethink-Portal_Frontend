@@ -2625,7 +2625,7 @@ function Hierarchy({
                 display:
                   "block",
                 color:
-                  "#64748b",
+                  "#648b7b",
                 marginTop: 3,
               }}
             >

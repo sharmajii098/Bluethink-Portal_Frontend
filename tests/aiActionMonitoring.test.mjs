@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 const ui = readFileSync(new URL('../src/components/AiActionLauncher.tsx', import.meta.url),'utf8');
-const service = readFileSync(new URL('../../Bluethink-Portal/src/main/java/EmployeeManagementSystem/service/AiActionService.java', import.meta.url),'utf8');
-const security = readFileSync(new URL('../../Bluethink-Portal/src/main/java/EmployeeManagementSystem/config/SecurityConfig.java', import.meta.url),'utf8');
+const service = readFileSync(new URL('../../bt-emp-portal/src/main/java/EmployeeManagementSystem/service/AiActionService.java', import.meta.url),'utf8');
+const security = readFileSync(new URL('../../bt-emp-portal/src/main/java/EmployeeManagementSystem/config/SecurityConfig.java', import.meta.url),'utf8');
 test('an uncertain confirmation does not get automatically replayed', () => {
   assert.match(ui, /setRecoveryToken\(preview\.token\)/);
   assert.match(ui, /disabled=\{busy \|\| recoveryRequired\}/);
@@ -23,8 +23,8 @@ test('status never equates a consumed token with committed business success', ()
 });
 
 test('only atomic in-transaction receipts can show committed state', () => {
-  const store = readFileSync(new URL('../../Bluethink-Portal/src/main/java/EmployeeManagementSystem/service/AiActionTokenStore.java', import.meta.url), 'utf8');
-  const repo = readFileSync(new URL('../../Bluethink-Portal/src/main/java/EmployeeManagementSystem/repository/AiActionPreviewRepository.java', import.meta.url), 'utf8');
+  const store = readFileSync(new URL('../../bt-emp-portal/src/main/java/EmployeeManagementSystem/service/AiActionTokenStore.java', import.meta.url), 'utf8');
+  const repo = readFileSync(new URL('../../bt-emp-portal/src/main/java/EmployeeManagementSystem/repository/AiActionPreviewRepository.java', import.meta.url), 'utf8');
   assert.match(service, /tokenStore\.recordCommit\(token, me\.username\(\), me\.role\(\), result\.reference\(\)\)/);
   assert.match(service, /@Override public void afterCommit\(\) \{ audit\.record\(event, "SUCCESS"\); \}/);
   assert.match(store, /@Transactional\(propagation = Propagation\.MANDATORY\)/);

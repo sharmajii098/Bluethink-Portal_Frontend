@@ -314,14 +314,14 @@ export default function AiActionLauncher({ compact = false }: { compact?: boolea
               <Button variant="outlined" size="small" disabled={monitorLoading} onClick={()=>void loadMonitor(24)}>Last 24 hours</Button>
               <Button variant="outlined" size="small" disabled={monitorLoading} onClick={()=>void loadMonitor(168)}>Last 7 days</Button>
               <Button variant="outlined" size="small" disabled={diagnosticsLoading} onClick={()=>void loadDiagnostics()}>Response timings</Button>
-              <Button variant="outlined" size="small" disabled={modelHealthLoading} onClick={()=>void loadModelHealth()}>Ollama status</Button>
+              <Button variant="outlined" size="small" disabled={modelHealthLoading} onClick={()=>void loadModelHealth()}>AI request status</Button>
             </Stack>
             {monitor && <Typography variant="body2">{monitor.windowHours}h · Active drafts: <strong>{monitor.activePreviews}</strong> · Expired: <strong>{monitor.expiredPreviews}</strong> · Consumed attempts: <strong>{monitor.consumedAttempts}</strong> · Cancelled: <strong>{monitor.cancelledPreviews}</strong> · Recorded commit receipts: <strong>{monitor.recordedCommits}</strong> · Commit-success audit events: <strong>{monitor.successfulCommitEvents}</strong> · Failure audit events: <strong>{monitor.failedCommitEvents}</strong> · Receipt warnings: <strong>{monitor.receiptUnverifiedEvents ?? 0}</strong>. Receipt warnings mean a business commit may have succeeded without a durable confirmation receipt; investigate before retrying. Audit counts are events, not guaranteed distinct business operations.</Typography>}
             {modelHealth && <Alert severity={modelHealth.circuit.state === "CLOSED" ? "success" : "warning"} sx={{my:1}}>
               Model guard: <strong>{modelHealth.circuit.state}</strong> · Active calls {modelHealth.capacity.active}/{modelHealth.capacity.limit} · Consecutive failures {modelHealth.circuit.consecutiveFailures}/{modelHealth.circuit.failureThreshold}.
               {modelHealth.circuit.state === "OPEN" && ` Retry after approximately ${modelHealth.circuit.retryAfterSeconds}s.`}
               {modelHealth.circuit.probeInProgress && " Recovery probe in progress."}
-              <Typography component="span" variant="caption" display="block">This is local protection state, not a live Ollama health check. Other backend instances may differ; status refreshes only when requested.</Typography>
+              <Typography component="span" variant="caption" display="block">This is this backend process's request protection state, not a live Groq health check. Other backend instances may differ; status refreshes only when requested.</Typography>
             </Alert>}
             {diagnostics && <Box sx={{mt:1.5}}>
               <Typography variant="caption" color="text.secondary" display="block">Server-local metrics since {new Date(diagnostics.processStartedAt).toLocaleString()} (reset on restart; not fleet-wide). Latency is based on up to {diagnostics.maxSamplesPerOperation} most recent samples per endpoint. No employee or request content is collected.</Typography>

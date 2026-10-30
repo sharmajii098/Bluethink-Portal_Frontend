@@ -1,3 +1,5 @@
+import KnowledgePanel from "../components/KnowledgePanel";
+import "../styles/ai-v22.css";
 import AiActionLauncher from "../components/AiActionLauncher";
 import { useAiChat } from "../contexts/AiChatContext";
 import { localDate, recentReportStart } from "../utils/reportDates";
@@ -12,7 +14,7 @@ import { api } from "../services/api";
 export default function BlueThinkChatPage() {
   const session = useSelector((s: RootState) => s.auth.session);
   const navigate = useNavigate();
-  const { messages, setMessages, prompt, setPrompt, busy, error, setError, sendMessage, resetChat, cancelMessage } = useAiChat();
+  const { messages, setMessages, prompt, setPrompt, busy, error, elapsedSeconds, setError, sendMessage, resetChat, cancelMessage } = useAiChat();
   const [historyOpen, setHistoryOpen] = useState(false);
   const [history, setHistory] = useState<Array<{id:number;createdAt:string;question:string;answer:string}>>([]);
   const [exportBusy, setExportBusy] = useState(false);
@@ -111,6 +113,7 @@ export default function BlueThinkChatPage() {
       </Stack>
       {analytics && <Typography sx={{mt:1}}>Attendance: {analytics.attendanceEntries} · Timesheets: {analytics.timesheetEntries} · Hours: {analytics.loggedHours} · Attendance status: {JSON.stringify(analytics.attendanceStatuses)} · Timesheet status: {JSON.stringify(analytics.timesheetStatuses)}</Typography>}
     </Paper>
+    <KnowledgePanel role={role} onSearch={()=>{setPrompt("Search company knowledge: ");inputRef.current?.focus()}} />
     <Paper elevation={0} className="th-card" sx={{ overflow: "hidden", minHeight: "68vh", display: "flex", flexDirection: "column", borderRadius: 3 }}>
       <Stack direction="row" alignItems="center" spacing={1.5} sx={{ p: 2, borderBottom: "1px solid rgba(120,130,150,.18)" }}>
         <Stack alignItems="center" justifyContent="center" sx={{ width: 42, height: 42, borderRadius: 2, bgcolor: "primary.main", color: "white" }}><AutoAwesomeRounded /></Stack>
@@ -137,21 +140,21 @@ export default function BlueThinkChatPage() {
       <div style={{ flex: 1, overflowY: "auto", padding: 20 }}>
         <Stack spacing={2} sx={{ maxWidth: 900, mx: "auto" }}>
           {messages.map((message) => <div key={message.id} style={{ display: "flex", justifyContent: message.role === "user" ? "flex-end" : "flex-start" }}>
-            <div style={{ maxWidth: "88%", whiteSpace: "pre-wrap", overflowWrap: "anywhere", padding: "13px 16px", borderRadius: 16, background: message.role === "user" ? "var(--primary, #1976d2)" : "var(--surface-soft, #f5f7fb)", color: message.role === "user" ? "#fff" : "inherit", border: message.role === "assistant" ? "1px solid rgba(120,130,150,.18)" : "none", lineHeight: 1.6 }}>
+            <div style={{ maxWidth: "88%", whiteSpace: "pre-wrap", overflowWrap: "anywhere", padding: "13px 16px", borderRadius: 16, background: message.role === "user" ? "var(--bt-accent, #204d75)" : "var(--bt-tint, #f2f4f8)", color: message.role === "user" ? "#fff" : "inherit", border: message.role === "assistant" ? "1px solid rgba(120,130,150,.18)" : "none", lineHeight: 1.6 }}>
               {message.text}
             </div>
           </div>)}
-          {busy && <Stack direction="row" spacing={1.2} alignItems="center" color="text.secondary"><CircularProgress size={18} /><Typography variant="body2">BlueThink AI is thinking…</Typography></Stack>}
+          {busy && <Stack direction="row" spacing={1.2} alignItems="center" color="text.secondary"><CircularProgress size={18} /><Typography variant="body2">{elapsedSeconds < 8 ? "Checking your question…" : `Still working · ${elapsedSeconds}s. You can stop and retry.`}</Typography></Stack>}
         </Stack>
       </div>
       <div style={{ borderTop: "1px solid rgba(120,130,150,.18)", padding: 14 }}>
-        <Stack direction="row" spacing={1} alignItems="flex-end" sx={{ maxWidth: 900, mx: "auto" }}>
+        <Stack direction="row" spacing={1} alignItems="flex-start" sx={{ maxWidth: 900, mx: "auto" }}>
           <TextField fullWidth inputRef={inputRef} value={prompt} onChange={(e) => setPrompt(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); void sendMessage(); } }}
             placeholder="Ask BlueThink AI about your portal records…" multiline maxRows={5} disabled={busy}
             inputProps={{ maxLength: 2000 }} helperText={`${prompt.length}/2000`} />
-          {busy && <Button size="small" color="inherit" onClick={cancelMessage}>Stop request</Button>}
-          <IconButton color="primary" onClick={() => void sendMessage()} disabled={busy || !prompt.trim()} aria-label="Send message" sx={{ width: 48, height: 48, bgcolor: "action.hover" }}><SendRounded /></IconButton>
+          {busy && <Button size="small" color="inherit" onClick={cancelMessage} sx={{ flexShrink: 0, minWidth: 120, height: 48, whiteSpace: "nowrap", textTransform: "none", alignSelf: "flex-start" }}>Stop request</Button>}
+          <IconButton color="primary" onClick={() => void sendMessage()} disabled={busy || !prompt.trim()} aria-label="Send message" sx={{ flexShrink: 0, width: 48, height: 48, alignSelf: "flex-start", bgcolor: "action.hover" }}><SendRounded /></IconButton>
         </Stack>
         <Typography variant="caption" color="text.secondary" display="block" textAlign="center" sx={{ mt: 1 }}>Portal record answers use permission-checked database queries. General AI explanations may be inaccurate. Only explicitly confirmed actions in the Actions panel can create your own records. Approvals remain with authorized reviewers.</Typography>
       </div>

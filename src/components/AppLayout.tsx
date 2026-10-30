@@ -1,5 +1,5 @@
 import { RequestModeBar } from "../pages/MyRequestsPage";
-import officialLogo from "../branding/bluethink-inc-official-master.png";
+import BlueThinkWordmark from "./BlueThinkWordmark";
 import { AiChatProvider } from "../contexts/AiChatContext";
 import AiChatWidget from "./AiChatWidget";
 import { useEffect, useMemo, useState } from "react";
@@ -48,6 +48,7 @@ import {
 import { logout } from "../store/authSlice";
 import type { RootState } from "../store";
 import type { Role } from "../types/auth";
+import { readUiSettings } from "../utils/uiPreferences";
 
 const ROLE_PORTAL_NAME: Record<Role, string> = {
   ADMIN: "Admin Portal",
@@ -89,6 +90,16 @@ function PortalLayout() {
   const dispatch = useDispatch();
 
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [uiPreferences, setUiPreferences] = useState(readUiSettings);
+  useEffect(() => {
+    const sync = () => setUiPreferences(readUiSettings());
+    window.addEventListener("hrms-settings-changed", sync);
+    window.addEventListener("storage", sync);
+    return () => {
+      window.removeEventListener("hrms-settings-changed", sync);
+      window.removeEventListener("storage", sync);
+    };
+  }, []);
   const [expanded, setExpanded] = useState<string[]>([]);
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
   const [search, setSearch] = useState("");
@@ -429,7 +440,8 @@ function PortalLayout() {
   }
 
   return (
-    <div className={`th-app bt-studio bt-studio-${role.toLowerCase()}`} data-ui-version="19.0-distinct-premium">
+    <div className={`th-app bt-studio bt-studio-${role.toLowerCase()} bt27-density-${uiPreferences.density} bt27-width-${uiPreferences.contentWidth} bt27-text-${uiPreferences.textSize} ${uiPreferences.sidebarCompact ? "bt27-sidebar-slim" : ""}`} data-ui-version="27.0">
+      <a className="bt-skip-link" href="#main-content">Skip to content</a>
       <button
         className={`th-overlay ${mobileOpen ? "show" : ""}`}
         onClick={() => setMobileOpen(false)}
@@ -437,8 +449,8 @@ function PortalLayout() {
       />
 
       <aside className={`th-sidebar ${mobileOpen ? "open" : ""}`}>
-        <button className="th-brand bt-official-brand" onClick={() => go("dashboard")} aria-label="BlueThink Inc. - open dashboard" title={`${ROLE_PORTAL_NAME[role]} · BlueThink Inc.`}>
-          <img className="bt-official-brand-logo bt-official-brand-original" src={officialLogo} alt="BlueThink Inc. — Think beyond" />
+        <button className="th-brand bt-official-brand bt-wordmark-brand" onClick={() => go("dashboard")} aria-label="BlueThink Inc. - open dashboard" title={`${ROLE_PORTAL_NAME[role]} · BlueThink Inc.`}>
+          <BlueThinkWordmark compact />
         </button>
 
         <div className="th-profile th-profile-v6">
@@ -509,10 +521,10 @@ function PortalLayout() {
         <div className="th-sidebar-footer"><span className="bt-sidebar-signature"><span className="bt-sidebar-footer-dot" aria-hidden="true" />{ROLE_COPY[role]}</span></div>
       </aside>
 
-      <main className="th-main">
+      <main className="th-main" id="main-content">
         <header className="th-topbar">
           <div className="th-top-left">
-            <IconButton className="th-mobile-btn" onClick={() => setMobileOpen(true)}>
+            <IconButton className="th-mobile-btn" aria-label="Open navigation" onClick={() => setMobileOpen(true)}>
               <MenuRoundedIcon />
             </IconButton>
 

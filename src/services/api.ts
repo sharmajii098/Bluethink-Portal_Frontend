@@ -43,19 +43,15 @@ api.interceptors.request.use(
   }
 );
 
-/**
- * Handle API responses.
- *
- * IMPORTANT:
- * We do NOT immediately remove the login session on every 401.
- * This prevents a single dashboard API failure from logging the
- * user out automatically.
+/** A 401 from the current bearer session means it is expired or revoked.
+ * A role denial (403), network error or late response from an old account does not.
  */
-api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    return Promise.reject(error);
+api.interceptors.response.use(response => response, error => {
+  const sent = error.config?.headers?.Authorization;
+  const current = sessionStorage.getItem("hrms_token");
+  if (error.response?.status === 401 && current && sent === `Bearer ${current}`
+      && error.config?.url !== "/auth/login") {
+    window.dispatchEvent(new CustomEvent("hrms-session-expired", { detail: current }));
   }
-);
+  return Promise.reject(error);
+});
