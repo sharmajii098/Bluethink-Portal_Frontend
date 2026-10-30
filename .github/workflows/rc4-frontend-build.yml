@@ -1,0 +1,35 @@
+name: RC4 Frontend - Build and Standalone Tests
+on:
+  push:
+    branches:
+      - rc4-upgrade-20261030t081419z
+  pull_request:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-fund
+      - name: Run standalone frontend tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t test_files < <(find tests -maxdepth 1 -type f -name '*.test.mjs' ! -name 'aiActionMonitoring.test.mjs' | sort)
+          if [ "${#test_files[@]}" -lt 1 ]; then
+            echo 'No standalone frontend tests found' >&2
+            exit 1
+          fi
+          node --test "${test_files[@]}"
+          echo 'Cross-repository test aiActionMonitoring.test.mjs is NOT RUN in split-repo CI; it needs a coordinated backend checkout.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify production frontend build
+        run: npm run build
